@@ -1,0 +1,106 @@
+﻿body {
+    margin:0;
+    padding:0;
+}
+.back-ground{
+    height: 140vh;
+    width: 100%;
+    background-image: url(imag/PotentialUI-1.png);
+    background-position: center;
+    background-size: cover;
+    background-position: center;
+    padding-left: 0%;
+    padding-right: 0%;
+    box-sizing: border-box;
+    position: relative;
+}
+.logoandmore{
+    width: 100%;
+    height: 8vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    width: 85px;
+    height: 55px;
+}
+.ChooseFile {
+    background-color: #35AFAA;
+    border-radius: 12px;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 11px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: 'Arial Rounded MT';
+    box-shadow: 0 5px #2d2d2d;
+    position: absolute;
+    left: 650px;
+}
+.ChooseFile:hover {
+    background-color: #2a8c88;
+}
+.ChooseFile:active {
+    background-color: #35afaa;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
+
+.upload{
+    font-size: 19px;
+    color: white;
+    border-radius: 12px;
+    border: 2px solid white;
+    background-color: #35AFAA;
+    padding: 6px 8px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+    position: absolute;
+    left: 770px;
+}
+.upload:hover {
+    background-color: #2a8c88;
+}
+.upload:active {
+    background-color: #35afaa;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
+
+.info {
+    font-size: 17px;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid #35afaa;
+    border-spacing: 25px;
+    background-color: black;
+    color: #35afaa;
+    padding: 6px 7px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+    position: absolute;
+    right: 10px;
+}
+.info:hover {
+    background-color: #1e1e1e;
+}
+
+.info:active {
+    background-color: black;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
+
+.gif{
+    position: absolute;
+    left: 420px;
+    bottom: 380px;
+    width: 670px;
+    height: 450px;
+    border: 2px solid #e5e5e5;
+}
