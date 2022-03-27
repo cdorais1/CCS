@@ -1,2 +1,2 @@
-import * as cornerstone from "cornestone-core";
+import * as cornerstone from "cornerstone-core";
 
