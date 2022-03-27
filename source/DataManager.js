@@ -1,6 +1,6 @@
 import * as cornerstone from "cornerstone-core";
 
-// This class is a data container and will not have any methods of its own other than getInstance(), only variables.
+// This class is a data container and will not have any methods of its own.
 class dataManager
 {
     // Create a constructor with dummy variables to list out necessary information gathered from the passed in DICOM; subject to change.
