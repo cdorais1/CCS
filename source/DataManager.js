@@ -1,15 +1,19 @@
 import * as cornerstone from "cornerstone-core";
 
-// This class is a data container and will not have any methods of its own, only variables.
+// This class is a data container and will not have any methods of its own other than getInstance(), only variables.
 class dataManager
 {
-    // Create a constructor with dummy variables to list out necessary information gathered from the passed in DICOM.
+    // Create a constructor with dummy variables to list out necessary information gathered from the passed in DICOM; subject to change.
     constructor(dicom)
     {
-        this._instanceID = 0;
-        this._imageDepth = 0;
-        this._imageXSize = 0;
-        this._imageYSize = 0;
+        if (!dataManager.instance)
+        {
+            dataManager.instance = this;
+            this._imageDepth = 0;
+            this._imageXSize = 0;
+            this._imageYSize = 0;
+        }
+        return dataManager.instance;
     }
-
+    instance = new dataManager();
 }
