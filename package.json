@@ -1,0 +1,12 @@
+{
+  "name": "ccs.js",
+  "version": "0.0.0",
+  "description": "CCS.js",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "cornerstone-core": "^2.6.1"
+  }
+}
