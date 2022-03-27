@@ -34,16 +34,16 @@
     <Content Include="source\controller.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="source\UI.js">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="source\server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="source\UI\UI.js">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="externaldep\" />
     <Folder Include="source\" />
+    <Folder Include="source\UI\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
