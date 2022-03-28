@@ -17,11 +17,17 @@
             <!--Logo-->
             <img src="imag/logo1.png" class="logo" />
             <!--Button "Choose File"-->
-            <button class="ChooseFile">Choose File</button>
+            <div class="ChooseFile">
+                Choose File
+            <!--input file dialogue to select file-->
+                <input type="file" id="user-file-input" hidden="hidden" />
+            <!--prototype button-->
+                <button type="button" id="custom-button">CHOOSE A FILE</button>
+            <!--textbook for testing if we got the images-->
+                <span id="custom-text">No file chosen, yet.</span>>
+            </div>
             <!--Button for upload, which is an arrow-->
             <!--Needs to be included in nested class to make style changes in the .css file-->
-            <input type="file" />
-            <!--input for choosefile-->>
             <div class="upload">
                 <i class="fa fa-arrow-up-from-bracket"></i>
             </div>
