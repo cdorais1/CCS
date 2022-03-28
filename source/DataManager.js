@@ -9,11 +9,16 @@ class dataManager
         if (!dataManager.instance)
         {
             dataManager.instance = this;
-            this._imageDepth = 0;
-            this._imageXSize = 0;
-            this._imageYSize = 0;
+
+            // Instantiate vectors to hold information on all DICOMs in a series. 
+            this._imageDepth = [];
+            this._imageXSize = [];
+            this._imageYSize = [];
         }
+
         return dataManager.instance;
     }
+
     instance = new dataManager();
+
 }
