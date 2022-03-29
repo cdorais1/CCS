@@ -1,24 +1,15 @@
 import * as cornerstone from "cornerstone-core";
 import assert from 'assert';
 
-const realInputButton = document.getElementById("user-file-input");
-const customBtn = document.getElementById("custom-button");
+const realFileBtn = document.getElementById("user-file");
 const customTxt = document.getElementById("custom-text");
 
-customBtn.addEventListener("click", function() {
-    realInputButton.click();
-
-});
-
-realInputButton.addEventListener("change", function() {
-    if (realInputButton.value) {
-        if (realFileBtn.value) {
+realFileBtn.addEventListener("change", function() {
+    if (realFileBtn.value) {
             customTxt.innerHTML = realFileBtn.value;
         } else {
-            customTxt.innerHTML = "No file chosen, yet"
+            customTxt.innerHTML = "No file chosen, yet";
         }
-    }
-
 });
 
 // This class is a data container and will not have any methods of its own.
