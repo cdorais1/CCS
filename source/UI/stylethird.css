@@ -1,0 +1,150 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.back-ground {
+    margin: auto;
+    height: 100vh;
+    width: 100%;
+    background-image: url(imag/third1.png);
+    background-position: center;
+    background-size: cover;
+    padding-left: 0%;
+    padding-right: 0%;
+    box-sizing: border-box;
+    position: relative;
+}
+.logoandmore {
+    margin: auto;
+    width: 100%;
+    height: 8vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+/*Logo size*/
+.logo {
+    width: 85px;
+    height: 55px;
+}
+.ChooseFile {
+    margin: auto;
+    background-color: #35AFAA;
+    border-radius: 12px;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 11px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: 'Arial Rounded MT';
+    box-shadow: 0 5px #2d2d2d;
+    position: absolute;
+    left: 500px;
+}
+
+    /*When mouse goes over the button "Choose File", the color of the button changes*/
+    .ChooseFile:hover {
+        background-color: #2a8c88;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .ChooseFile:active {
+        background-color: #35afaa;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+input[type="file"] {
+    position: absolute;
+    z-index: -1;
+    top: 6px;
+    left: 0;
+    font-size: 15px;
+    color: rgb(white,white,white);
+}
+/*Upload button: Styling properties*/
+.upload {
+    margin: auto;
+    font-size: 19px;
+    color: white;
+    border-radius: 12px;
+    border: 2px solid white;
+    background-color: #35AFAA;
+    padding: 6px 8px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+    position: absolute;
+    left: 620px;
+}
+
+    /*When mouse goes over the button upload, the color of the button changes*/
+    .upload:hover {
+        background-color: #2a8c88;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .upload:active {
+        background-color: #35afaa;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+
+.download {
+    margin: auto;
+    background-color: #35AFAA;
+    border-radius: 12px;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 11px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: 'Arial Rounded MT';
+    box-shadow: 0 5px #2d2d2d;
+    position: absolute;
+    left: 850px;
+}
+
+.download:hover {
+    background-color: #2a8c88;
+}
+
+/*Gives the sensation of a real button, just click on it*/
+.download:active {
+    background-color: #35afaa;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
+/*Info button: Styling properties*/
+.info {
+    margin: auto;
+    font-size: 17px;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid #35afaa;
+    border-spacing: 25px;
+    background-color: black;
+    color: #35afaa;
+    padding: 6px 7px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+    position: absolute;
+    right: 10px;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .info:hover {
+        background-color: #1e1e1e;
+    }
+    /*Gives the sensation of a real button, just click on it*/
+    .info:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
