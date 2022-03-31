@@ -1,13 +1,7 @@
-////'use strict';
-////var http = require('http');
-////var port = process.env.PORT || 1337;
-
-////http.createServer(function (req, res) {
-////    res.writeHead(200, { 'Content-Type': 'text/plain' });
-////    res.end('We can totally do this guys, I have total faith even through this is all new stuff. \n');
-////}).listen(port);
 import assert from 'assert';
+import { dataManager } from './DataManager/DataManager';
 import * as cornerstone from cornerstone-core;
+import * as dicomParser from dicom - parser;
 
 const realFileBtn = document.getElementById("user-file");
 const customTxt = document.getElementById("custom-text");
@@ -30,8 +24,12 @@ function loadFile(file) {
         // Here we have the file data as an ArrayBuffer.  dicomParser requires as input a
         // Uint8Array so we create that here
         var byteArray = new Uint8Array(arrayBuffer);
-        parseByteArray(byteArray);
+        var dataSet = dicomParser.parseDicom(byteArray);
     }
     reader.readAsArrayBuffer(file);
+    return dataSet;
 }
+
+    loadFile(file);
+    var dM = new dataManager(dataSet);
 
