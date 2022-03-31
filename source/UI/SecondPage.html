@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Carotid Calcium Scanner</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styleSecond.css" />
     <!--This is a page I used to get the icons upload and info in the second page of the UI-->
     <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
 </head>
@@ -19,15 +19,15 @@
             <!--Button "Choose File"-->
             <div class="ChooseFile">
                 <!--Choose File-->
-            <!--input file dialogue to select file-->
-                <input type="file" id="user-file" />
-            <!--textbook for testing if we got the images-->
-                <span id="custom-text">No file chosen, yet. </span>
+                <!--input file dialogue to select file-->
+                <input type="file" id="user-file" hidden/>
+                <label for="user-file">Choose File</label>
+                <!--textbook for testing if we got the images-->
             </div>
             <!--Button for upload, which is an arrow-->
             <!--Needs to be included in nested class to make style changes in the .css file-->
             <div class="upload">
-                <i class="fa fa-arrow-up-from-bracket"></i>
+                <a href="ThirdPage.html"> <i class="fa fa-arrow-up-from-bracket"></i> </a>
             </div>
             <!--Button for info, which is the "i"-->
             <!--Similar with the upload button above-->

@@ -1,16 +1,8 @@
-import * as cornerstone from "cornerstone-core";
-import assert from 'assert';
+import * as dicomParse from "";
 
-const realFileBtn = document.getElementById("user-file");
-const customTxt = document.getElementById("custom-text");
+import 
 
-realFileBtn.addEventListener("change", function() {
-    if (realFileBtn.value) {
-            customTxt.innerHTML = realFileBtn.value;
-        } else {
-            customTxt.innerHTML = "No file chosen, yet";
-        }
-});
+
 
 // This class is a data container and will not have any methods of its own.
 class dataManager
@@ -37,4 +29,28 @@ class dataManager
 
     instance = new dataManager();
 
+}
+function readFixedString(byteArray, position, length) {
+    if (length < 0) {
+        throw 'dicomParser.readFixedString - length cannot be less than 0';
+    }
+
+    if (position + length > byteArray.length) {
+        throw 'dicomParser.readFixedString: attempt to read past end of buffer';
+    }
+
+    var result = '';
+    var byte;
+
+    for (var i = 0; i < length; i++) {
+        byte = byteArray[position + i];
+        if (byte === 0) {
+            position += length;
+
+            return result;
+        }
+        result += String.fromCharCode(byte);
+    }
+
+    return result;
 }
