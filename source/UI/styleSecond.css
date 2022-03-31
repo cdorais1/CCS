@@ -128,3 +128,29 @@ body {
     box-shadow: 0 4px #2d2d2d;
     transform: translateY(3px);
 }
+/*Info button: Styling properties*/
+.menu {
+    font-size: 17px;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid #35afaa;
+    border-spacing: 25px;
+    background-color: black;
+    color: #35afaa;
+    padding: 6px 7px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+    position: absolute;
+    right: 10px;
+}
+
+/*When mouse goes over the button for more info, the color of the button changes*/
+.menu:hover {
+    background-color: #1e1e1e;
+}
+/*Gives the sensation of a real button, just click on it*/
+.menu:active {
+    background-color: black;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
