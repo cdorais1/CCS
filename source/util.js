@@ -30,6 +30,6 @@ function loadFile(file) {
     return dataSet;
 }
 
-    loadFile(file);
-    var dM = new dataManager(dataSet);
+    var ds = loadFile(file);
+    var dM = new dataManager(ds);
 
