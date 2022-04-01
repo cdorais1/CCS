@@ -5,7 +5,7 @@ export class dataManager
 {
     constructor(dataSet)
     {
-        
+        this.dataSet = dataSet; // Store dataset for future use. 
         this.imageXDim = dataSet.floatString('x00200032', 0); // x dimension/width   
         this.imageYDim = dataSet.floatString('x00200032', 1); // y dimension/height
         this.imageZDim = dataSet.floatString('x00200032', 2); // z dimension/depth 
