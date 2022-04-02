@@ -7,6 +7,7 @@
     "name": ""
   },
   "dependencies": {
+    "browserify": "^17.0.0",
     "cornerstone-core": "^2.6.1",
     "cornerstone-math": "^0.1.9",
     "cornerstone-tools": "^6.0.6",

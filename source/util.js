@@ -1,7 +1,7 @@
 import assert from 'assert';
-import { dataManager } from './DataManager/DataManager';
-import * as cornerstone from './cornerstone-core';
-import * as dicomParser from './dicom - parser';
+const parser = require('dicom-parser');
+const cornerstone = require('cornerstone');
+const viewer = require('cornerstone-wado-image-loader');
 
 const realFileBtn = document.getElementById("user-file");
 const customTxt = document.getElementById("custom-text");

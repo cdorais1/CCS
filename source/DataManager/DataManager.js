@@ -1,6 +1,6 @@
 // This class is a data container and will not have any methods of its own.
-import dataSet from '../../node_modules/dicom-parser/';
-import ; 
+const dataSetter = require('dicom-parser');
+const imageParse = require('cornerstone-wado-image-loader');
 export class dataManager
 {
     constructor(dataSet)
