@@ -2,7 +2,7 @@
   "name": "ccs.js",
   "version": "0.0.0",
   "description": "CCS.js",
-  "main": "server.js",
+  "main": "util.js",
   "author": {
     "name": ""
   },
