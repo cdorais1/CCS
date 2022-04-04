@@ -1,7 +1,7 @@
 import assert from 'assert';
-import { dataManager } from './DataManager/DataManager';
-import * as cornerstone from cornerstone-core;
-import * as dicomParser from dicom - parser;
+const parser = require('dicom-parser');
+const cornerstone = require('cornerstone');
+const viewer = require('cornerstone-wado-image-loader');
 
 const realFileBtn = document.getElementById("user-file");
 const customTxt = document.getElementById("custom-text");
@@ -9,7 +9,7 @@ const file;
 realFileBtn.addEventListener("change", function () {
     if (realFileBtn.value) {
         customTxt.innerHTML = realFileBtn.value;
-//        file = document.getElementById('user-file').files; trying to figure out how to get files from html 
+       file = document.getElementById('user-file').files; // trying to figure out how to get files from html 
     } else {
         customTxt.innerHTML = "No file chosen, yet";
 
@@ -32,6 +32,19 @@ function loadFile(file) {
     return dataSet;
 }
 
-    var ds = loadFile(file);
-    var dM = new dataManager(ds);
+var ds = loadFile(file);
+var dM = new dataManager(ds);
 
+/* 2. Parsed information is passed to the Dicom Viewer to be displayed on ThirdPage.html. */
+
+/* 3. User interacts with the image and a tool is called, affecting the image or calling the controller for calculations. */
+
+// If stack scroll
+
+// If pan 
+
+// If brush
+
+// If zoom
+
+// If clear 
