@@ -10,7 +10,8 @@ window.onload = function() {
     var realFileBtn = document.getElementById("user-file");
     var customTxt = document.getElementById("custom-text");
 
-    var file_array = [];
+    var file_array = []; //array storing the contents of the passed in dicom file
+    const first_file = file_array[0]; //the first file inputted 
 
     realFileBtn.addEventListener("change", function () {
         console.log(realFileBtn.value);
@@ -25,9 +26,9 @@ window.onload = function() {
 
     // Program steps 
     /* 1. File is uploaded. Data is parsed into a dataSet object, which is then used to populated the dataManager class.*/
-    function loadFile(file) {
+    function loadFile(first_file) {
         var reader = new FileReader();
-        reader.onload = function (file) {
+        reader.onload = function (first_file) {
             var arrayBuffer = reader.result;
             // Here we have the file data as an ArrayBuffer.  dicomParser requires as input a
             // Uint8Array so we create that here
@@ -38,7 +39,7 @@ window.onload = function() {
         return dataSet;
     }
 
-    var ds = loadFile(file);
+    var ds = loadFile(first_file);
     var dM = new dataManager(ds);
 
     /* 2. Parsed information is passed to the Dicom Viewer to be displayed on ThirdPage.html. */
