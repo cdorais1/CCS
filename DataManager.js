@@ -10,8 +10,8 @@ export class dataManager {
         this.patientID = dataSet.string('x00100020'); // Patient id 
         this.sopInstanceUid = dataSet.string('x0020000d') // Unique id of DICOM/image
         this.seriesUid = dataSet.string('x0020000e') // id of image in series. 
-        this.imageID;
-        this.pixelData;
+        this.row = dataSet.uint16('x00280010') // rows element needed for images.
+        this.imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
     }
 }
 

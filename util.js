@@ -30,8 +30,20 @@ function loadFile(file) {
 
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
-var ds = loadFile(file);
-var dM = new dataManager(ds);
+// Viewport is enabled. Scale is zoom in of pixel, translation is (x,y) 
+// properties, default is(0, 0), VOI is Values of Interest, i.e. window width
+// and center, invert is to flip the image and pixel replication is 
+// for smoother zooming(I think).
+const viewportOptions = {
+    scale: 1,
+    translation: { x: 0, y: 0 },
+    voi: { windowWidth: 400, windowCenter: 200 },
+    invert: false,
+    pixelReplication: true
+};
+
+const element = document.getElementById("viewport");
+
 
 /* 2. Parsed information is passed to the Dicom Viewer to be displayed on ThirdPage.html. */
 
