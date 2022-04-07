@@ -46,7 +46,15 @@ const element = document.getElementById("viewport");
 
 
 /* 2. Parsed information is passed to the Dicom Viewer to be displayed on ThirdPage.html. */
+cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
+const element = document.getElementById('viewport');
+cornerstone.loadImage(imageId).then(function (image)
+{
+    const viewport = cornerstone.getDefaultViewportForImage(element, image);
+    cornerstone.displayImage(element, image, viewport);
+    
+    
 /* 3. User interacts with the image and a tool is called, affecting the image or calling the controller for calculations. */
 
 // If stack scroll
