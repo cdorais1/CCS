@@ -1,18 +1,13 @@
-'use strict';
-console.log("this is working.")
-
-import assert from 'assert';
-const parser = require('dicom-parser');
-const cornerstone = require('cornerstone');
-const viewer = require('cornerstone-wado-image-loader');
+cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
 const realFileBtn = document.getElementById("user-file");
 const customTxt = document.getElementById("custom-text");
 const file;
+
 realFileBtn.addEventListener("change", function () {
     if (realFileBtn.value) {
         customTxt.innerHTML = realFileBtn.value;
-        file = document.getElementById('user-file').files; // trying to figure out how to get files from html 
+        file = evt.dataTransfer.files; // trying to figure out how to get files from html
     } else {
         customTxt.innerHTML = "No file chosen, yet";
     }
@@ -27,11 +22,13 @@ function loadFile(file) {
         // Here we have the file data as an ArrayBuffer.  dicomParser requires as input a
         // Uint8Array so we create that here
         var byteArray = new Uint8Array(arrayBuffer);
-        var dataSet = dicomParser.parseDicom(byteArray);
+        var dataSet = parseDicom(byteArray);
     }
     reader.readAsArrayBuffer(file);
-    return dataSet;
 }
+
+
+cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
 var ds = loadFile(file);
 var dM = new dataManager(ds);
