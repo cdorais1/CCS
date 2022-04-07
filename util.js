@@ -34,13 +34,13 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 // properties, default is(0, 0), VOI is Values of Interest, i.e. window width
 // and center, invert is to flip the image and pixel replication is 
 // for smoother zooming(I think).
-const viewportOptions = {
-    scale: 1,
-    translation: { x: 0, y: 0 },
-    voi: { windowWidth: 400, windowCenter: 200 },
-    invert: false,
-    pixelReplication: true
-};
+//const viewportOptions = {
+//    scale: 1,
+//    translation: { x: 0, y: 0 },
+//    voi: { windowWidth: 400, windowCenter: 200 },
+//    invert: false,
+//    pixelReplication: true
+//};
 
 const element = document.getElementById("viewport");
 
@@ -49,11 +49,10 @@ const element = document.getElementById("viewport");
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
 const element = document.getElementById('viewport');
-cornerstone.loadImage(imageId).then(function (image)
-{
+cornerstone.loadImage(imageId).then(function (image) {
     const viewport = cornerstone.getDefaultViewportForImage(element, image);
     cornerstone.displayImage(element, image, viewport);
-    
+}
     
 /* 3. User interacts with the image and a tool is called, affecting the image or calling the controller for calculations. */
 
