@@ -149,7 +149,7 @@ input[type="file"] {
         transform: translateY(3px);
     }
     /* Center viewport for dicom viewing*/
-.dicom {
+.viewport {
     display: block;
     background-color: black;
     margin-top: 100px;
