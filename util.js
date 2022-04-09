@@ -1,18 +1,15 @@
-'use strict';
-console.log("this is working.")
+import { dataManager } from "./DataManager";
 
-import assert from 'assert';
-const parser = require('dicom-parser');
-const cornerstone = require('cornerstone');
-const viewer = require('cornerstone-wado-image-loader');
+cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
 const realFileBtn = document.getElementById("user-file");
 const customTxt = document.getElementById("custom-text");
 const file;
+
 realFileBtn.addEventListener("change", function () {
     if (realFileBtn.value) {
         customTxt.innerHTML = realFileBtn.value;
-        file = document.getElementById('user-file').files; // trying to figure out how to get files from html 
+        file = evt.dataTransfer.files; // trying to figure out how to get files from html
     } else {
         customTxt.innerHTML = "No file chosen, yet";
     }
@@ -27,17 +24,34 @@ function loadFile(file) {
         // Here we have the file data as an ArrayBuffer.  dicomParser requires as input a
         // Uint8Array so we create that here
         var byteArray = new Uint8Array(arrayBuffer);
-        var dataSet = dicomParser.parseDicom(byteArray);
+        var dataSet = parseDicom(byteArray);
     }
     reader.readAsArrayBuffer(file);
-    return dataSet;
 }
 
-var ds = loadFile(file);
-var dM = new dataManager(ds);
+ dm = new dataManager(dataset);
+
+cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+
+// Viewport is enabled. Scale is zoom in of pixel, translation is (x,y) 
+// properties, default is(0, 0), VOI is Values of Interest, i.e. window width
+// and center, invert is to flip the image and pixel replication is 
+// for smoother zooming(I think).
+//const viewportOptions = {
+//    scale: 1,
+//    translation: { x: 0, y: 0 },
+//    voi: { windowWidth: 400, windowCenter: 200 },
+//    invert: false,
+//    pixelReplication: true
+//};
 
 /* 2. Parsed information is passed to the Dicom Viewer to be displayed on ThirdPage.html. */
-
+const element = document.getElementById('viewport');
+cornerstone.loadImage(imageId).then(function (image) {
+    const viewport = cornerstone.getDefaultViewportForImage(element, image);
+    cornerstone.displayImage(element, image, viewport);
+})
+    
 /* 3. User interacts with the image and a tool is called, affecting the image or calling the controller for calculations. */
 
 // If stack scroll
