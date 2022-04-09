@@ -1,12 +1,11 @@
-import { dataManager } from "./DataManager";
+import dataManager from "./DataManager.js";
 
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
 const realFileBtn = document.getElementById("user-file");
 const customTxt = document.getElementById("custom-text");
-const file;
 
-realFileBtn.addEventListener("change", function () {
+/*realFileBtn.addEventListener("change", function () {
     if (realFileBtn.value) {
         customTxt.innerHTML = realFileBtn.value;
         file = evt.dataTransfer.files; // trying to figure out how to get files from html
@@ -14,7 +13,7 @@ realFileBtn.addEventListener("change", function () {
         customTxt.innerHTML = "No file chosen, yet";
     }
 });
-
+*/
 // Program steps 
 /* 1. File is uploaded. Data is parsed into a dataSet object, which is then used to populated the dataManager class.*/
 function loadFile(file) {
@@ -28,8 +27,7 @@ function loadFile(file) {
     }
     reader.readAsArrayBuffer(file);
 }
-
- dm = new dataManager(dataset);
+dm = new dataManager(dataset);
 
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
@@ -46,12 +44,12 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 //};
 
 /* 2. Parsed information is passed to the Dicom Viewer to be displayed on ThirdPage.html. */
-const element = document.getElementById('viewport');
+/*const element = document.getElementById('viewport');
 cornerstone.loadImage(imageId).then(function (image) {
     const viewport = cornerstone.getDefaultViewportForImage(element, image);
     cornerstone.displayImage(element, image, viewport);
 })
-    
+*/ 
 /* 3. User interacts with the image and a tool is called, affecting the image or calling the controller for calculations. */
 
 // If stack scroll
