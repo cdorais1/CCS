@@ -84,6 +84,16 @@ input[type="file"] {
     box-shadow: 0 4px #2d2d2d;
     transform: translateY(3px);
 }
+.viewer {
+    /*background-color: #302f2f;*/
+    border: groove;
+    border-color: black;
+    width: 600px;
+    height: 600px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /*Gif styling properties*/
 .gif{
