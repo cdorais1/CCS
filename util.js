@@ -1,4 +1,4 @@
-cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+/*cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
 const realFileBtn = document.getElementById("user-file");
 const customTxt = document.getElementById("custom-text");
@@ -14,7 +14,7 @@ const customTxt = document.getElementById("custom-text");
 */
 // Program steps 
 /* 1. File is uploaded. Data is parsed into a dataSet object, which is then used to populated the dataManager class.*/
-function DisplayDICOM() {
+/*function DisplayDICOM() {
     alert("Triggered");
     const fileInput = document.getElementById('user-file');
     console.log(fileInput);

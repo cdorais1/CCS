@@ -24,40 +24,34 @@
             };
 
             function onDrop(e) {
+
                 // stop browser processing right away
                 e.stopPropagation();
                 e.preventDefault();
 
-                var file = e.dataTransfer.files[0];
+                var f = e.dataTransfer.files[0];
 
-                var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
+                var i = cornerstoneWADOImageLoader.wadouri.fileManager.add(f);
 
-                cornerstone.loadImage(imageID).then(function (image) {
-                    const viewer = document.getElementById("viewer");
-                    cornerstone.enable(viewer);
+
+                cornerstone.loadImage(i).then(function (image) {
+
                     console.log('Loaded', image);
-                    const viewport = cornerstone.getDefaultViewportForImage(viewer, image);
-                    cornerstone.displayImage(viewer, image, viewport);
+
+                    var viewer = document.getElementById('viewer');
+                    cornerstone.enable(viewer);
+                    cornerstone.displayImage(viewer, image);
 
                 });
 
             };
-            window.onload = function ()
-            {
-                const dropZone = document.getElementById('viewer');
-                // Recommended by stackOverflow to deal with the js loading before the html.
-                if (dropZone)
-                {
-                    dropZone.addEventListener('dragover', onDragOver);
-                    dropZone.addEventListener('drop', onDrop);
-                }
+
+            window.onload = function () {
+
+                document.body.addEventListener('dragover', onDragOver);
+                document.body.addEventListener('drop', onDrop);
+
             };
-
-            function DisplayDICOM()
-            {
-                console.log("loaded displayDICOM()");
-            }
-
 
         </script>
     </head>
@@ -85,12 +79,8 @@
                     <i class="fa-solid fa-info"></i>
                 </div>
             </div>
-            <div class="viewer">
-                <input multiple
-                       type="file"
-                       />
+            <div id="viewer" style="border: groove; border-color: black; width: 600px; height: 600px; margin-top: 100px; margin-left: auto; margin-right: auto;"> </div>
 
-            </div>
         </div>
 
     </body>
