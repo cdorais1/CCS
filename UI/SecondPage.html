@@ -15,26 +15,25 @@
             cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
             cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
 
-            function onDragOver(e) {
+            function onDragOver(event) {
 
                 // stop browser processing right away
-                e.stopPropagation();
-                e.preventDefault();
+                event.stopPropagation();
+                event.preventDefault();
 
             };
 
-            function onDrop(e) {
+            function onDrop(event) {
 
                 // stop browser processing right away
-                e.stopPropagation();
-                e.preventDefault();
+                event.stopPropagation();
+                event.preventDefault();
 
-                var f = e.dataTransfer.files[0];
+                var file = event.dataTransfer.files[0];
 
-                var i = cornerstoneWADOImageLoader.wadouri.fileManager.add(f);
+                var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
 
-
-                cornerstone.loadImage(i).then(function (image) {
+                cornerstone.loadImage(imageID).then(function (image) {
 
                     console.log('Loaded', image);
 
@@ -79,7 +78,7 @@
                     <i class="fa-solid fa-info"></i>
                 </div>
             </div>
-            <div id="viewer" style="border: groove; border-color: black; width: 600px; height: 600px; margin-top: 100px; margin-left: auto; margin-right: auto;"> </div>
+            <div id="viewer" style="border: groove; border-color: white; width: 600px; height: 600px; margin-top: 50px; margin-left: auto; margin-right: auto;"> </div>
 
         </div>
 
