@@ -15,49 +15,45 @@
             cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
             cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
 
-            function onDragOver(e) {
+            function onDragOver(event) {
 
                 // stop browser processing right away
-                e.stopPropagation();
-                e.preventDefault();
+                event.stopPropagation();
+                event.preventDefault();
 
             };
 
-            function onDrop(e) {
-                // stop browser processing right away
-                e.stopPropagation();
-                e.preventDefault();
+            function onDrop(event) {
 
-                var file = e.dataTransfer.files[0];
+                // stop browser processing right away
+                event.stopPropagation();
+                event.preventDefault();
+
+                // var folder = event.dataTransfer.folder[0];
+                var file = event.dataTransfer.files[0];
+                var files = event.dataTransfer.files;
 
                 var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
+                //var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(folder);
 
                 cornerstone.loadImage(imageID).then(function (image) {
-                    const viewer = document.getElementById("viewer");
-                    cornerstone.enable(viewer);
-                    console.log('Loaded', image);
-                    const viewport = cornerstone.getDefaultViewportForImage(viewer, image);
-                    cornerstone.displayImage(viewer, image, viewport);
 
+                    console.log('Loaded', image);
+
+                    var viewer = document.getElementById('viewer');
+                    cornerstone.enable(viewer);
+                    cornerstone.displayImage(viewer, image);
+                    console.log('THESE ARE THE FILES', files);
                 });
 
             };
-            window.onload = function ()
-            {
-                const dropZone = document.getElementById('viewer');
-                // Recommended by stackOverflow to deal with the js loading before the html.
-                if (dropZone)
-                {
-                    dropZone.addEventListener('dragover', onDragOver);
-                    dropZone.addEventListener('drop', onDrop);
-                }
+
+            window.onload = function () {
+
+                document.body.addEventListener('dragover', onDragOver);
+                document.body.addEventListener('drop', onDrop);
+
             };
-
-            function DisplayDICOM()
-            {
-                console.log("loaded displayDICOM()");
-            }
-
 
         </script>
     </head>
@@ -69,30 +65,15 @@
             <div class="logoandmore">
                 <!--Logo-->
                 <img src="imag/logo1.png" class="logo" />
-                <!--Drag and Drop implementation!-->
-                <div class="DragAndDrop">
-                    <!--Input of file; not processed just yet-->
-                    <input multiple
-                           type="file"
-                           id="user-file"
-                           onchange="DisplayDICOM();" />
-                </div>
-                <div id="DragAndDropOverlay">
-                    <h1>DROP HERE!</h1>
-                </div>
                 <!--Similar with the upload button above-->
                 <div class="info">
                     <i class="fa-solid fa-info"></i>
                 </div>
             </div>
-            <div class="viewer">
-                <input multiple
-                       type="file"
-                       />
-
+            <!--viewer for drag and drop-->>
+            <div class ="viewer">
+                <p id="viewer" ></p>        
             </div>
-        </div>
-
     </body>
 
 </html>
