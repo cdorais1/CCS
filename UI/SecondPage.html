@@ -36,21 +36,23 @@
             console.log("Files uploaded: " + files.length);
             console.log(files);
             var imageIDs = new Array();
-
+            
             for (let i = 0; i < files.length; i++) {
                 console.log("We are on file: " + i);
                 console.log("This is the current file contents:")
-                console.log(files[i]);
-                // This isn't working right.. 
-                
+                console.log(files[i]);                
                 
                 imageIDs.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(files[i]));
-                
-                // Gonna test something here, since it's printing out "dicom" and that's it
                 console.log("This is the curent imageID: " + imageIDs);
             }
+            const StackScrollMouseWheelTool = cornerstoneTools.StackScrollMouseWheelTool;
 
-            // var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
+            const stack = {
+                currentImageIdIndex: 0,
+                imageIDs   
+            }
+
+            console.log("THIS IS THE STACK", stack);
 
             cornerstone.loadImage(imageIDs[0]).then(function (image) {
 
@@ -59,8 +61,12 @@
                 var viewer = document.getElementById('viewer');
                 cornerstone.enable(viewer);
                 cornerstone.displayImage(viewer, image);
-                console.log('THESE ARE THE FILES', files);
+                cornerstoneTools.addStackStateManager(viewer, ['stack']);
+                cornerstoneTools.addToolState(viewer, 'stack', stack);
             });
+
+            cornerstoneTools.addTool(StackScrollMouseWheelTool);
+            cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
 
         };
 
