@@ -7,56 +7,72 @@
     <!--This is a page I used to get the icons upload and info in the second page of the UI-->
     <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
     <!-- Here is the connection between the js and html files-->
-        <script src="https://unpkg.com/cornerstone-core/dist/cornerstone.min.js
-"></script>
-        <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
-        <script src="https://unpkg.com/dicom-parser"></script>
-        <script>
-            cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-            cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
+    <script src="https://unpkg.com/cornerstone-core/dist/cornerstone.min.js"></script>
+    <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
+    <script src="https://unpkg.com/dicom-parser"></script> 
+    <script src="https://unpkg.com/cornerstone-tools@4.0.9/dist/cornerstoneTools.min.js"></script>
+    
+    <script>
+        cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+        cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
+        cornerstoneTools.external.cornerstoneTools = cornerstoneTools;
 
-            function onDragOver(event) {
+        function onDragOver(event) {
 
-                // stop browser processing right away
-                event.stopPropagation();
-                event.preventDefault();
+            // stop browser processing right away
+            event.stopPropagation();
+            event.preventDefault();
 
-            };
+        };
 
-            function onDrop(event) {
+        function onDrop(event) {
 
-                // stop browser processing right away
-                event.stopPropagation();
-                event.preventDefault();
+            // stop browser processing right away
+            event.stopPropagation();
+            event.preventDefault();
+;
+            // var file = event.dataTransfer.files[0];
+            var files = event.dataTransfer.files;
+            console.log("Files uploaded: " + files.length);
+            console.log(files);
+            var imageIDs = new Array();
 
-                // var folder = event.dataTransfer.folder[0];
-                var file = event.dataTransfer.files[0];
-                var files = event.dataTransfer.files;
+            for (let i = 0; i < files.length; i++) {
+                console.log("We are on file: " + i);
+                console.log("This is the current file contents:")
+                console.log(files[i]);
+                // This isn't working right.. 
+                
+                
+                imageIDs.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(files[i]));
+                
+                // Gonna test something here, since it's printing out "dicom" and that's it
+                console.log("This is the curent imageID: " + imageIDs);
+            }
 
-                var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
-                //var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(folder);
+            // var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
 
-                cornerstone.loadImage(imageID).then(function (image) {
+            cornerstone.loadImage(imageIDs[0]).then(function (image) {
 
-                    console.log('Loaded', image);
+                console.log('Loaded', image);
 
-                    var viewer = document.getElementById('viewer');
-                    cornerstone.enable(viewer);
-                    cornerstone.displayImage(viewer, image);
-                    console.log('THESE ARE THE FILES', files);
-                });
+                var viewer = document.getElementById('viewer');
+                cornerstone.enable(viewer);
+                cornerstone.displayImage(viewer, image);
+                console.log('THESE ARE THE FILES', files);
+            });
 
-            };
+        };
 
-            window.onload = function () {
+        window.onload = function () {
 
-                document.body.addEventListener('dragover', onDragOver);
-                document.body.addEventListener('drop', onDrop);
+            document.body.addEventListener('dragover', onDragOver);
+            document.body.addEventListener('drop', onDrop);
 
-            };
+        };
 
-        </script>
-    </head>
+    </script>
+</head>
     <body>
         <!--The looks:-->
         <div class="back-ground">
