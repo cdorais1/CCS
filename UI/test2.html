@@ -71,6 +71,21 @@
 
         };
 
+        window.onkeyup = function (e) {
+
+            if (e.key == '-') {
+                cornerstoneTools.store.state.tools[1].decreaseBrushSize();
+            } else if (e.key == '=') {
+                cornerstoneTools.store.state.tools[1].increaseBrushSize();
+            } else if (e.key == '1') {
+                cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
+            } else if (e.key == '2') {
+                cornerstoneTools.getModule('segmentation').setters.decrementActiveSegmentIndex(viewer);
+            }
+
+        };
+
+
     </script>
 </head>
 <body style='margin:0px;padding:0px;background:black;'>

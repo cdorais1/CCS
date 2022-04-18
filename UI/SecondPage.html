@@ -46,26 +46,44 @@
                 imageIDs.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(files[i]));
                 console.log("This is the curent imageID: " + imageIDs);
             }
-                        const StackScrollMouseWheelTool = cornerstoneTools.StackScrollMouseWheelTool;
 
-            const stack = {
-                currentImageIdIndex: 0,
-                imageIDs
-            }
 
-            console.log("THIS IS THE STACK", stack);
+            const StackScrollMouseWheelTool = cornerstoneTools.StackScrollMouseWheelTool;
 
-            var viewer = document.getElementById('viewer');
-            viewer.focus();
 
             cornerstone.loadImage(imageIDs[0]).then(function (image) {
 
+                // Failsafe check
                 console.log('Loaded', image);
 
+                // Inititialize tools DO NOT MOVE THIS IT MAKES EVERYTHING BREAK 
+                cornerstoneTools.init();
+
+                var viewer = document.getElementById('viewer');
+                viewer.focus();
+
+                // Enable viewer and display.
                 cornerstone.enable(viewer);
                 cornerstone.displayImage(viewer, image);
+
+                
+                // Instantiate stack and stackstatemanager. 
+                const stack = {
+                    currentImageIdIndex: 0,
+                    imageIDs
+                }
+
+                console.log("THIS IS THE STACK", stack);
+
                 cornerstoneTools.addStackStateManager(viewer, ['stack']);
                 cornerstoneTools.addToolState(viewer, 'stack', stack);
+
+                // Add tool and set to active. 
+                cornerstoneTools.addTool(StackScrollMouseWheelTool);
+                cornerstoneTools.setToolActive('StackScrollMouseWheel', {} );
+//                console.log("Active?", (cornerstoneTools.setToolActive('StackScrollMouseWheel', {}) == true));
+
+
 
             });
 
@@ -79,8 +97,6 @@
 
             document.body.addEventListener('dragover', onDragOver);
             document.body.addEventListener('drop', onDrop);
-            cornerstoneTools.init();
-
         };
 
     </script>
