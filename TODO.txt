@@ -1,17 +1,16 @@
-TO DO 
-------------
+                                                        ****TO DO***** 
 
-- Deal with folders 
+
+- Add link to info doc from [i] button on page
 
 - Implement Stack Scroll
 -- Implement multiple DICOM upload 
--- Display nonactive images on side of screen 
--- Upload folder 
 
-- Implement Brush with 1 color 
+- Implement Brush with 1 color, then 2 colors
+
+
+- Apply mask to image to prevent image corruption
 -- https://rawgit.com/cornerstonejs/cornerstone/master/example/htmloverlays/index.html
--- Apply mask to image to prevent image corruption: 
--- Implement Brush with 2 colors 
 
-- Implement Zoom, pan, etc. 
+- Implement Zoom tool 
 -- https://rawgit.com/cornerstonejs/cornerstone/master/example/scrollzoompanwl/index.html
