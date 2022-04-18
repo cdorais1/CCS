@@ -60,11 +60,14 @@
                 cornerstoneTools.addStackStateManager(viewer, ["stack"]);
                 cornerstoneTools.addToolState(viewer, "stack", stack);
 
-                cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool)
+                cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
                 cornerstoneTools.addTool(cornerstoneTools.BrushTool);
+                cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
 
-                cornerstoneTools.setToolActive('Brush', { mouseButtonMask: 1 });
+                // Brush is right click, zoom is left click. 
+                cornerstoneTools.setToolActive('Brush', { mouseButtonMask: 2 });
                 cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
+                cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1});
 
             });
 
