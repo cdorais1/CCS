@@ -14,82 +14,60 @@
     <script src="https://unpkg.com/cornerstone-tools"></script>
     <script src="https://unpkg.com/hammerjs"></script>
     <script>
+
         cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
         cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
-        cornerstoneTools.external.cornerstoneTools = cornerstoneTools;
+        cornerstoneTools.external.Hammer = Hammer;
+        cornerstoneTools.external.cornerstone = cornerstone;
+        cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 
-        function onDragOver(event) {
+        function onDragOver(e) {
 
             // stop browser processing right away
-            event.stopPropagation();
-            event.preventDefault();
+            e.stopPropagation();
+            e.preventDefault();
 
         };
 
-        function onDrop(event) {
+        function onDrop(e) {
 
             // stop browser processing right away
-            event.stopPropagation();
-            event.preventDefault();
+            e.stopPropagation();
+            e.preventDefault();
 
-            // var file = event.dataTransfer.files[0];
-            var files = event.dataTransfer.files;
-            console.log("Files uploaded: " + files.length);
-            console.log(files);
-            var imageIDs = new Array();
+            imageIds = [];
 
-            for (let i = 0; i < files.length; i++) {
-                console.log("We are on file: " + i);
-                console.log("This is the current file contents:")
-                console.log(files[i]);
+            for (var i = 0; i < e.dataTransfer.files.length; i++) {
 
-                imageIDs.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(files[i]));
-                console.log("This is the curent imageID: " + imageIDs);
+                var f = e.dataTransfer.files[i];
+                imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(f));
+
             }
 
+            cornerstone.loadImage(imageIds[0]).then(function (image) {
 
-            const StackScrollMouseWheelTool = cornerstoneTools.StackScrollMouseWheelTool;
-
-
-            cornerstone.loadImage(imageIDs[0]).then(function (image) {
-
-                // Failsafe check
                 console.log('Loaded', image);
 
-                // Inititialize tools DO NOT MOVE THIS IT MAKES EVERYTHING BREAK 
                 cornerstoneTools.init();
 
                 var viewer = document.getElementById('viewer');
-                viewer.focus();
 
-                // Enable viewer and display.
                 cornerstone.enable(viewer);
                 cornerstone.displayImage(viewer, image);
 
-                
-                // Instantiate stack and stackstatemanager. 
-                const stack = {
-                    currentImageIdIndex: 0,
-                    imageIDs
-                }
+                // this depends on the data, i am testing with a single file
+                var stack = { currentImageIdIndex: 0, imageIds: imageIds };
+                cornerstoneTools.addStackStateManager(viewer, ["stack"]);
+                cornerstoneTools.addToolState(viewer, "stack", stack);
 
-                console.log("THIS IS THE STACK", stack);
+                cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool)
+                cornerstoneTools.addTool(cornerstoneTools.BrushTool);
 
-                cornerstoneTools.addStackStateManager(viewer, ['stack']);
-                cornerstoneTools.addToolState(viewer, 'stack', stack);
-
-                // Add tool and set to active. 
-                cornerstoneTools.addTool(StackScrollMouseWheelTool);
-                cornerstoneTools.setToolActive('StackScrollMouseWheel', {} );
-//                console.log("Active?", (cornerstoneTools.setToolActive('StackScrollMouseWheel', {}) == true));
-
+                cornerstoneTools.setToolActive('Brush', { mouseButtonMask: 1 });
+                cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
 
 
             });
-
-            cornerstoneTools.addTool(StackScrollMouseWheelTool);
-            cornerstoneTools.setToolActive('StackScrollMouseWheel', {mouseButtonMask : 1});
-            console.log("Active?", (cornerstoneTools.setToolActive('StackScrollMouseWheel', {}) == true));
 
         };
 
@@ -97,7 +75,24 @@
 
             document.body.addEventListener('dragover', onDragOver);
             document.body.addEventListener('drop', onDrop);
+
         };
+
+        window.onkeyup = function (e) {
+
+            if (e.key == '-') {
+                cornerstoneTools.store.state.tools[1].decreaseBrushSize();
+            } else if (e.key == '=') {
+                cornerstoneTools.store.state.tools[1].increaseBrushSize();
+            } else if (e.key == '1') {
+                cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
+            } else if (e.key == '2') {
+                cornerstoneTools.getModule('segmentation').setters.decrementActiveSegmentIndex(viewer);
+            }
+
+        };
+
+
 
     </script>
 </head>
