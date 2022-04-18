@@ -6,15 +6,10 @@
 /*Styling properties for the background*/
 .back-ground {
     height: 100vh;
-    width: 100%;
-    background-image: url(imag/first1.png);
-    background-position: center;
-    background-size: cover;
-    background-position: center;
-    padding-left: 0%;
-    padding-right: 0%;
-    box-sizing: border-box;
-    position: fixed;
+    min-height: 700px;
+    width:100%;
+    min-width: 1000px;
+    background: radial-gradient(ellipse 55% 70% at 5% 90%, #35AFAA, black);
 }
 
 
@@ -22,6 +17,21 @@
 .logo {
     width: 85px;
     height: 55px;
+}
+.top{
+    width: 45%;
+    min-width: 300px;
+    min-height: 55px;
+    padding-left: 40%;
+}
+hr {
+    display: block;
+    border-block-color: #35AFAA;
+    border-block-end-style: solid;
+    margin: auto;
+    margin-top: 0.000000000001%;
+    background-color: #35AFAA;
+    height: 1.5px;
 }
 
 .GetStarted {
@@ -38,9 +48,10 @@
     cursor: pointer;
     font-family: 'Arial Rounded MT';
     box-shadow: 0 17px 24px 0 rgba(0,0,0,0.2), 0 15px 28px 0 rgba(0,0,0,0.19);
-    position: fixed;
+    position: relative;
     left: 13%;
-    bottom: 22%;
+    bottom: 2%;
+
 }
 .GetStarted a{
     text-decoration: none;
@@ -53,29 +64,30 @@
 }
 
 .CTA{
-    height:600px;
-    width:35%;
-    min-width:150px;
-    min-height: 200px;
-    position: fixed;
-    right: 5%;
-    bottom: 5%;
+    height:500px;
+    width:30%;
+    min-width:70px;
+    min-height: 140px;
+    position: relative;
+    left: 55%;
+    top: 10%;
 }
 
 .titleCCS{
     color: white;
     font-size: 45px;
     font-family: 'Arial Rounded MT';
-    position:fixed;
-    bottom: 48%;
-    left: 5%;
+    position:relative;
+    bottom: 75%;
+    padding-left: 5%;
 }
 .Description{
     color:white;
     font-size: 14px;
     font-family: 'Arial Rounded MT';
-    position: fixed;
-    bottom: 35%;
-    left: 5%;
+    position: relative;
+    bottom: 74%;
+    padding-left: 5%;
     padding-right: 65%;
+    min-width: 300px;
 }
