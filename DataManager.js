@@ -1,7 +1,6 @@
 // This class is a data container and will not have any methods of its own.
 
-const dataSetter = require('dicom-parser');
-const imageParse = require('cornerstone-wado-image-loader');
+
 export class dataManager {
     constructor(dataSet) {
         this.dataSet = dataSet; // Store dataset for future use. 
@@ -11,7 +10,8 @@ export class dataManager {
         this.patientID = dataSet.string('x00100020'); // Patient id 
         this.sopInstanceUid = dataSet.string('x0020000d') // Unique id of DICOM/image
         this.seriesUid = dataSet.string('x0020000e') // id of image in series. 
-        this.imageID;
-        this.pixelData;
+        this.row = dataSet.uint16('x00280010') // rows element needed for images.
+        this.imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
     }
 }
+

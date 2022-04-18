@@ -74,8 +74,8 @@ cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
 // Init cornerstone tools
 cornerstoneTools.init()
 
-const scheme = 'wadouri'
-const baseUrl = 'https://mypacs.com/dicoms/'
+const scheme = 'wadouri';
+const baseUrl = 'https://mypacs.com/dicoms/';
 const series = [
     'image_1.dcm',
     'image_2.dcm'
@@ -84,7 +84,7 @@ const series = [
 const imageIds = series.map(seriesImage => `${scheme}:${baseUrl}${seriesImage}`
 
 // Add our tool, and set it's mode
-const StackScrollMouseWheelTool = cornerstoneTools.StackScrollMouseWheelTool
+const StackScrollMouseWheelTool = cornerstoneTools.StackScrollMouseWheelTool;
 
 //define the stack
 const stack = {
