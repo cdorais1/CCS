@@ -7,56 +7,94 @@
     <!--This is a page I used to get the icons upload and info in the second page of the UI-->
     <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
     <!-- Here is the connection between the js and html files-->
-        <script src="https://unpkg.com/cornerstone-core/dist/cornerstone.min.js
-"></script>
-        <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
-        <script src="https://unpkg.com/dicom-parser"></script>
-        <script>
-            cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-            cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
+    <script src="https://unpkg.com/cornerstone-core/dist/cornerstone.min.js"></script>
+    <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
+    <script src="https://unpkg.com/dicom-parser"></script>
+    <script src="https://unpkg.com/cornerstone-math"></script>
+    <script src="https://unpkg.com/cornerstone-tools"></script>
+    <script src="https://unpkg.com/hammerjs"></script>
+    <script src="../tools.js"></script>
+    <script>
 
-            function onDragOver(event) {
+        cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+        cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
+        cornerstoneTools.external.Hammer = Hammer;
+        cornerstoneTools.external.cornerstone = cornerstone;
+        cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 
-                // stop browser processing right away
-                event.stopPropagation();
-                event.preventDefault();
+        function onDragOver(event) {
 
-            };
+            // stop browser processing right away
+            event.stopPropagation();
+            event.preventDefault();
 
-            function onDrop(event) {
+        };
 
-                // stop browser processing right away
-                event.stopPropagation();
-                event.preventDefault();
+        function onDrop(event) {
 
-                // var folder = event.dataTransfer.folder[0];
-                var file = event.dataTransfer.files[0];
-                var files = event.dataTransfer.files;
+            // stop browser processing right away
+            event.stopPropagation();
+            event.preventDefault();
 
-                var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
-                //var imageID = cornerstoneWADOImageLoader.wadouri.fileManager.add(folder);
+            imageIds = [];
 
-                cornerstone.loadImage(imageID).then(function (image) {
+            for (var i = 0; i < event.dataTransfer.files.length; i++) {
 
-                    console.log('Loaded', image);
+                var file = event.dataTransfer.files[i];
+                imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
 
-                    var viewer = document.getElementById('viewer');
-                    cornerstone.enable(viewer);
-                    cornerstone.displayImage(viewer, image);
-                    console.log('THESE ARE THE FILES', files);
-                });
+            }
 
-            };
+            cornerstone.loadImage(imageIds[0]).then(function (image) {
 
-            window.onload = function () {
+                console.log('Loaded', image);
 
-                document.body.addEventListener('dragover', onDragOver);
-                document.body.addEventListener('drop', onDrop);
+                cornerstoneTools.init();
 
-            };
+                var viewer = document.getElementById('viewer');
 
-        </script>
-    </head>
+                cornerstone.enable(viewer);
+                cornerstone.displayImage(viewer, image);
+
+                
+                var stack = { currentImageIdIndex: 0, imageIds: imageIds };
+                cornerstoneTools.addStackStateManager(viewer, ["stack"]);
+                cornerstoneTools.addToolState(viewer, "stack", stack);
+
+                cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
+                cornerstoneTools.addTool(ThresholdsBrushTool);
+                cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
+
+                // Brush is right click, zoom is left click. 
+                cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
+                cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
+                cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 2 });
+
+            });
+
+        };
+
+        window.onload = function () {
+
+            document.body.addEventListener('dragover', onDragOver);
+            document.body.addEventListener('drop', onDrop); 
+        };
+
+        window.onkeyup = function (event) {
+
+            if (event.key == '-') {
+                cornerstoneTools.store.state.tools[1].decreaseBrushSize();
+            } else if (event.key == '=') {
+                cornerstoneTools.store.state.tools[1].increaseBrushSize();
+            } else if (event.key == '1') {
+                cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
+            } else if (event.key == '2') {
+                cornerstoneTools.getModule('segmentation').setters.decrementActiveSegmentIndex(viewer);
+            }
+        };
+
+    </script>
+</head>
     <body>
         <!--The looks:-->
         <div class="back-ground">
