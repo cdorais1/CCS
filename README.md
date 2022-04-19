@@ -6,16 +6,22 @@ A browser-based semi-automatic tool that identifies morphologic features of caro
 
 ## Client Team
 
-Jae Song, MD Neurodiology
+Jae Song, MD Neurodiology 
+
 Brett Cucchiara, MD Vasual Neurology
+
 Grace Wang, MD Vascular Surgery
 
 ## Student Developers
 
 Cameo Dorais
+
 Marc Dugas
+
 Kleopatra Gjini
+
 Anthony Tran
+
 Steven Tran
 
 # Clinical Relavence
