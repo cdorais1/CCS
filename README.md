@@ -15,9 +15,13 @@ Grace Wang, MD Vascular Surgery
 ## Student Developers
 
 Cameo Dorais
+
 Marc Dugas
+
 Kleopatra Gjini
+
 Anthony Tran
+
 Steven Tran
 
 # Clinical Relavence
