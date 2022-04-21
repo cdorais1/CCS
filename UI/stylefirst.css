@@ -91,3 +91,19 @@ hr {
     padding-right: 65%;
     min-width: 300px;
 }
+.infopage{
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: 'Arial Rounded MT';
+    position: relative;
+    bottom: 45%;
+    padding-left: 95%;
+}
+.infopage a{
+    text-decoration: none;
+    color: white;
+}
+.infopage a:hover{
+    color: #35AFAA;
+}
