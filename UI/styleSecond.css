@@ -65,17 +65,21 @@ hr {
 }
 .viewer {
     /*background-color: #302f2f;*/
+    width: 50%; 
+    height: 100%; 
+    margin-top: 0.9%; 
+    min-width: 100px;
+    position: relative;
+    left: 25%;
+}
+#viewer {
     border: groove;
-    border-color: white; 
-    width: 75%; 
-    height: 75%; 
+    border-color: white;
+    width: 100%; 
+    height: 100%; 
     margin-top: 2%; 
     margin-left: auto; 
     margin-right: auto;
     min-width: 100px;
-}
-#viewer {
-    width:100%;
-    height:100%;
 }
 
