@@ -84,6 +84,11 @@ class ThresholdsBrushTool extends BaseBrushTool {
     }
 }
 
+//function updateThreshold(number)
+//{
+
+//}
+
 /**
  * Gets the pixels within the circle if inside thresholds (included)
  * NOTE: thresholds values must consider slope and intercept (MO value)
@@ -112,7 +117,8 @@ function getCircleWithThreshold(
 
     // if no thresholds, set all pixels range
     if (!thresholds) {
-        thresholds = [image.minPixelValue, image.maxPixelValue];
+        // thresholds = [image.minPixelValue, image.maxPixelValue];
+        thresholds = [80, image.maxPixelValue];
     }
 
     function isInsideThresholds(v, t) {
