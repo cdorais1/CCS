@@ -5,12 +5,11 @@
     <title>Carotid Calcium Scanner</title>
     <link rel="stylesheet" href="stylefirst.css" />
     <!-- Here are the files for cornerstone functionality. -->
-    <script type = "text/javascript" src = "../lib/cornerstone.min.js">  </script>
-    <script type = "text/javascript" src = "../lib/cornerstoneMath.min.js"> </script>
-    <script type = "text/javascript" src = "../lib/cornerstoneTools.min.js"> </script>
-    <script type = "text/javascript" src = "../lib/dicomParser.min.js"> </script>
-    <script type = "text/javascript" src = "../lib/hammer.min.js"> </script>
-    <script type = "text/javascript" src = "../lib/cornerstoneWADOImageLoader.min.js"> </script>
+    <script src="https://unpkg.com/cornerstone-core/dist/cornerstone.min.js"></script>
+    <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
+    <script src="https://unpkg.com/dicom-parser"></script>
+    <script src="https://unpkg.com/cornerstone-tools@4.0.9/dist/cornerstoneTools.min.js"></script>
+
 </head>
 <body>
     <div class="back-ground">
@@ -36,6 +35,9 @@
                 If needed, you can download all the morphologic
                 features of the calcific plaques.
             </p>
+        </div>
+        <div class="infopage">
+            <a href="info.html">About Us</a>
         </div>
     </div>
 
