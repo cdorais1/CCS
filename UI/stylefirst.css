@@ -15,8 +15,10 @@
 
 /*Logo size*/
 .logo {
-    width: 85px;
-    height: 55px;
+    margin: auto;
+    margin-top: 0.1%;
+    width: 5.5%;
+    min-width: 75px;
 }
 .top{
     width: 45%;
@@ -36,6 +38,7 @@ hr {
 
 .GetStarted {
     background-color: #b2002b;
+    border: crimson;
     border-radius: 12px;
     border-style: groove;
     border-color: #7a7a7a;
