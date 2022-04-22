@@ -69,9 +69,11 @@
                 cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
                 cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
 
+                console.log(image.minPixelValue);
+                console.log(image.maxPixelValue);
 
                 // Brush is right click, zoom is left click. 
-                 cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
+                 cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 }); 
                 cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
                 cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
                 // This tool allows you to get the area of a circled area using a brush.
