@@ -15,7 +15,7 @@ const getCircle = segmentationUtils.getCircle;
 const segmentationModule = cornerstoneTools.getModule("segmentation");
 
 var paintData = [];
-var circleArray1 = []
+
 /**
  * @public
  * @class ThresholdsBrushTool
@@ -47,6 +47,10 @@ class ThresholdsBrushTool extends BaseBrushTool {
     _paint(evt) {
         const { configuration } = segmentationModule;
         const eventData = evt.detail;
+
+        console.log("event deets");
+        console.log(evt.detail);
+
         const { rows, columns } = eventData.image;
         const { x, y } = eventData.currentPoints.image;
         paintData.push(eventData.currentPoints.image);

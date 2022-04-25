@@ -24,6 +24,7 @@
 
         var currentTool = '';
         var image1;
+        var brush = 0;
         
         function onDragOver(event) {
 
@@ -83,8 +84,7 @@
                 cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
                 currentTool = 'ThresholdsBrush';
                 // currentTool = 'Brush';
-                console.log("tools: ");
-                console.log(cornerstoneTools.store.state.tools);
+
             });
 
         };
@@ -105,7 +105,14 @@
 
             else if (event.key == '0')
             {
-                cornerstoneTools.getModule('segmentation').setters.decrementActiveSegmentIndex(viewer);
+                if (brush) {
+                    cornerstoneTools.getModule('segmentation').setters.decrementActiveSegmentIndex(viewer);
+                    brush = 0;
+                }
+                else {
+                    cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
+                    brush = 1;
+                }
             } else if (event.key == '1')
             {
                 cornerstoneTools.setToolDisabled(currentTool);
