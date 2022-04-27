@@ -14,6 +14,8 @@ const drawBrushPixels = segmentationUtils.drawBrushPixels;
 const getCircle = segmentationUtils.getCircle;
 const segmentationModule = cornerstoneTools.getModule("segmentation");
 
+var paintData = [];
+
 /**
  * @public
  * @class ThresholdsBrushTool
@@ -45,8 +47,16 @@ class ThresholdsBrushTool extends BaseBrushTool {
     _paint(evt) {
         const { configuration } = segmentationModule;
         const eventData = evt.detail;
+
+        console.log("event deets");
+        console.log(evt.detail);
+
         const { rows, columns } = eventData.image;
         const { x, y } = eventData.currentPoints.image;
+        paintData.push(eventData.currentPoints.image);
+        console.log("This is the current x-y and current paintData.");
+        console.log(eventData.currentPoints.image);
+        console.log(paintData);
 
         if (x < 0 || x > columns || y < 0 || y > rows) {
             return;
@@ -84,10 +94,6 @@ class ThresholdsBrushTool extends BaseBrushTool {
     }
 }
 
-//function updateThreshold(number)
-//{
-
-//}
 
 /**
  * Gets the pixels within the circle if inside thresholds (included)
@@ -161,6 +167,7 @@ function getCircleWithThreshold(
             }
         }
     }
-
+    console.log("This is the circle array");
+    console.log(circleArray);
     return circleArray;
 }
