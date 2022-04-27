@@ -15,7 +15,7 @@ const getCircle = segmentationUtils.getCircle;
 const segmentationModule = cornerstoneTools.getModule("segmentation");
 
 var paintData = [];
-
+const circlePixels = new Set();
 /**
  * @public
  * @class ThresholdsBrushTool
@@ -48,11 +48,16 @@ class ThresholdsBrushTool extends BaseBrushTool {
         const { configuration } = segmentationModule;
         const eventData = evt.detail;
 
+
         console.log("event deets");
         console.log(evt.detail);
 
         const { rows, columns } = eventData.image;
         const { x, y } = eventData.currentPoints.image;
+        
+        console.log("label map: ");
+        console.log(segmentationModule.getLabelmap3D);
+
         paintData.push(eventData.currentPoints.image);
         console.log("This is the current x-y and current paintData.");
         console.log(eventData.currentPoints.image);
@@ -167,7 +172,11 @@ function getCircleWithThreshold(
             }
         }
     }
-    console.log("This is the circle array");
-    console.log(circleArray);
+
+    for (let i = 0; i < circleArray.length; i++)
+    {
+        circlePixels.add(circleArray[i]);
+    }
+
     return circleArray;
 }

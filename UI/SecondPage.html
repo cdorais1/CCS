@@ -60,7 +60,7 @@
 
                 cornerstone.enable(viewer);
                 cornerstone.displayImage(viewer, image);
-
+                cornerstone.getViewport(viewer).labelmap = true;
                 
                 var stack = { currentImageIdIndex: 0, imageIds: imageIds };
                 cornerstoneTools.addStackStateManager(viewer, ["stack"]);

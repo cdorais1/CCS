@@ -14,6 +14,11 @@
         cornerstoneTools.external.cornerstone = cornerstone;
         cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 
+        var image1; 
+
+        const segmentationModule = cornerstoneTools.getModule("segmentation");
+ 
+
         function onDragOver(e) {
 
             // stop browser processing right away
@@ -40,13 +45,20 @@
             cornerstone.loadImage(imageIds[0]).then(function (image) {
 
                 console.log('Loaded', image);
-
+                image1 = image;
+                
                 cornerstoneTools.init();
 
                 var viewer = document.getElementById('viewer');
+                var labelmap2d = document.getElementById('labelmap2d');
 
                 cornerstone.enable(viewer);
+                cornerstone.enable(labelmap2d);
+
                 cornerstone.displayImage(viewer, image);
+
+                console.log("segmod getter for labelmap2D");
+                console.log(segmentationModule.getters.labelmap2D(cornerstone.getEnabledElement(viewer)));
 
                 // this depends on the data, i am testing with a single file
                 var stack = { currentImageIdIndex: 0, imageIds: imageIds };
@@ -68,7 +80,7 @@
 
             document.body.addEventListener('dragover', onDragOver);
             document.body.addEventListener('drop', onDrop);
-
+            
         };
 
         window.onkeyup = function (e) {
@@ -91,6 +103,7 @@
 <body style='margin:0px;padding:0px;background:black;'>
 
     <div id='viewer' style='width:100%;height:100%;'></div>
+    <div id='labelmap2d'style='width: 100%; height: 100%'></div>
 
 </body>
 </html>
