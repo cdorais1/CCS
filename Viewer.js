@@ -41,6 +41,9 @@ window.onload = function () {
 
 };
 
+x = viewport.assign;
+
+
 addMasks();
 
 function addMasks(){
