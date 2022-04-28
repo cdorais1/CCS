@@ -17,14 +17,16 @@
     width: 5.5%;
     min-width: 75px;
 }
-hr{
+hr {
     display: block;
     border-block-color: #35AFAA;
     border-block-end-style: solid;
     margin: auto;
-    margin-top: 0.000000000001%;
+    position: fixed;
+    top: 8%;
+    width: 100%;
     background-color: #35AFAA;
-    height: 1.5px;
+    height: 1.4px;
 }
 h1 {
     text-align: center;

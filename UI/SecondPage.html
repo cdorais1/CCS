@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Carotid Calcium Scanner</title>
     <link rel="stylesheet" href="styleSecond.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--This is a page I used to get the icons upload and info in the second page of the UI-->
     <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
     <!-- Here is the connection between the js and html files-->
@@ -56,7 +57,7 @@
                 cornerstone.enable(viewer);
                 cornerstone.displayImage(viewer, image);
 
-                
+
                 var stack = { currentImageIdIndex: 0, imageIds: imageIds };
                 cornerstoneTools.addStackStateManager(viewer, ["stack"]);
                 cornerstoneTools.addToolState(viewer, "stack", stack);
@@ -66,8 +67,8 @@
                 cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
                 cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
 
-                // Brush is right click, zoom is left click. 
-                 cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
+                // Brush is right click, zoom is left click.
+                cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
                 cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
                 cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 2 });
                 // This tool allows you to get the area of a circled area using a brush.
@@ -79,7 +80,7 @@
         window.onload = function () {
 
             document.body.addEventListener('dragover', onDragOver);
-            document.body.addEventListener('drop', onDrop); 
+            document.body.addEventListener('drop', onDrop);
         };
 
         window.onkeyup = function (event) {
@@ -94,7 +95,12 @@
                 cornerstoneTools.getModule('segmentation').setters.decrementActiveSegmentIndex(viewer);
             }
         };
-
+        function disable() {
+            document.getElementById("Color").disabled = true;
+        }
+        function enable() {
+            document.getElementById("Color").disabled = false;
+        }
     </script>
 </head>
     <body>
@@ -103,16 +109,44 @@
             <!--Logo-->
             <img src="imag/logo1.png" class="logo" />
             <!--this is the info button on the top right corner-->
-            <div class="info">
-
-                    <a href="info.html">i</a>
-
-            </div>
+            <a href="info.html">
+                <button class="info">
+                    <i class="fa fa-info"></i>
+                </button>
+            </a>
             <!--This created the blue line on top of the page-->
             <hr />
+            <p1>Brush</p1>
+            <button class="brush" onclick="enable()">
+                <i class="fa-solid fa-paintbrush"></i>
+            </button>
+            <p4>Brush Size</p4>
+            <button class="bplus">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <button class="bminus">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+            <p5>Brush Color</p5>
+            <select id="Color">
+                <option>Red</option>
+                <option>Green</option>
+                <option>Purple</option>
+                <option>Blue</option>
+                <option>Pink</option>
+            </select>
+            <p2>Zoom</p2>
+            <button class="zoom" onclick="disable()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            
+            <p3>Reset</p3>
+            <button class="reset" onclick="disable()">
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+            </button>
             <!--viewer for drag and drop-->>
-            <div class ="viewer">
-             <p id="viewer" ></p>        
+            <div class="viewer">
+                <p id="viewer"></p>
             </div>
         </div>
     </body>
