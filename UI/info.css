@@ -1,0 +1,95 @@
+﻿body
+{
+    margin: auto;
+    padding: 0;
+    background-color: black;
+
+}
+.background {
+    width:100%;
+    height: 100vh;
+    min-height: 250px;
+    margin: auto;
+}
+.logo {
+    margin: auto;
+    margin-top: 0.1%;
+    width: 5.5%;
+    min-width: 75px;
+}
+hr{
+    display: block;
+    border-block-color: #35AFAA;
+    border-block-end-style: solid;
+    margin: auto;
+    margin-top: 0.000000000001%;
+    background-color: #35AFAA;
+    height: 1.5px;
+}
+h1 {
+    text-align: center;
+    text-decoration-style: solid;
+    font-size: 20px;
+    font-family: 'Arial Rounded MT';
+    text-transform: uppercase;
+    color: #35AFAA;
+}
+h2 {
+    text-align: center;
+    text-decoration-style: solid;
+    font-size: 20px;
+    font-family: 'Arial Rounded MT';
+    text-transform: uppercase;
+    color: #35AFAA;
+}
+.ourtool {
+    text-align: center;
+    font-size: 17px;
+    font-family: Georgia, serif;
+    color: floralwhite;
+    padding-left: 15%;
+    padding-right: 15%;
+ }
+h3 {
+    text-align: center;
+    text-decoration-style: solid;
+    font-size: 20px;
+    font-family: 'Arial Rounded MT';
+    text-transform: uppercase;
+    color: #35AFAA;
+}
+h4 {
+    text-align: center;
+    text-decoration-style: solid;
+    font-size: 20px;
+    font-family: 'Arial Rounded MT';
+    text-transform: uppercase;
+    color: #35AFAA;
+}
+
+table{
+    font-family: 'Arial Rounded MT';
+    text-decoration-style: solid;
+    color: #35AFAA;
+    border-collapse:collapse;
+    width: 65%;
+    position: relative;
+    left: 17%;
+}
+
+th{
+    border: 2px solid #35AFAA;
+    padding: 3%;
+}
+
+td {
+    border: 2px solid #35AFAA;
+    color: floralwhite;
+    font-family:Georgia, serif;
+    padding: 1%
+    
+}
+tr {
+    border: 2px solid #35AFAA;
+}
+
