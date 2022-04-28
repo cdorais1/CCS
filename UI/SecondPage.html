@@ -53,7 +53,7 @@
 
                 image1 = image;
                 console.log('Loaded', image);
-
+                
                 cornerstoneTools.init();
 
                 var viewer = document.getElementById('viewer');
@@ -140,6 +140,13 @@
         };
 
     </script>
+        function disable() {
+            document.getElementById("Color").disabled = true;
+        }
+        function enable() {
+            document.getElementById("Color").disabled = false;
+        }
+    </script>
 </head>
     <body>
         <!--The looks:-->
@@ -147,14 +154,43 @@
             <!--Logo-->
             <img src="imag/logo1.png" class="logo" />
             <!--this is the info button on the top right corner-->
-            <div class="info">
-
-                    <a href="info.html">i</a>
-
-            </div>
+            <a href="info.html">
+                <button class="info">
+                    <i class="fa fa-info"></i>
+                </button>
+            </a>
             <!--This created the blue line on top of the page-->
             <hr />
-            <!--viewer for drag and drop + overlay-->>
+            <p1>Brush</p1>
+            <button class="brush" onclick="enable()">
+                <i class="fa-solid fa-paintbrush"></i>
+            </button>
+            <p4>Brush Size</p4>
+            <button class="bplus">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <button class="bminus">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+            <p5>Brush Color</p5>
+            <select id="Color">
+                <option>Red</option>
+                <option>Green</option>
+                <option>Purple</option>
+                <option>Blue</option>
+                <option>Pink</option>
+            </select>
+            <p2>Zoom</p2>
+            <button class="zoom" onclick="disable()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            
+            <p3>Reset</p3>
+            <button class="reset" onclick="disable()">
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+            </button>
+
+            <!--viewer for drag and drop + overlay-->
             <div class ="viewer">
                 <div class="container">
                   <div class="overlay">
