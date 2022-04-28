@@ -148,9 +148,8 @@
 
                 var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
                 var image = cornerstone.getImage(viewer);
-                var currentSeg = segModule.getters.activeSegmentIndex(viewer);
-
-                var areas = getBrushArea(labelMap2D, image, currentSeg);
+                
+                var areas = getBrushArea(labelMap2D, image);
                 console.log("red brush: " + areas.red + 'mm\u00B3');
                 console.log("blue brush: " + areas.blue + 'mm\u00B3');
                 console.log("green brush: " + areas.green + 'mm\u00B3');
