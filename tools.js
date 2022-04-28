@@ -165,26 +165,51 @@ function getCircleWithThreshold(
 
 function getBrushArea(labelmap2D, image, segmentnumber)
 {
-    var total = 0;
-    console.log("This is the seg number " + segmentnumber);
-    for (let i = 0; i < labelmap2D.pixelData.length; i++)
-    {
-        if (labelmap2D.pixelData[i] === segmentnumber)
-        {
-            total++;
+    //var total = 0;
+    //console.log("This is the seg number " + segmentnumber);
+    //for (let i = 0; i < labelmap2D.pixelData.length; i++)
+    //{
+    //    if (labelmap2D.pixelData[i] === segmentnumber)
+    //    {
+    //        total++;
+    //    }
+    //}
+
+    //return total * image.columnPixelSpacing * image.rowPixelSpacing;
+
+    var areas = {
+        size: 5,
+        red: 0,
+        blue: 0,
+        green: 0,
+        purple: 0,
+        fuchsia: 0
+    };
+    pixelSize = image.columnPixelSpacing * image.rowPixelSpacing;
+
+    for (let i = 0; i < labelmap2D.pixelData.length; i++) {
+        if (labelmap2D.pixelData[i] == 1) {
+            areas.red++;
+        }
+        else if (labelmap2D.pixelData[i] == 2) {
+            areas.green++;
+        }
+        else if (labelmap2D.pixelData[i] == 3) {
+            areas.purple++;
+        }
+        else if (labelmap2D.pixelData[i] == 5) {
+            areas.blue++;
+        }
+        else if (labelmap2D.pixelData[i] == 6) {
+            areas.fuchsia++;
         }
     }
 
-    return total * image.columnPixelSpacing * image.rowPixelSpacing;
+    areas.red *= pixelSize;
+    areas.blue *= pixelSize;
+    areas.green *= pixelSize;
+    areas.purple *= pixelSize;
+    areas.fuchsia *= pixelSize;
 
-    //var areas = [0, 0, 0, 0, 0];
-
-    //for (let i = 0; i < labelmap2D.pixelData.length; i++)
-    //{
-    //    area[labelmap2D.pixelData[i] - 1]++;
-    //}
-    //for (let j = 0; j < area.length; j++) {
-    //    areas[j] *= (image.columnPixelSpacing * image.rowPixelSpacing);
-    //}
-    //return areas;
+    return areas;
 }

@@ -104,33 +104,27 @@
 
             else if (event.key == '0') {
 
-                console.log(segModule.getters.activeSegmentIndex(viewer));
                 segModule.setters.decrementActiveSegmentIndex(viewer);
-                console.log(segModule.getters.activeSegmentIndex(viewer));
 
                 if (segModule.getters.activeSegmentIndex(viewer) == 4) {
                     segModule.setters.decrementActiveSegmentIndex(viewer);
-                    console.log(segModule.getters.activeSegmentIndex(viewer));
                 }
 
                 if (segModule.getters.activeSegmentIndex(viewer) == 65535) {
                     segModule.setters.activeSegmentIndex(viewer, 6);
-                    segModule.getters.activeSegmentIndex(viewer);
+
                 }
             }
             else if (event.key == '9') {
 
-                console.log(segModule.getters.activeSegmentIndex(viewer));
+
                 segModule.setters.incrementActiveSegmentIndex(viewer);
-                console.log(segModule.getters.activeSegmentIndex(viewer));
 
                 if (segModule.getters.activeSegmentIndex(viewer) == 4) {
                     segModule.setters.incrementActiveSegmentIndex(viewer);
-                    console.log(segModule.getters.activeSegmentIndex(viewer));
                 }
                 if (segModule.getters.activeSegmentIndex(viewer) > 6) {
                     segModule.setters.activeSegmentIndex(viewer, 1);
-                    segModule.getters.activeSegmentIndex(viewer);
                 }
                 }
              else if (event.key == '1') {
@@ -151,9 +145,17 @@
                 currentTool = 'FreehandRoi';
             }
             else if (event.key == '4') {
- 
-                console.log(getBrushArea(cornerstoneTools.getModule('segmentation').
-                    getters.labelmap2D(viewer).labelmap2D, cornerstone.getImage(viewer), 1) + "mm^3");
+
+                var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
+                var image = cornerstone.getImage(viewer);
+                var currentSeg = segModule.getters.activeSegmentIndex(viewer);
+
+                var areas = getBrushArea(labelMap2D, image, currentSeg);
+                console.log("red brush: " + areas.red + 'mm\u00B3');
+                console.log("blue brush: " + areas.blue + 'mm\u00B3');
+                console.log("green brush: " + areas.green + 'mm\u00B3');
+                console.log("purple brush: " + areas.purple + 'mm\u00B3');
+                console.log("pink brush: " + areas.fuchsia + 'mm\u00B3');
             }
         };
 
