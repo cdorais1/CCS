@@ -21,9 +21,11 @@
         cornerstoneTools.external.Hammer = Hammer;
         cornerstoneTools.external.cornerstone = cornerstone;
         cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
+        segModule = cornerstoneTools.getModule('segmentation');
 
         var currentTool = '';
-
+        var image1;
+        var brush = 0;
         
         function onDragOver(event) {
 
@@ -50,6 +52,7 @@
 
             cornerstone.loadImage(imageIds[0]).then(function (image) {
 
+                image1 = image;
                 console.log('Loaded', image);
 
                 cornerstoneTools.init();
@@ -58,7 +61,8 @@
 
                 cornerstone.enable(viewer);
                 cornerstone.displayImage(viewer, image);
-
+                cornerstone.getViewport(viewer).labelmap = true;
+                
                 
                 var stack = { currentImageIdIndex: 0, imageIds: imageIds };
                 cornerstoneTools.addStackStateManager(viewer, ["stack"]);
@@ -66,19 +70,20 @@
 
                 cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
                 cornerstoneTools.addTool(ThresholdsBrushTool);
+                // cornerstoneTools.addTool(cornerstoneTools.BrushTool);
                 cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
                 cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
 
-                console.log(image.minPixelValue);
-                console.log(image.maxPixelValue);
-
                 // Brush is right click, zoom is left click. 
-                 cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 }); 
+                // cornerstoneTools.setToolActive('Brush', { mouseButtonMask: 1 });
+                cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 }); 
                 cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
                 cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
                 // This tool allows you to get the area of a circled area using a brush.
                 cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
                 currentTool = 'ThresholdsBrush';
+                // currentTool = 'Brush';
+
             });
 
         };
@@ -97,25 +102,59 @@
                 cornerstoneTools.store.state.tools[1].increaseBrushSize();
             }
 
-            else if (event.key == '0')
-            {
-                cornerstoneTools.getModule('segmentation').setters.decrementActiveSegmentIndex(viewer);
-            } else if (event.key == '1')
-            {
+            else if (event.key == '0') {
+
+                segModule.setters.decrementActiveSegmentIndex(viewer);
+
+                if (segModule.getters.activeSegmentIndex(viewer) == 4) {
+                    segModule.setters.decrementActiveSegmentIndex(viewer);
+                }
+
+                if (segModule.getters.activeSegmentIndex(viewer) == 65535) {
+                    segModule.setters.activeSegmentIndex(viewer, 6);
+
+                }
+            }
+            else if (event.key == '9') {
+
+
+                segModule.setters.incrementActiveSegmentIndex(viewer);
+
+                if (segModule.getters.activeSegmentIndex(viewer) == 4) {
+                    segModule.setters.incrementActiveSegmentIndex(viewer);
+                }
+                if (segModule.getters.activeSegmentIndex(viewer) > 6) {
+                    segModule.setters.activeSegmentIndex(viewer, 1);
+                }
+                }
+             else if (event.key == '1') {
                 cornerstoneTools.setToolDisabled(currentTool);
                 cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
                 currentTool = 'ThresholdsBrush';
+
             }
             else if (event.key == '2') {
                 cornerstoneTools.setToolDisabled(currentTool);
                 cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
                 currentTool = 'Zoom';
             }
-                // cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
-             else if (event.key == '3') {
+            // cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
+            else if (event.key == '3') {
                 cornerstoneTools.setToolDisabled(currentTool);
                 cornerstoneTools.setToolActive('FreehandRoi', { mouseButtonMask: 1 });
                 currentTool = 'FreehandRoi';
+            }
+            else if (event.key == '4') {
+
+                var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
+                var image = cornerstone.getImage(viewer);
+                
+                var areas = getBrushArea(labelMap2D, image);
+                console.log("red brush: " + areas.red + 'mm\u00B3');
+                console.log("blue brush: " + areas.blue + 'mm\u00B3');
+                console.log("green brush: " + areas.green + 'mm\u00B3');
+                console.log("purple brush: " + areas.purple + 'mm\u00B3');
+                console.log("pink brush: " + areas.fuchsia + 'mm\u00B3');
             }
         };
 

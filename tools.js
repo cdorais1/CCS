@@ -14,6 +14,7 @@ const drawBrushPixels = segmentationUtils.drawBrushPixels;
 const getCircle = segmentationUtils.getCircle;
 const segmentationModule = cornerstoneTools.getModule("segmentation");
 
+
 /**
  * @public
  * @class ThresholdsBrushTool
@@ -45,6 +46,7 @@ class ThresholdsBrushTool extends BaseBrushTool {
     _paint(evt) {
         const { configuration } = segmentationModule;
         const eventData = evt.detail;
+
         const { rows, columns } = eventData.image;
         const { x, y } = eventData.currentPoints.image;
 
@@ -84,10 +86,6 @@ class ThresholdsBrushTool extends BaseBrushTool {
     }
 }
 
-//function updateThreshold(number)
-//{
-
-//}
 
 /**
  * Gets the pixels within the circle if inside thresholds (included)
@@ -164,3 +162,43 @@ function getCircleWithThreshold(
 
     return circleArray;
 }
+
+function getBrushArea(labelmap2D, image)
+{
+     var areas = {
+        size: 5,
+        red: 0,
+        blue: 0,
+        green: 0,
+        purple: 0,
+        fuchsia: 0
+    };
+    pixelSize = image.columnPixelSpacing * image.rowPixelSpacing;
+
+    for (let i = 0; i < labelmap2D.pixelData.length; i++) {
+        if (labelmap2D.pixelData[i] == 1) {
+            areas.red++;
+        }
+        else if (labelmap2D.pixelData[i] == 2) {
+            areas.green++;
+        }
+        else if (labelmap2D.pixelData[i] == 3) {
+            areas.purple++;
+        }
+        else if (labelmap2D.pixelData[i] == 5) {
+            areas.blue++;
+        }
+        else if (labelmap2D.pixelData[i] == 6) {
+            areas.fuchsia++;
+        }
+    }
+
+    areas.red *= pixelSize;
+    areas.blue *= pixelSize;
+    areas.green *= pixelSize;
+    areas.purple *= pixelSize;
+    areas.fuchsia *= pixelSize;
+
+    return areas;
+}
+

@@ -43,4 +43,4 @@ class morphologicFeatures
 		return morphologicFeatures.instance;
 	}
 	
-	instance = new morphologicFeatures();
+//	instance = new morphologicFeatures();
