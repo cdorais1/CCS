@@ -14,6 +14,7 @@
 .logo {
     margin: auto;
     margin-top: 0.1%;
+    position:fixed;
     width: 5.5%;
     min-width: 75px;
 }
@@ -280,8 +281,8 @@ p3 {
 .viewer {
     /*background-color: #302f2f;*/
     width: 50%; 
-    height: 99%; 
-    margin-top: -0.5%; 
+    height: 97%; 
+    margin-top: 3%; 
     min-width: 100px;
     position: fixed;
     left: 25%;
@@ -289,11 +290,17 @@ p3 {
 #viewer {
     border: groove;
     border-color: white;
-    width: 90%; 
-    height: 90%; 
-    margin-top: 2%; 
-    margin-left: auto; 
+    width: 90%;
+    height: 90%;
+    margin-top: 2%;
+    margin-left: auto;
     margin-right: auto;
     min-width: 100px;
 }
-
+p6 {
+    position:fixed;
+    left: 47%;
+    margin-top:4%;
+    color: #5f8c8a;
+    text-align: center;
+}
