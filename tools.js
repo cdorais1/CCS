@@ -166,7 +166,7 @@ function getCircleWithThreshold(
 function getBrushArea(labelmap2D, image, segmentnumber)
 {
     var total = 0;
-
+    console.log("This is the seg number " + segmentnumber);
     for (let i = 0; i < labelmap2D.pixelData.length; i++)
     {
         if (labelmap2D.pixelData[i] === segmentnumber)
@@ -176,4 +176,15 @@ function getBrushArea(labelmap2D, image, segmentnumber)
     }
 
     return total * image.columnPixelSpacing * image.rowPixelSpacing;
+
+    //var areas = [0, 0, 0, 0, 0];
+
+    //for (let i = 0; i < labelmap2D.pixelData.length; i++)
+    //{
+    //    area[labelmap2D.pixelData[i] - 1]++;
+    //}
+    //for (let j = 0; j < area.length; j++) {
+    //    areas[j] *= (image.columnPixelSpacing * image.rowPixelSpacing);
+    //}
+    //return areas;
 }

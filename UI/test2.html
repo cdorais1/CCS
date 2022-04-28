@@ -50,15 +50,16 @@
                 cornerstoneTools.init();
 
                 var viewer = document.getElementById('viewer');
-                var labelmap2d = document.getElementById('labelmap2d');
+
 
                 cornerstone.enable(viewer);
-                cornerstone.enable(labelmap2d);
 
                 cornerstone.displayImage(viewer, image);
+                cornerstone.getViewport(viewer).labelmap = true;
 
-                console.log("segmod getter for labelmap2D");
-                console.log(segmentationModule.getters.labelmap2D(cornerstone.getEnabledElement(viewer)));
+                //console.log("segmod getter for labelmap2D");
+                //console.log(segmentationModule.getters.labelmap2D(cornerstone.getEnabledElement(viewer)));
+
 
                 // this depends on the data, i am testing with a single file
                 var stack = { currentImageIdIndex: 0, imageIds: imageIds };

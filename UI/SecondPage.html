@@ -21,6 +21,7 @@
         cornerstoneTools.external.Hammer = Hammer;
         cornerstoneTools.external.cornerstone = cornerstone;
         cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
+        segModule = cornerstoneTools.getModule('segmentation');
 
         var currentTool = '';
         var image1;
@@ -102,20 +103,37 @@
             }
 
             else if (event.key == '0') {
-                if (brush) {
-                    cornerstoneTools.getModule('segmentation').setters.decrementActiveSegmentIndex(viewer);
-                    console.log("Active Seg is: ");
-                    console.log(cornerstoneTools.getModule('segmentation').getters.getActiveSegmentIndex(viewer));
-                    brush = 0;
-                }
-                else {
-                    cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
-                    console.log("Active Seg is: ");
-                    console.log(cornerstoneTools.getModule('segmentation').getters.getActiveSegmentIndex(viewer));
-                    brush = 1;
 
+                console.log(segModule.getters.activeSegmentIndex(viewer));
+                segModule.setters.decrementActiveSegmentIndex(viewer);
+                console.log(segModule.getters.activeSegmentIndex(viewer));
+
+                if (segModule.getters.activeSegmentIndex(viewer) == 4) {
+                    segModule.setters.decrementActiveSegmentIndex(viewer);
+                    console.log(segModule.getters.activeSegmentIndex(viewer));
                 }
-            } else if (event.key == '1') {
+
+                if (segModule.getters.activeSegmentIndex(viewer) == 65535) {
+                    segModule.setters.activeSegmentIndex(viewer, 6);
+                    segModule.getters.activeSegmentIndex(viewer);
+                }
+            }
+            else if (event.key == '9') {
+
+                console.log(segModule.getters.activeSegmentIndex(viewer));
+                segModule.setters.incrementActiveSegmentIndex(viewer);
+                console.log(segModule.getters.activeSegmentIndex(viewer));
+
+                if (segModule.getters.activeSegmentIndex(viewer) == 4) {
+                    segModule.setters.incrementActiveSegmentIndex(viewer);
+                    console.log(segModule.getters.activeSegmentIndex(viewer));
+                }
+                if (segModule.getters.activeSegmentIndex(viewer) > 6) {
+                    segModule.setters.activeSegmentIndex(viewer, 1);
+                    segModule.getters.activeSegmentIndex(viewer);
+                }
+                }
+             else if (event.key == '1') {
                 cornerstoneTools.setToolDisabled(currentTool);
                 cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
                 currentTool = 'ThresholdsBrush';
