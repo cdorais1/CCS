@@ -280,8 +280,8 @@ p3 {
 .viewer {
     /*background-color: #302f2f;*/
     width: 50%; 
-    height: 95%; 
-    margin-top: 0.9%; 
+    height: 99%; 
+    margin-top: -0.5%; 
     min-width: 100px;
     position: fixed;
     left: 25%;
