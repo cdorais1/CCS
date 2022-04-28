@@ -1,8 +1,6 @@
 /*cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-
 const realFileBtn = document.getElementById("user-file");
 const customTxt = document.getElementById("custom-text");
-
 /*realFileBtn.addEventListener("change", function () {
     if (realFileBtn.value) {
         customTxt.innerHTML = realFileBtn.value;
@@ -41,4 +39,4 @@ const customTxt = document.getElementById("custom-text");
 
 // If zoom
 
-// If clear 
+// If clea
