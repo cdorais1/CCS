@@ -29,6 +29,8 @@ function onDrop(event) {
     cornerstone.enable(viewer);
     cornerstone.displayImage(viewer, image);
 
+    viewport = Object.assign
+
   });
 };
 
@@ -37,4 +39,15 @@ window.onload = function () {
   document.body.addEventListener('dragover', onDragOver);
   document.body.addEventListener('drop', onDrop);
 
+};
+
+addMasks();
+
+function addMasks(){
+
+    try{
+        loadLayerSelection();
+        addLayerMask();
+        deleteLayerMask(true);
+        } catch (e) {}
 };
