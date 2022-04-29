@@ -329,8 +329,7 @@ p6 {
     transition: .5s ease;
     background-color: #008bba1f;
 }
-
+    */
 .container:hover .overlay {
     opacity: 1;
 }
-*/ 
