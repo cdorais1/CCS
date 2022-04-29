@@ -4,6 +4,8 @@
 
 - Display stats on right side of page
 
-- connect tool buttons to tool functions
+- Connect tool buttons to tool functions
 
-- calculate discrete number of calcified plaque deposits based on brush annotations 
+- Calculate discrete number of calcified plaque deposits based on brush annotations 
+
+- Calculate volume of calcified plaque using labelmap3D
