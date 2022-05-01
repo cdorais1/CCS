@@ -1,118 +1,205 @@
-import * as cornerstone from "cornerstone-core";
+/** @module imaging/tools/custom/thresholdBrushTool
+ *  @desc  This file provides functionalities for
+ *         a brush tool with thresholds using a
+ *         custom cornestone tool
+ */
 
-//•••1.) A panning tool to move around the selected image (click and hold to move around) •••
-
-// Init cornerstone tools
-cornerstoneTools.init();
-
-// Enable any elements, and display images
-// ...
-
-// Add our tool, and set it's mode
-const PanTool = cornerstoneTools.PanTool;
-
-cornerstoneTools.addTool(PanTool)
-cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 })
+// external libraries
+const external = cornerstoneTools.external;
+const BaseBrushTool = cornerstoneTools.importInternal("base/BaseBrushTool");
+const segmentationUtils = cornerstoneTools.importInternal(
+    "util/segmentationUtils"
+);
+const drawBrushPixels = segmentationUtils.drawBrushPixels;
+const getCircle = segmentationUtils.getCircle;
+const segmentationModule = cornerstoneTools.getModule("segmentation");
 
 
-//•••2.) A zoom tool to magnify or reduce the image. (click down for zoom in, click up for zoom out)•••
+/**
+ * @public
+ * @class ThresholdsBrushTool
+ * @memberof Tools.Brush
+ * @classdesc Tool for drawing segmentations on an image (only pixels inside thresholds)
+ * @extends Tools.Base.BaseBrushTool
+ */
+class ThresholdsBrushTool extends BaseBrushTool {
+    constructor(props = {}) {
+        const defaultProps = {
+            name: "ThresholdsBrush",
+            supportedInteractionTypes: ["Mouse", "Touch"],
+            configuration: {},
+            mixins: ["renderBrushMixin"]
+        };
 
-// Init cornerstone tools
-cornerstoneTools.init();
+        super(props, defaultProps);
 
-// Enable any elements, and display images
-// ...
-
-// Add our tool, and set it's mode
-const ZoomTool = cornerstoneTools.ZoomTool;
-
-cornerstoneTools.addTool(cornerstoneTools.ZoomTool, {
-    // Optional configuration
-    configuration: {
-        invert: false,
-        preventZoomOutsideImage: false,
-        minScale: .1,
-        maxScale: 20.0,
+        this.touchDragCallback = this._paint.bind(this);
     }
-});
 
-cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 })
+    /**
+     * Paints the data to the labelmap.
+     *
+     * @protected
+     * @param  {Object} evt The data object associated with the event.
+     * @returns {void}
+     */
+    _paint(evt) {
+        const { configuration } = segmentationModule;
+        const eventData = evt.detail;
 
+        const { rows, columns } = eventData.image;
+        const { x, y } = eventData.currentPoints.image;
 
-//•••3.) A brush tool to annotate the image. (seems kinda crappy to me ngl)•••
+        if (x < 0 || x > columns || y < 0 || y > rows) {
+            return;
+        }
 
-const element = document.querySelector('.cornerstone-element');
+        const radius = configuration.radius;
+        const thresholds = configuration.thresholds;
+        const { labelmap2D, labelmap3D, shouldErase } = this.paintEventData;
 
-// Init CornerstoneTools
-cornerstoneTools.init();
-cornerstone.enable(element);
+        let pointerArray = [];
 
-const toolName = 'Brush';
-const imageId = 'wadouri:https://example.com/assets/dicom/bellona/chest_lung/1.dcm';
+        // threshold should be applied only if painting, not erasing
+        if (shouldErase) {
+            pointerArray = getCircle(radius, rows, columns, x, y);
+        } else {
+            pointerArray = getCircleWithThreshold(
+                eventData.image,
+                radius,
+                thresholds,
+                x,
+                y
+            );
+        }
 
-// Display our Image
-cornerstone.loadImage(imageId).then(function (image) {
-    cornerstone.displayImage(element, image);
-});
+        // Draw / Erase the active color.
+        drawBrushPixels(
+            pointerArray,
+            labelmap2D.pixelData,
+            labelmap3D.activeSegmentIndex,
+            columns,
+            shouldErase
+        );
 
-// Add the tool
-const apiTool = cornerstoneTools[`${toolName}Tool`];
-cornerstoneTools.addTool(apiTool);
-cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
-
-//•••4.) A clearing tool to remove user annotations •••
-
-//EXAMPLE NOT YET COMPLETE
-
-
-
-
-//NOT ON WRITE UP, MIGHT BE USEFUL CORNERSTONE FUNCTIONS
-
-//•5.) Stack Scroll MouseWheel Tool (for sifting through all images, scroll up for top pics, down for bottom pics) •
-
-// Init cornerstone tools
-cornerstoneTools.init()
-
-const scheme = 'wadouri';
-const baseUrl = 'https://mypacs.com/dicoms/';
-const series = [
-    'image_1.dcm',
-    'image_2.dcm'
-]
-
-const imageIds = series.map(seriesImage => `${scheme}:${baseUrl}${seriesImage}`
-
-// Add our tool, and set it's mode
-const StackScrollMouseWheelTool = cornerstoneTools.StackScrollMouseWheelTool;
-
-//define the stack
-const stack = {
-    currentImageIdIndex: 0,
-    imageIds
+        external.cornerstone.updateImage(evt.detail.element);
+    }
 }
 
-// load images and set the stack
-cornerstone.loadImage(imageIds[0]).then((image) => {
-    cornerstone.displayImage(element, image)
-    cornerstoneTools.addStackStateManager(element, ['stack'])
-    cornerstoneTools.addToolState(element, 'stack', stack)
-})
 
-cornerstoneTools.addTool(StackScrollMouseWheelTool)
-cornerstoneTools.setToolActive('StackScrollMouseWheel', {})
+/**
+ * Gets the pixels within the circle if inside thresholds (included)
+ * NOTE: thresholds values must consider slope and intercept (MO value)
+ * @method
+ * @name getCircleWithThreshold
+ *
+ * @param  {Object} image         The target image.
+ * @param  {number} radius        The radius of the circle.
+ * @param  {Array} thresholds     The thresholds array [min, max].
+ * @param  {number} [xCoord = 0]  The x-location of the center of the circle.
+ * @param  {number} [yCoord = 0]  The y-location of the center of the circle.
+ * @returns {Array.number[]}      Array of pixels contained within the circle.
+ */
+function getCircleWithThreshold(
+    image,
+    radius,
+    thresholds,
+    xCoord = 0,
+    yCoord = 0
+) {
+    const pixelData = image.getPixelData();
+    const { rows, columns } = image;
+    const x0 = Math.floor(xCoord);
+    const y0 = Math.floor(yCoord);
+    let circleArray = [];
 
+    // if no thresholds, set all pixels range
+    if (!thresholds) {
+        // thresholds = [image.minPixelValue, image.maxPixelValue];
+        thresholds = [80, image.maxPixelValue];
+    }
 
-//•6.) WWWC Tool (brightining tool, click and scroll up for light, down for dark) •
+    function isInsideThresholds(v, t) {
+        return v >= t[0] && v <= t[1];
+    }
 
-// Init cornerstone tools
-cornerstoneTools.init();
+    if (radius === 1) {
+        let value = pixelData[y0 * rows + x0];
+        let moValue = value * image.slope + image.intercept;
+        if (isInsideThresholds(moValue, thresholds)) {
+            circleArray = [[x0, y0]];
+        }
+        return circleArray;
+    }
 
-// Enable any elements, and display images
-// ...
+    let index = 0;
 
-// Add our tool, and set it's mode
-const WwwcTool = cornerstoneTools.WwwcTool;
+    for (let y = -radius; y <= radius; y++) {
+        const yCoord = y0 + y;
 
-cornerstoneTools.addTool(WwwcTool)
-cornerstoneTools.setToolActive('Wwwc', { mouseButtonMask: 1 })
+        if (yCoord > rows || yCoord < 0) {
+            continue;
+        }
+
+        for (let x = -radius; x <= radius; x++) {
+            const xCoord = x0 + x;
+
+            if (xCoord >= columns || xCoord < 0) {
+                continue;
+            }
+
+            let value = pixelData[yCoord * rows + xCoord];
+            let moValue = value * image.slope + image.intercept;
+
+            if (
+                x * x + y * y < radius * radius &&
+                isInsideThresholds(moValue, thresholds)
+            ) {
+                circleArray[index++] = [x0 + x, y0 + y];
+            }
+        }
+    }
+
+    return circleArray;
+}
+
+//function getBrushArea(labelmap2D, image)
+//{
+//     var areas = {
+//        size: 5,
+//        red: 0,
+//        blue: 0,
+//        green: 0,
+//        purple: 0,
+//        fuchsia: 0
+//    };
+//    pixelSize = image.columnPixelSpacing * image.rowPixelSpacing;
+
+//    for (let i = 0; i < labelmap2D.pixelData.length; i++) {
+//        if (labelmap2D.pixelData[i] == 1) {
+//            areas.red++;
+//        }
+//        else if (labelmap2D.pixelData[i] == 2) {
+//            areas.green++;
+//        }
+//        else if (labelmap2D.pixelData[i] == 3) {
+//            areas.purple++;
+//        }
+//        else if (labelmap2D.pixelData[i] == 5) {
+//            areas.blue++;
+//        }
+//        else if (labelmap2D.pixelData[i] == 6) {
+//            areas.fuchsia++;
+//        }
+//    }
+
+//    areas.red *= pixelSize;
+//    areas.blue *= pixelSize;
+//    areas.green *= pixelSize;
+//    areas.purple *= pixelSize;
+//    areas.fuchsia *= pixelSize;
+
+//    return areas;
+//}
+
+//function getDensity()
