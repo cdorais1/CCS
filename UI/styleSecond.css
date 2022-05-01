@@ -14,7 +14,8 @@
 .logo {
     margin: auto;
     margin-top: 0.1%;
-    position:fixed;
+
+    position: fixed;
     width: 5.5%;
     min-width: 75px;
 }
@@ -40,6 +41,12 @@
     box-shadow: 0 5px #2d2d2d;
     top: 1.5%;
 }
+    .info a{
+    text-decoration: none;
+    color: #35afaa;
+    font-size: 24px;
+    font-weight: bold;
+}
 
 /*When mouse goes over the button for more info, the color of the button changes*/
 .info:hover {
@@ -58,7 +65,7 @@ hr {
     margin: auto;
     position: fixed;
     top: 8%;
-    width:100%;
+    width: 100%;
     background-color: #35AFAA;
     height: 1.4px;
 }
@@ -134,6 +141,7 @@ p4 {
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
+
 p5 {
     position: fixed;
     left: 12%;
@@ -142,12 +150,14 @@ p5 {
     font-family: Georgia, serif;
     color: #35AFAA;
 }
+
 select {
     position: fixed;
     left: 11.75%;
     top: 14.5%;
 }
-#Color{
+
+#Color {
     color: black;
     font-size: 15px;
     font-weight: bold;
@@ -155,8 +165,10 @@ select {
     border-radius: 8px;
     border: 1px solid black;
 }
+
 p1 {
-    position:fixed;
+    position: fixed;
+
     left: 2.15%;
     top: 10%;
     font-size: 14px;
@@ -171,7 +183,7 @@ p1 {
     border: 2px solid #35afaa;
     background-color: black;
     color: #35afaa;
-    position:fixed;
+    position: fixed;
     left: 2%;
     top: 13%;
     width: 0.5%;
@@ -226,6 +238,7 @@ p2 {
     box-shadow: 0 5px #2d2d2d;
 }
 
+
 /*When mouse goes over the button for more info, the color of the button changes*/
 .zoom:hover {
     background-color: #1e1e1e;
@@ -236,6 +249,7 @@ p2 {
     box-shadow: 0 4px #2d2d2d;
     transform: translateY(3px);
 }
+
 
 p3 {
     position: fixed;
@@ -267,26 +281,26 @@ p3 {
     box-shadow: 0 5px #2d2d2d;
 }
 
-/*When mouse goes over the button for more info, the color of the button changes*/
-.reset:hover {
-    background-color: #1e1e1e;
-}
-/*Gives the sensation of a real button, just click on it*/
-.reset:active {
-    background-color: black;
-    box-shadow: 0 4px #2d2d2d;
-    transform: translateY(3px);
-}
-
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .reset:hover {
+        background-color: #1e1e1e;
+    }
+    /*Gives the sensation of a real button, just click on it*/
+    .reset:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
 .viewer {
     /*background-color: #302f2f;*/
-    width: 50%; 
-    height: 97%; 
-    margin-top: 3%; 
+    width: 50%;
+    height: 97%;
+    margin-top: 3%;
     min-width: 100px;
     position: fixed;
     left: 25%;
 }
+
 #viewer {
     border: groove;
     border-color: white;
@@ -297,10 +311,30 @@ p3 {
     margin-right: auto;
     min-width: 100px;
 }
+
 p6 {
-    position:fixed;
+    position: fixed;
     left: 47%;
-    margin-top:4%;
+    margin-top: 4%;
     color: #5f8c8a;
     text-align: center;
+}
+
+/* overlay */
+/*
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #008bba1f;
+}
+    */
+.container:hover .overlay {
+    opacity: 1;
 }
