@@ -77,6 +77,7 @@
                 cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
 
                 // Brush is right click, zoom is left click.
+
                 // cornerstoneTools.setToolActive('Brush', { mouseButtonMask: 1 });
                 cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
                 cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
@@ -169,14 +170,14 @@
                 console.log("pink: " + densities.fuchsia);
             }
         };
-
+      
         function disable() {
             document.getElementById("Color").disabled = true;
         }
         function enable() {
             document.getElementById("Color").disabled = false;
         }
-
+      
     </script>
 </head>
     <body>
@@ -222,11 +223,13 @@
             </button>
             <p6>Drag & Drop</p6>
 
+
             <!--viewer for drag and drop-->>
             <div class="viewer">
                     <!--<div class="overlay">
                     </div>-->
                     <p id="viewer"></p>
+
             </div>
         </div>
     </body>
