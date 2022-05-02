@@ -72,20 +72,19 @@
 
                 cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
                 cornerstoneTools.addTool(ThresholdsBrushTool);
-                // cornerstoneTools.addTool(cornerstoneTools.BrushTool);
                 cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
+                cornerstoneTools.addTool(cornerstoneTools.PanTool);
+
+                // This tool allows you to get the area of a circled area using a brush.
                 cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
 
-                // Brush is right click, zoom is left click.
-
-                // cornerstoneTools.setToolActive('Brush', { mouseButtonMask: 1 });
+                // Activate tools as needed; default active tool is brush and stack scroll.
                 cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
                 cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
                 cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
-                // This tool allows you to get the area of a circled area using a brush.
                 cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
+                cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
                 currentTool = 'ThresholdsBrush';
-                // currentTool = 'Brush';
 
             });
 
@@ -214,6 +213,11 @@
                 console.log("green: " + densities.green);
                 console.log("purple: " + densities.purple);
                 console.log("pink: " + densities.fuchsia);
+            }
+            else if (event.key == '1') {
+                cornerstoneTools.setToolDisabled(currentTool);
+                cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
+                currentTool = 'Pan';
             }
         };
       
