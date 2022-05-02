@@ -100,15 +100,20 @@ p4 {
 }
 
     /*When mouse goes over the button for more info, the color of the button changes*/
-    .bplus:hover {
+    .bplus:hover:enabled {
         background-color: #1e1e1e;
     }
     /*Gives the sensation of a real button, just click on it*/
-    .bplus:active {
+    .bplus:active:enabled {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
+   .bplus:disabled{
+        cursor: not-allowed;
+        color: #428784;
+        border-color: #428784;
+   }
 
 .bminus {
     margin: auto;
@@ -132,14 +137,19 @@ p4 {
 }
 
     /*When mouse goes over the button for more info, the color of the button changes*/
-    .bminus:hover {
+    .bminus:hover:enabled {
         background-color: #1e1e1e;
     }
     /*Gives the sensation of a real button, just click on it*/
-    .bminus:active {
+    .bminus:active:enabled {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
+    }
+    .bminus:disabled {
+        cursor:not-allowed;
+        color: #428784;
+        border-color: #428784;
     }
 
 p5 {
@@ -164,6 +174,9 @@ select {
     background-color: #35AFAA;
     border-radius: 8px;
     border: 1px solid black;
+}
+#Color:disabled {
+    cursor:not-allowed;
 }
 
 p1 {
