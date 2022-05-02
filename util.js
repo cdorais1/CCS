@@ -42,6 +42,48 @@ function getBrushArea(labelmap2D, image) {
     return areas;
 }
 
+function getVolume(labelmap2D, image) {
+    const dataSet = dicomParser.parseDicom(image.data.byteArray);
+    /* 
+     * (0018, 0050) is the tag associated with "slice thickness"
+     * (0020, 0032) is the tag associated with the "image position", which is 
+     * an x, y, z coordinate of the upper left hand corner of the image. 
+     * (0018, 0088) is the tag associated with "spacing between slices", which is not mandatory to include.
+    */
+
+
+    const dicomDepth = dataSet.elements.x00180050;
+    const voxelSize = dicomDepth * image.columnPixelSpacing * image.rowPixelSpacing;
+
+    var volumes = {
+        red: 0,
+        green: 0,
+        blue: 0,
+        purple: 0,
+        pink: 0
+    };
+
+    for (let i = 0; i < labelmap2D.pixelData.length; i++) {
+        if (labelmap2D.pixelData[i] == 1) {
+            volumes.red++;
+        }
+        else if (labelmap2D.pixelData[i] == 2) {
+            volumes.green++;
+        }
+        else if (labelmap2D.pixelData[i] == 3) {
+            volumes.purple++;
+        }
+        else if (labelmap2D.pixelData[i] == 68) {
+            volumes.blue++;
+        }
+        else if (labelmap2D.pixelData[i] == 6) {
+            volumes.fuchsia++;
+        }
+    }
+
+}
+
+
 function getDensity(labelmap2D, image) {
 
     const imagePix = image.getPixelData();
