@@ -191,7 +191,6 @@
 
             <!--viewer for drag and drop + overlay-->
             <div class ="viewer">
-                <div class="container">
                   <div class="overlay">
                   </div>
               <p id="viewer"></p>
@@ -199,6 +198,10 @@
               </div>
           </div>
           <!--stats box-->
-          <div> </div>
+          <p id="demo"></p>
+            <script>
+            console.log(getBrushArea(cornerstoneTools.getModule('segmentation').
+                getters.labelmap2D(viewer).labelmap2D, cornerstone.getImage(viewer), 1) + "mm^3");
+            </script>
       </body>
 </html>
