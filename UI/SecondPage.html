@@ -187,7 +187,7 @@
             // cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
 
             // this was an else if now it is just an if in case we want to change it back to keys on keyboard
-            if (event.key == '3') {
+            if (event.key == '0') {
                 cornerstoneTools.setToolDisabled(currentTool);
                 cornerstoneTools.setToolActive('FreehandRoi', { mouseButtonMask: 1 });
                 currentTool = 'FreehandRoi';
@@ -234,11 +234,11 @@
                 var image = cornerstone.getImage(viewer);
                 var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
                 var simpleVolumes = getVolume(labelMap2D, image);
-                console.log("red: " + simpleVolumes.red);
-                console.log("blue: " + simpleVolumes.blue);
-                console.log("green: " + simpleVolumes.green);
-                console.log("purple: " + simpleVolumes.purple);
-                console.log("pink: " + simpleVolumes.fuchsia);
+                console.log("red: " + simpleVolumes.red + 'mm\u00B3');
+                console.log("blue: " + simpleVolumes.blue + 'mm\u00B3');
+                console.log("green: " + simpleVolumes.green + 'mm\u00B3');
+                console.log("purple: " + simpleVolumes.purple + 'mm\u00B3');
+                console.log("pink: " + simpleVolumes.fuchsia + 'mm\u00B3');
             }
             else if (event.key == '6') {
                 clearBrushes(viewer);
