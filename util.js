@@ -4,6 +4,16 @@ cornerstoneTools.external.Hammer = Hammer;
 cornerstoneTools.external.cornerstone = cornerstone;
 cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 
+function clearBrushes(viewer) {
+
+    // Taken from Marc's code, put here so people looking at the source don't see this haha.
+    segModule.setters.deleteSegment(viewer, 1);
+    segModule.setters.deleteSegment(viewer, 2);
+    segModule.setters.deleteSegment(viewer, 3);
+    segModule.setters.deleteSegment(viewer, 68);
+    segModule.setters.deleteSegment(viewer, 6);
+}
+
 
 function getBrushArea(labelmap2D, image) {
     var areas = {
