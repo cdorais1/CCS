@@ -117,7 +117,27 @@
             cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
             currentTool = 'Zoom';
         }
-
+        // function changecolor that will allow the brush to change color as the user desires
+        function changecolor() {
+            var select = document.getElementById('Color');
+            var option = select.options[select.selectedIndex].value;
+            // option == 1 is red
+            if (option == 1) {
+                segModule.setters.activeSegmentIndex(viewer, 1);
+            // option == 2 is green
+            } else if (option == 2) {
+                segModule.setters.activeSegmentIndex(viewer, 2);
+            // option == 3 is purple
+            } else if (option == 3) {
+                segModule.setters.activeSegmentIndex(viewer, 3);
+            // option == 5 is blue
+            } else if (option == 68) {
+                segModule.setters.activeSegmentIndex(viewer, 68);
+            // option == 6 is pink
+            } else if (option == 6) {
+                segModule.setters.activeSegmentIndex(viewer, 6);
+            }
+        }
         window.onkeyup = function (event) {
 
             //if (event.key == '-') {
@@ -126,32 +146,33 @@
             //    cornerstoneTools.store.state.tools[1].increaseBrushSize();
             //}
 
-            // Here it was else if in case we go back to keys not just if.
-            if (event.key == '0') {
 
-                segModule.setters.decrementActiveSegmentIndex(viewer);
+            //else if (event.key == '0') {
 
-                if (segModule.getters.activeSegmentIndex(viewer) == 4) {
-                    segModule.setters.decrementActiveSegmentIndex(viewer);
-                }
+            //    segModule.setters.decrementActiveSegmentIndex(viewer);
 
-                if (segModule.getters.activeSegmentIndex(viewer) == 65535) {
-                    segModule.setters.activeSegmentIndex(viewer, 6);
+            //    if (segModule.getters.activeSegmentIndex(viewer) == 4) {
+            //        segModule.setters.decrementActiveSegmentIndex(viewer);
 
-                }
-            }
-            else if (event.key == '9') {
+            //    }
+
+            //    if (segModule.getters.activeSegmentIndex(viewer) == 65535) {
+            //        segModule.setters.activeSegmentIndex(viewer, 6);
+
+            //    }
+            //}
+            //else if (event.key == '9') {
 
 
-                segModule.setters.incrementActiveSegmentIndex(viewer);
+            //    segModule.setters.incrementActiveSegmentIndex(viewer);
 
-                if (segModule.getters.activeSegmentIndex(viewer) == 4) {
-                    segModule.setters.incrementActiveSegmentIndex(viewer);
-                }
-                if (segModule.getters.activeSegmentIndex(viewer) > 6) {
-                    segModule.setters.activeSegmentIndex(viewer, 1);
-                }
-            }
+            //    if (segModule.getters.activeSegmentIndex(viewer) == 4) {
+            //        segModule.setters.incrementActiveSegmentIndex(viewer);
+            //    }
+            //    if (segModule.getters.activeSegmentIndex(viewer) > 6) {
+            //        segModule.setters.activeSegmentIndex(viewer, 1);
+            //    }
+            //}
             //else if (event.key == '1') {
 
             //    cornerstoneTools.setToolDisabled(currentTool);
@@ -165,7 +186,9 @@
             //    currentTool = 'Zoom';
             //}
             // cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
-            else if (event.key == '3') {
+
+            // this was an else if now it is just an if in case we want to change it back to keys on keyboard
+            if (event.key == '3') {
                 cornerstoneTools.setToolDisabled(currentTool);
                 cornerstoneTools.setToolActive('FreehandRoi', { mouseButtonMask: 1 });
                 currentTool = 'FreehandRoi';
@@ -237,12 +260,12 @@
             </button>
             <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
             <p5>Brush Color</p5>
-            <select id="Color">
-                <option>Red</option>
-                <option>Green</option>
-                <option>Purple</option>
-                <option>Blue</option>
-                <option>Pink</option>
+            <select id="Color" onchange="changecolor()">
+                <option value="1">Red</option>
+                <option value="2">Green</option>
+                <option value="3">Purple</option>
+                <option value="68">Blue</option>
+                <option value="6">Pink</option>
             </select>
             <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
             <p2>Zoom</p2>
