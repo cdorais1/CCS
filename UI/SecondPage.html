@@ -219,6 +219,12 @@
                 cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
                 currentTool = 'Pan';
             }
+            else if (event.key == '2') {
+                var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
+                var image = cornerstone.getImage(viewer);
+                var counts = discreteCount(labelMap2D, image);
+                console.log(counts);
+            }
         };
       
         function disable() {

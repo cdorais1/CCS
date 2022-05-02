@@ -25,7 +25,7 @@ function getBrushArea(labelmap2D, image) {
         else if (labelmap2D.pixelData[i] == 3) {
             areas.purple++;
         }
-        else if (labelmap2D.pixelData[i] == 5) {
+        else if (labelmap2D.pixelData[i] == 68) {
             areas.blue++;
         }
         else if (labelmap2D.pixelData[i] == 6) {
@@ -83,7 +83,7 @@ function getDensity(labelmap2D, image) {
         else if (labelmap2D.pixelData[i] == 3) {
             HUs.purple.push(imagePix[i] * slope + intercept);
         }
-        else if (labelmap2D.pixelData[i] == 5) {
+        else if (labelmap2D.pixelData[i] == 68) {
             HUs.blue.push(imagePix[i] * slope + intercept);
         }
         else if (labelmap2D.pixelData[i] == 6) {
@@ -191,4 +191,36 @@ function getDensity(labelmap2D, image) {
     plaqueID.fuchsia = temp[4];
 
     return plaqueID;
+}
+
+function discreteCount(labelmap2D, image) {
+
+    var counts =
+    {
+        red: 0,
+        green: 0,
+        blue: 0,
+        purple: 0,
+        fuchsia: 0
+    };
+
+    for (let i = 0; i < labelmap2D.pixelData.length; i++) {
+        if (labelmap2D.pixelData[i] == 1 && counts.red == 0) {
+            counts.red++;
+        }
+        else if (labelmap2D.pixelData[i] == 2 && counts.green == 0) {
+            counts.green++;
+        }
+        else if (labelmap2D.pixelData[i] == 3 && counts.purple == 0) {
+            counts.purple++;
+        }
+        else if (labelmap2D.pixelData[i] == 68 && counts.blue == 0) {
+            counts.blue++;
+        }
+        else if (labelmap2D.pixelData[i] == 6 && counts.fuchsia == 0) {
+            counts.fuchsia++;
+        }
+    }
+    
+    return counts;
 }
