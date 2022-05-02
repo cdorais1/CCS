@@ -8,17 +8,6 @@
     <!--This is a page I used to get the icons upload and info in the second page of the UI-->
     <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
     <!-- Here is the connection between the js and html files-->
-<<<<<<< HEAD
-    <script type = "text/javascript" src = "../lib/cornerstone.min.js">  </script>
-    <script type = "text/javascript" src = "../lib/cornerstoneMath.min.js"> </script>
-    <script type = "text/javascript" src = "../lib/cornerstoneTools.min.js"> </script>
-    <script type = "text/javascript" src = "../lib/dicomParser.min.js"> </script>
-    <script type = "text/javascript" src = "../lib/hammer.min.js"> </script>
-    <script type = "text/javascript" src = "../lib.conerstoneWADOImageLoader.min.js"> </script>
-    <script type = "text/javascript" src = "../util.js"> </script>
-        
-        
-=======
     <script src="https://unpkg.com/cornerstone-core/dist/cornerstone.min.js"></script>
     <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
     <script src="https://unpkg.com/dicom-parser"></script>
@@ -226,6 +215,14 @@
                 console.log("purple: " + densities.purple);
                 console.log("pink: " + densities.fuchsia);
             }
+            else if (event.key == '6') {
+                segModule.setters.deleteSegment(viewer, 1);
+                segModule.setters.deleteSegment(viewer, 2);
+                segModule.setters.deleteSegment(viewer, 3);
+                segModule.setters.deleteSegment(viewer, 4);
+                segModule.setters.deleteSegment(viewer, 5);
+                segModule.setters.deleteSegment(viewer, 6);
+            }
         };
       
         function disable() {
@@ -239,7 +236,6 @@
             document.getElementById("Mminus").disabled = false;
         }
       
->>>>>>> a2c4824c604b419d7afea9bcd5444a3b508c3d25
     </script>
 </head>
     <body>
