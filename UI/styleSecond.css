@@ -1,121 +1,51 @@
 ﻿body {
     margin:auto;
     padding:0;
+    background-color: black;
 }
 /*Styling properties for the background*/
-.back-ground{
-    margin: auto;
+.back-ground {
+    width: 100%;
     height: 100vh;
-    width: 100%;
-    background-image: url(imag/PotentialUI-3.png);
-    background-position: center;
-    background-size: cover;
-    padding-left: 0%;
-    padding-right: 0%;
-    box-sizing: border-box;
-    position: relative;
-}
-/*Alignment of the logo and the other buttons*/
-.logoandmore{
-    margin:auto;
-    width: 100%;
-    height: 8vh;
+    min-height: 250px;
     margin: auto;
-    display: flex;
-    align-items: center;
 }
 
-/*Logo size*/
-.logo{
-    width: 85px;
-    height: 55px;
-}
-
-/*Choose File button: Styling properties*/
-.ChooseFile {
-    margin:auto;
-    background-color: #35AFAA;
-    border-radius: 12px;
-    border: 2px solid white;
-    color: white;
-    padding: 8px 11px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    cursor: pointer;
-    font-family: 'Arial Rounded MT';
-    box-shadow: 0 5px #2d2d2d;
-    position: absolute;
-    left: 650px;
-}
-
-/*When mouse goes over the button "Choose File", the color of the button changes*/
-.ChooseFile:hover {
-    background-color: #2a8c88;
-}
-
-/*Gives the sensation of a real button, just click on it*/
-.ChooseFile:active {
-    background-color: #35afaa;
-    box-shadow: 0 4px #2d2d2d;
-    transform: translateY(3px);
-}
-input[type="file"] {
-    position: absolute;
-    z-index: -1;
-    top: 6px;
-    left: 0;
-    font-size: 15px;
-    color: rgb(white,white,white);
-}
-/*Upload button: Styling properties*/
-.upload {
+.logo {
     margin: auto;
-    background-color: #35AFAA;
-    border-radius: 12px;
-    border: 2px solid white;
-    color: white;
-    padding: 6px 8px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 19px;
-    cursor: pointer;
-    box-shadow: 0 5px #2d2d2d;
-    position: absolute;
-    left: 770px;
-}
+    margin-top: 0.1%;
 
-.fa fa-arrow-up-from-bracket {
-    color: white;
-}
-/*When mouse goes over the button upload, the color of the button changes*/
-.upload:hover {
-    background-color: #2a8c88;
-}
-
-/*Gives the sensation of a real button, just click on it*/
-.upload:active {
-    background-color: #35afaa;
-    box-shadow: 0 4px #2d2d2d;
-    transform: translateY(3px);
+    position: fixed;
+    width: 5.5%;
+    min-width: 75px;
 }
 
 /*Info button: Styling properties*/
 .info {
     margin: auto;
-    font-size: 17px;
-    color: white;
-    border-radius: 10px;
+    color: #35AFAA;
+    border-radius: 25%;
     border: 2px solid #35afaa;
-    border-spacing: 25px;
     background-color: black;
     color: #35afaa;
-    padding: 6px 7px;
+    position: fixed;
+    right: 1.5%;
+    width: 0.5%;
+    min-width: 0.2%;
+    font-size: 100%;
+    padding-top: 0.35%;
+    padding-bottom: 0.35%;
+    padding-left: 0.7%;
+    padding-right: 1.1%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
-    position: absolute;
-    right: 10px;
+    top: 1.5%;
+}
+    .info a{
+    text-decoration: none;
+    color: #35afaa;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 /*When mouse goes over the button for more info, the color of the button changes*/
@@ -128,14 +58,296 @@ input[type="file"] {
     box-shadow: 0 4px #2d2d2d;
     transform: translateY(3px);
 }
-
-/*Gif styling properties*/
-.gif{
+hr {
+    display: block;
+    border-block-color: #35AFAA;
+    border-block-end-style: solid;
     margin: auto;
+    position: fixed;
+    top: 8%;
+    width: 100%;
+    background-color: #35AFAA;
+    height: 1.4px;
+}
+p4 {
+    position: fixed;
+    left: 6%;
+    top: 11.85%;
+    font-size: 12px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.bplus {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 60%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 6%;
+    top: 14%;
+    width: 0.5%;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.15%;
+    padding-bottom: 0.06%;
+    padding-left: 0.3%;
+    padding-right: 1.2%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .bplus:hover:enabled {
+        background-color: #1e1e1e;
+    }
+    /*Gives the sensation of a real button, just click on it*/
+    .bplus:active:enabled {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+   .bplus:disabled{
+        cursor: not-allowed;
+        color: #428784;
+        border-color: #428784;
+   }
+
+.bminus {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 60%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 8%;
+    top: 14%;
+    width: 0.5%;
+    min-width: 1%;
+    font-size: 100%;
+    padding-top: 0.15%;
+    padding-bottom: 0.06%;
+    padding-left: 0.3%;
+    padding-right: 1.2%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .bminus:hover:enabled {
+        background-color: #1e1e1e;
+    }
+    /*Gives the sensation of a real button, just click on it*/
+    .bminus:active:enabled {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    .bminus:disabled {
+        cursor:not-allowed;
+        color: #428784;
+        border-color: #428784;
+    }
+
+p5 {
+    position: fixed;
+    left: 12%;
+    top: 12%;
+    font-size: 12px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+select {
+    position: fixed;
+    left: 11.75%;
+    top: 14.5%;
+}
+
+#Color {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #35AFAA;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+#Color:disabled {
+    cursor:not-allowed;
+}
+
+p1 {
+    position: fixed;
+
+    left: 2.15%;
+    top: 10%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.brush {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 2%;
+    top: 13%;
+    width: 0.5%;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.5%;
+    padding-right: 1.7%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+/*When mouse goes over the button for more info, the color of the button changes*/
+.brush:hover {
+    background-color: #1e1e1e;
+}
+/*Gives the sensation of a real button, just click on it*/
+.brush:active {
+    background-color: black;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
+
+p2 {
+    position: fixed;
+    top: 19%;
+    left: 2.15%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.zoom {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 2%;
+    top: 22%;
+    width: 0.5%;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.6%;
+    padding-right: 1.6%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+
+/*When mouse goes over the button for more info, the color of the button changes*/
+.zoom:hover {
+    background-color: #1e1e1e;
+}
+/*Gives the sensation of a real button, just click on it*/
+.zoom:active {
+    background-color: black;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
+
+
+p3 {
+    position: fixed;
+    top: 28%;
+    left: 2.15%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.reset {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 2%;
+    top: 31%;
+    width: 0.5%;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.6%;
+    padding-right: 1.6%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .reset:hover {
+        background-color: #1e1e1e;
+    }
+    /*Gives the sensation of a real button, just click on it*/
+    .reset:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+.viewer {
+    /*background-color: #302f2f;*/
+    width: 50%;
+    height: 97%;
+    margin-top: 3%;
+    min-width: 100px;
+    position: fixed;
+    left: 25%;
+}
+
+#viewer {
+    border: groove;
+    border-color: white;
+    width: 90%;
+    height: 90%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 100px;
+}
+
+p6 {
+    position: fixed;
+    left: 47%;
+    margin-top: 4%;
+    color: #5f8c8a;
+    text-align: center;
+}
+
+/* overlay */
+/*
+.overlay {
     position: absolute;
-    left: 420px;
-    bottom: 100px;
-    width: 670px;
-    height: 450px;
-    border: 2px solid #e5e5e5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #008bba1f;
+}
+    */
+.container:hover .overlay {
+    opacity: 1;
 }
