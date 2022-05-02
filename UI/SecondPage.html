@@ -223,7 +223,11 @@
                 var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
                 var image = cornerstone.getImage(viewer);
                 var counts = discreteCount(labelMap2D, image);
-                console.log(counts);
+                console.log("red: " + counts.red);
+                console.log("blue: " + counts.blue);
+                console.log("green: " + counts.green);
+                console.log("purple: " + counts.purple);
+                console.log("pink: " + counts.fuchsia);
             }
         };
       
