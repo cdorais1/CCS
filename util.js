@@ -64,9 +64,10 @@ function getVolume(labelmap2D, image) {
 
     const sliceString = dataSet.string('x00180050');
     const dicomDepth = parseInt(sliceString);
- 
+
+
     const voxelSize = dicomDepth * image.columnPixelSpacing * image.rowPixelSpacing;
-//    const voxelSize = image.columnPixelSpacing * image.rowPixelSpacing * 1.5;
+    //    const voxelSize = image.columnPixelSpacing * image.rowPixelSpacing * 1.5;
 
     var volumes = {
         red: 0,
@@ -91,7 +92,6 @@ function getVolume(labelmap2D, image) {
         }
         else if (labelmap2D.pixelData[i] == 6) {
             volumes.fuchsia++;
-           
         }
     }
 

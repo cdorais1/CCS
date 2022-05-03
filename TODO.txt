@@ -4,8 +4,8 @@
 
 - Display stats on right side of page
 
-- Connect tool buttons to tool functions
+- zoom reset button 
 
-- Calculate discrete number of calcified plaque deposits based on brush annotations 
+- undo last paint color 
 
-- Calculate volume of calcified plaque using labelmap3D
+---- Calculate volume of calcified plaque using labelmap3D (needs some work but works tentatively)
