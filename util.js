@@ -62,15 +62,18 @@ function getVolume(labelmap2D, image) {
     */
 
 
-    const dicomDepth = dataSet.elements.x00180050;
+    const sliceString = dataSet.string('x00180050');
+    const dicomDepth = parseInt(sliceString);
+
     const voxelSize = dicomDepth * image.columnPixelSpacing * image.rowPixelSpacing;
+    //    const voxelSize = image.columnPixelSpacing * image.rowPixelSpacing * 1.5;
 
     var volumes = {
         red: 0,
         green: 0,
         blue: 0,
         purple: 0,
-        pink: 0
+        fuchsia: 0,
     };
 
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
@@ -88,9 +91,17 @@ function getVolume(labelmap2D, image) {
         }
         else if (labelmap2D.pixelData[i] == 6) {
             volumes.fuchsia++;
+
         }
     }
 
+    volumes.red *= voxelSize;
+    volumes.green *= voxelSize;
+    volumes.blue *= voxelSize;
+    volumes.purple *= voxelSize;
+    volumes.fuchsia *= voxelSize;
+
+    return volumes;
 }
 
 
