@@ -72,20 +72,19 @@
 
                 cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
                 cornerstoneTools.addTool(ThresholdsBrushTool);
-                // cornerstoneTools.addTool(cornerstoneTools.BrushTool);
                 cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
+                cornerstoneTools.addTool(cornerstoneTools.PanTool);
+
+                // This tool allows you to get the area of a circled area using a brush.
                 cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
 
-                // Brush is right click, zoom is left click.
-
-                // cornerstoneTools.setToolActive('Brush', { mouseButtonMask: 1 });
-                cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
+                // Activate tools as needed; default active tool is brush and stack scroll.
+                cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
                 cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
                 cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
-                // This tool allows you to get the area of a circled area using a brush.
                 cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
+                cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
                 currentTool = 'ThresholdsBrush';
-                // currentTool = 'Brush';
 
             });
 
@@ -138,6 +137,17 @@
                 segModule.setters.activeSegmentIndex(viewer, 6);
             }
         }
+        // function panbutton that will allow the panning of the image when user zooms in and out
+        function panbutton() {
+            cornerstoneTools.setToolDisabled(currentTool);
+            cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
+            currentTool = 'Pan';
+        }
+
+        // function clearbutton that will clear or the the brushstrokes the users has taken
+        function clearbutton() {
+            clearBrushes(viewer);
+        }
         window.onkeyup = function (event) {
 
             //if (event.key == '-') {
@@ -188,7 +198,7 @@
             // cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
 
             // this was an else if now it is just an if in case we want to change it back to keys on keyboard
-            if (event.key == '3') {
+            if (event.key == '0') {
                 cornerstoneTools.setToolDisabled(currentTool);
                 cornerstoneTools.setToolActive('FreehandRoi', { mouseButtonMask: 1 });
                 currentTool = 'FreehandRoi';
@@ -215,6 +225,7 @@
                 console.log("purple: " + densities.purple);
                 console.log("pink: " + densities.fuchsia);
             }
+<<<<<<< HEAD
             else if (event.key == '6') {
                 segModule.setters.deleteSegment(viewer, 1);
                 segModule.setters.deleteSegment(viewer, 2);
@@ -222,6 +233,36 @@
                 segModule.setters.deleteSegment(viewer, 4);
                 segModule.setters.deleteSegment(viewer, 5);
                 segModule.setters.deleteSegment(viewer, 6);
+=======
+            else if (event.key == '1') {
+                cornerstoneTools.setToolDisabled(currentTool);
+                cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
+                currentTool = 'Pan';
+            }
+            else if (event.key == '2') {
+                var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
+                var image = cornerstone.getImage(viewer);
+                var counts = discreteCount(labelMap2D, image);
+                console.log("red: " + counts.red);
+                console.log("blue: " + counts.blue);
+                console.log("green: " + counts.green);
+                console.log("purple: " + counts.purple);
+                console.log("pink: " + counts.fuchsia);
+
+            }
+            else if (event.key == '3') {
+                var image = cornerstone.getImage(viewer);
+                var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
+                var simpleVolumes = getVolume(labelMap2D, image);
+                console.log("red: " + simpleVolumes.red + 'mm\u00B3');
+                console.log("blue: " + simpleVolumes.blue + 'mm\u00B3');
+                console.log("green: " + simpleVolumes.green + 'mm\u00B3');
+                console.log("purple: " + simpleVolumes.purple + 'mm\u00B3');
+                console.log("pink: " + simpleVolumes.fuchsia + 'mm\u00B3');
+            }
+            else if (event.key == '6') {
+                clearBrushes(viewer);
+>>>>>>> acf1ea44ae3c2cf7499ae7970b43db5c471f03a4
             }
         };
       
@@ -251,40 +292,47 @@
             </a>
             <!--This created the blue line on top of the page-->
             <hr />
-            <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
-            <p1>Brush</p1>
-            <button class="brush" onclick="brushbutton(); enable();">
-                <i class="fa-solid fa-paintbrush"></i>
-            </button>
-            <!--Brush size buttons (increase and drecrease) with onclick functionality-->
-            <p4>Brush Size</p4>
-            <!--brush size increase-->
-            <button id="Pplus" class="bplus" onclick="increasebrush()">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-            <!--brush size decrease-->
-            <button id="Mminus" class="bminus" onclick="decreasebrush()">
-                <i class="fa-solid fa-minus"></i>
-            </button>
-            <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
-            <p5>Brush Color</p5>
-            <select id="Color" onchange="changecolor()">
-                <option value="1">Red</option>
-                <option value="2">Green</option>
-                <option value="3">Purple</option>
-                <option value="68">Blue</option>
-                <option value="6">Pink</option>
-            </select>
-            <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
-            <p2>Zoom</p2>
-            <button class="zoom" onclick="zoombutton(); disable();">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <!--Reset button. It disables the increase decrease of the brush size, as well as the color picking -->
-            <p3>Reset</p3>
-            <button class="reset" onclick="disable()">
-                <i class="fa-solid fa-arrow-rotate-left"></i>
-            </button>
+            <div class="Buttons">
+                <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
+                <p1>Brush</p1>
+                <button class="brush" onclick="brushbutton(); enable();">
+                    <i class="fa-solid fa-paintbrush"></i>
+                </button>
+                <!--Brush size buttons (increase and drecrease) with onclick functionality-->
+                <p4>Brush Size</p4>
+                <!--brush size increase-->
+                <button id="Pplus" class="bplus" onclick="increasebrush()">
+                   <i class="fa-solid fa-plus"></i>
+                </button>
+                <!--brush size decrease-->
+                <button id="Mminus" class="bminus" onclick="decreasebrush()">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
+                <p5>Brush Color</p5>
+                <select id="Color" onchange="changecolor()">
+                    <option value="1">Default: Red</option>
+                    <option value="2">Green</option>
+                    <option value="3">Purple</option>
+                    <option value="68">Blue</option>
+                    <option value="6">Pink</option>
+                </select>
+                <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
+                <p2>Zoom</p2>
+                <button class="zoom" onclick="zoombutton(); disable();">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
+                <p3>Pan</p3>
+                <button class="pan" onclick="panbutton(); disable();">
+                    <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                </button>
+                <p7>Clear Brush</p7>
+                <button class="clear" onclick="clearbutton()">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+
             <!--Useful message for the user-->
             <p6>Drag & Drop</p6>
 
