@@ -14,25 +14,82 @@
     <script src="https://unpkg.com/cornerstone-tools"></script>
     <script src="https://unpkg.com/hammerjs"></script>
     <script src="../tools.js"></script>
-    <script src="../Viewer.js"></script>
+    <script src="../util.js"></script>
+    <script src="../viewer.js"></script>
 </head>
     <body>
         <!--The looks:-->
         <div class="back-ground">
-            <!--The class "logoandmore" contains the logo, all the different buttons, and the gif that will play as
-            the user is uploading the files ready for some scanning-->
-            <div class="logoandmore">
-                <!--Logo-->
-                <img src="imag/logo1.png" class="logo" />
-                <!--Similar with the upload button above-->
-                <div class="info">
-                    <i class="fa-solid fa-info"></i>
+            <!--Logo-->
+            <!--Section 1 Header-->
+            <div class="pageHeader">
+                <!--this is the info button on the top right corner-->
+                <img src="imag/logo1.png" class="logo"/>
+                <a href="info.html">
+                    <button class="info">
+                        <i class="fa fa-info"></i>
+                    </button>
+                </a>
+                <hr/>
                 </div>
+
+            <!--This created the blue line on top of the page-->
+            
+            <div class="buttons">
+                <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
+                <p>Brush</p>
+                <button class="brush" onclick="brushbutton(); enable();">
+                    <i class="fa-solid fa-paintbrush"></i>
+                </button>
+                <!--Brush size buttons (increase and drecrease) with onclick functionality-->
+                <p>Brush Size</p>
+                <!--brush size increase-->
+                <button id="Pplus" class="bplus" onclick="increasebrush()">
+                   <i class="fa-solid fa-plus"></i>
+                </button>
+                <!--brush size decrease-->
+                <button id="Mminus" class="bminus" onclick="decreasebrush()">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
+                <p>Brush Color</p>
+                <select id="Color" onchange="changecolor()">
+                    <option value="1">Default: Red</option>
+                    <option value="2">Green</option>
+                    <option value="3">Purple</option>
+                    <option value="68">Blue</option>
+                    <option value="6">Pink</option>
+                </select>
+                <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
+                <p>Zoom</p>
+                <button class="zoom" onclick="zoombutton(); disable();">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
+                <p>Pan</p>
+                <button class="pan" onclick="panbutton(); disable();">
+                    <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                </button>
+                <p>Clear Brush</p>
+                <button class="clear" onclick="clearbutton()">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
             </div>
             <!--viewer for drag and drop-->
-            <div class ="viewer">
-                <p id="viewer"></p>
-                <div class="canvas"></div>
+            <div class="viewer">
+                <!--<div class="overlay">
+        </div>-->                
+        <p id="dragndroptext"style="color:white;text-align:center;">Drag & Drop!</p>
+        <p id="viewer"></p>
+            </div>
+            <div class="stats" style="color:white;">
+                <p><div id="output1"></div></p>
+                <p><div id="output2"></div></p>
+                <p><div id="output3"></div></p>
+                <p><div id="output4"></div></p>
+                <p><div id="output5"></div></p>
+                <!--Testing-->
+                <p><div id="output1"></div></p>
             </div>
     </body>
 
