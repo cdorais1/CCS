@@ -406,9 +406,26 @@ function discreteCount(labelmap2D, image) {
     return counts;
 }
 
-function convertToJSON(labelmap2D)
+function convertToJSON(labelmap2D, image)
 {
-    var JSONArray = JSON.stringify(labelmap2D.pixelData);
+    const dataSet = dicomParser.parseDicom(image.data.byteArray);
+    const studyInstanceUIDval = dataSet.string('x0020000d');
+    const toolStatesval = cornerstoneTools.store.state.tools;
+    const currentBrushval = cornerstoneTools.getModule('segmentation').getters.activeSegmentIndex(viewer);
+
+    const structure =
+    {
+        studyInstanceUID: studyInstanceUIDval,
+        ToolsStates: toolStatesval,
+        currentBrush: currentBrushval,
+        LabelMap2D: labelmap2D.pixelData
+    };
+
+    var baseArray = structure;
+
+    var JSONArray = JSON.stringify(baseArray);
+
+
     JSONArray = [JSONArray];
     var a = document.createElement("a");
     var blob1 = new Blob(JSONArray, { type: "text/plain; charset=utf-8" });
@@ -421,4 +438,23 @@ function convertToJSON(labelmap2D)
     document.body.removeChild(a);
 
     return JSONArray;
+}
+
+function updateFromJSON(jsonfile)
+{
+    console.log(jsonfile);
+    let reader = new FileReader();
+    console.log(reader);
+    reader.readAsArrayBuffer(jsonfile);
+    var elements = {
+        studyinstanceuid: '',
+        toolsstates: {},
+        currentbrush: 0,
+        labelmap2d: []
+    }
+    var tempo = JSON.stringify(reader);
+    console.log(tempo);
+    var temp = JSON.parse(tempo);
+
+    return temp;
 }

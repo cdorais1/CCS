@@ -22,53 +22,65 @@ function onDrop(event) {
     event.stopPropagation();
     event.preventDefault();
 
-    imageIds = [];
+    var file = event.dataTransfer.files[0];
 
-    for (var i = 0; i < event.dataTransfer.files.length; i++) {
+    if (file.name.includes('.json') == true) {
+        console.log(updateFromJSON(file));
+        console.log("This is working as intended.");
 
-        var file = event.dataTransfer.files[i];
-        imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
-
+        return;
     }
 
-    cornerstone.loadImage(imageIds[0]).then(function (image) {
 
-        image1 = image;
-        console.log('Loaded', image);
+    else {
+        imageIds = [];
+        for (var i = 0; i < event.dataTransfer.files.length; i++) {
+            file = event.dataTransfer.files[i];
+            imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
+        }
 
-        cornerstoneTools.init();
+        console.log(imageIds);
 
-        var viewer = document.getElementById('viewer');
+        cornerstone.loadImage(imageIds[0]).then(function (image) {
 
-        cornerstone.enable(viewer);
-        cornerstone.displayImage(viewer, image);
-//        cornerstone.getViewport(viewer).labelmap = true;
+            image1 = image;
+            console.log('Loaded', image);
+
+            cornerstoneTools.init();
+
+            var viewer = document.getElementById('viewer');
+
+            cornerstone.enable(viewer);
+            cornerstone.displayImage(viewer, image);
+            //        cornerstone.getViewport(viewer).labelmap = true;
 
 
-        var stack = { currentImageIdIndex: 0, imageIds: imageIds };
-        cornerstoneTools.addStackStateManager(viewer, ["stack"]);
-        cornerstoneTools.addToolState(viewer, "stack", stack);
+            var stack = { currentImageIdIndex: 0, imageIds: imageIds };
+            cornerstoneTools.addStackStateManager(viewer, ["stack"]);
+            cornerstoneTools.addToolState(viewer, "stack", stack);
 
-        cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
-        cornerstoneTools.addTool(ThresholdsBrushTool);
-        cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
-        cornerstoneTools.addTool(cornerstoneTools.PanTool);
+            cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
+            cornerstoneTools.addTool(ThresholdsBrushTool);
+            cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
+            cornerstoneTools.addTool(cornerstoneTools.PanTool);
+            cornerstoneTools.addTool(cornerstoneTools.LengthTool);
 
-        // This tool allows you to get the area of a circled area using a brush.
-        cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
+            // This tool allows you to get the area of a circled area using a brush.
+            cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
 
-        // Activate tools as needed; default active tool is brush and stack scroll.
-        cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
-        cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
-        cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
-        cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
-        cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
-        currentTool = 'ThresholdsBrush';
+            // Activate tools as needed; default active tool is brush and stack scroll.
+            cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
+            cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
+            cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
+            cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
+            cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
+            cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
+            currentTool = 'ThresholdsBrush';
 
-    });
+        });
 
+    };
 };
-
 
 window.onload = function () {
 
@@ -87,8 +99,8 @@ window.onkeyup = function (event) {
     }
     else if (event.key == '1') {
         cornerstoneTools.setToolDisabled(currentTool);
-        cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
-        currentTool = 'Pan';
+        cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
+        currentTool = 'Length';
     }
     else if (event.key == '2') {
         var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
@@ -214,7 +226,8 @@ window.onkeyup = function (event) {
     }
     else if (event.key == 'q') {
         var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
-        convertToJSON(labelMap2D);
+        var image = cornerstone.getImage(viewer);
+        convertToJSON(labelMap2D, image);
     }
 
 
