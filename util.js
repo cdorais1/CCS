@@ -81,7 +81,8 @@ function getBrushArea(labelmap2D, image) {
         purple: 0,
         fuchsia: 0
     };
-    pixelSize = image.columnPixelSpacing * image.rowPixelSpacing;
+
+    var pixelSize = image.columnPixelSpacing * image.rowPixelSpacing;
 
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1) {

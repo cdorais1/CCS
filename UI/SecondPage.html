@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Carotid Calcium Scanner</title>
@@ -17,42 +18,44 @@
     <script src="../util.js"></script>
     <script src="../viewer.js"></script>
 </head>
-    <body>
-        <!--The looks:-->
-        <div class="back-ground">
-            <!--Logo-->
-            <!--Section 1 Header-->
-            <div class="pageHeader">
-                <!--this is the info button on the top right corner-->
-                <img src="imag/logo1.png" class="logo"/>
-                <a href="info.html">
-                    <button class="info">
-                        <i class="fa fa-info"></i>
-                    </button>
-                </a>
-                <hr/>
-                </div>
 
+<body>
+    <!--The looks:-->
+    <div class="back-ground">
+        <!--Logo-->
+        <!--Section 1 Header-->
+        <div class="pageHeader">
+            <!--this is the info button on the top right corner-->
+            <img src="imag/logo1.png" class="logo" />
+            <a href="info.html">
+                <button class="info">
+                    <i class="fa fa-info"></i>
+                </button>
+            </a>
             <!--This created the blue line on top of the page-->
-            
-            <div class="buttons">
-                <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
-                <p1>Brush</p1>
+            <hr />
+        </div>
+
+        <div class="buttons">
+            <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
+            <p1>Brush
                 <button class="brush" onclick="brushbutton(); enable();">
                     <i class="fa-solid fa-paintbrush"></i>
                 </button>
-                <!--Brush size buttons (increase and drecrease) with onclick functionality-->
-                <p2>Brush Size</p2>
-                <!--brush size increase-->
+            </p1>
+            <!--Brush size buttons (increase and drecrease) with onclick functionality-->
+            <p4>Brush Size
                 <button id="Pplus" class="bplus" onclick="increasebrush()">
-                   <i class="fa-solid fa-plus"></i>
+                    <i class="fa-solid fa-plus"></i>
                 </button>
-                <!--brush size decrease-->
                 <button id="Mminus" class="bminus" onclick="decreasebrush()">
                     <i class="fa-solid fa-minus"></i>
                 </button>
-                <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
-                <p3>Brush Color</p3>
+            </p4>
+            <!--brush size increase-->
+            <!--brush size decrease-->
+            <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
+            <p5>Brush Color
                 <select id="Color" onchange="changecolor()">
                     <option value="1">Default: Red</option>
                     <option value="2">Green</option>
@@ -60,37 +63,52 @@
                     <option value="68">Blue</option>
                     <option value="6">Pink</option>
                 </select>
-                <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
-                <p4>Zoom</p4>
+            </p5>
+            <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
+            <p2>Zoom
                 <button class="zoom" onclick="zoombutton(); disable();">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
-                <p5>Pan</p5>
+            </p2>
+            <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
+            <p3>Pan
                 <button class="pan" onclick="panbutton(); disable();">
                     <i class="fa-solid fa-arrows-up-down-left-right"></i>
                 </button>
-                <p6>Clear Brush</p6>
+            </p3>
+            <p6>Clear Brush
                 <button class="clear" onclick="clearbutton()">
                     <i class="fa-solid fa-trash"></i>
                 </button>
-            </div>
-            <!--viewer for drag and drop-->
-            <div class="viewer">
-                <!--<div class="overlay">
-        </div>-->                
-        <p id="dragndroptext"style="color:white;text-align:center;">Drag & Drop!</p>
-        <p id="viewer"></p>
-            </div>
-            <div class="stats" style="color:white;">
-                <p><div id="output1"></div></p>
-                <p><div id="output2"></div></p>
-                <p><div id="output3"></div></p>
-                <p><div id="output4"></div></p>
-                <p><div id="output5"></div></p>
-                <!--Testing-->
-                <p><div id="output1"></div></p>
-            </div>
-    </body>
+            </p6>
+        </div>
 
+        <!--viewer for drag and drop-->
+        <div class="viewer">
+            <!--<div class="overlay">
+        </div>-->
+            <p id="dragndroptext" style="color:white;text-align:center;">Drag & Drop!</p>
+            <p id="viewer"></p>
+        </div>
+        <div class="stats" style="color:white;">
+            <h>Stats!</h>
+            <p>
+            <div id="output1"></div>
+            </p>
+            <p>
+            <div id="output2"></div>
+            </p>
+            <p>
+            <div id="output3"></div>
+            </p>
+            <p>
+            <div id="output4"></div>
+            </p>
+            <p>
+            <div id="output5"></div>
+            </p>
+        </div>
+
+    </body>
+    
 </html>
