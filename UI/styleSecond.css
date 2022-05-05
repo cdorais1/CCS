@@ -1,19 +1,37 @@
 ﻿body {
-    margin:auto;
-    padding:0;
+    margin: auto;
+    padding: 0;
     background-color: black;
+    min-width: 100S;
 }
+
 /*Styling properties for the background*/
 .back-ground {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 10% 90%;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
     width: 100%;
     height: 100vh;
     min-height: 250px;
     margin: auto;
 }
 
+.pageHeader {
+    grid-column: 1/end;
+    grid-row: 1;
+}
+
+.buttons {
+    grid-column: 1/2;
+    grid-row: 2;
+}
+
 .logo {
     margin: auto;
     margin-top: 0.1%;
+    position: relative;
     width: 5.5%;
     min-width: 75px;
 }
@@ -21,14 +39,18 @@
 /*Info button: Styling properties*/
 .info {
     margin: auto;
-    color: #35AFAA;
-    border-radius: 25%;
+    font-size: 17px;
+    color: white;
+    border-radius: 10px;
     border: 2px solid #35afaa;
+    border-spacing: 25px;
     background-color: black;
     color: #35afaa;
-    position: fixed;
-    right: 1.5%;
-    width: 0.5%;
+    position: relative;
+    top: -1%;
+    left: 91%;
+    min-block-size: 1%;
+    width: 30px;
     min-width: 0.2%;
     font-size: 100%;
     padding-top: 0.35%;
@@ -37,34 +59,49 @@
     padding-right: 1.1%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
-    top: 1.5%;
+}
+
+.info a {
+    text-decoration: none;
+    color: #35afaa;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 /*When mouse goes over the button for more info, the color of the button changes*/
 .info:hover {
     background-color: #1e1e1e;
 }
+
 /*Gives the sensation of a real button, just click on it*/
 .info:active {
     background-color: black;
     box-shadow: 0 4px #2d2d2d;
     transform: translateY(3px);
 }
+
 hr {
     display: block;
     border-block-color: #35AFAA;
     border-block-end-style: solid;
     margin: auto;
-    position: fixed;
-    top: 8%;
-    width:100%;
+    position: relative;
+    top: -1.5%;
+    width: 99.89%;
     background-color: #35AFAA;
     height: 1.4px;
 }
+
+buttons {
+    position: relative;
+    top: 2%;
+    left: 5%;
+}
+
 p4 {
     position: fixed;
-    left: 6%;
-    top: 11.85%;
+    left: 6.5%;
+    top: 12.5%;
     font-size: 12px;
     font-family: Georgia, serif;
     color: #35AFAA;
@@ -78,9 +115,10 @@ p4 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 6%;
-    top: 14%;
-    width: 0.5%;
+    left: 6.5%;
+    top: 15%;
+    min-block-size: 1%;
+    width: 25px;
     min-width: 0.5%;
     font-size: 100%;
     padding-top: 0.15%;
@@ -91,16 +129,23 @@ p4 {
     box-shadow: 0 5px #2d2d2d;
 }
 
-    /*When mouse goes over the button for more info, the color of the button changes*/
-    .bplus:hover {
-        background-color: #1e1e1e;
-    }
-    /*Gives the sensation of a real button, just click on it*/
-    .bplus:active {
-        background-color: black;
-        box-shadow: 0 4px #2d2d2d;
-        transform: translateY(3px);
-    }
+/*When mouse goes over the button for more info, the color of the button changes*/
+.bplus:hover:enabled {
+    background-color: #1e1e1e;
+}
+
+/*Gives the sensation of a real button, just click on it*/
+.bplus:active:enabled {
+    background-color: black;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
+
+.bplus:disabled {
+    cursor: not-allowed;
+    color: #428784;
+    border-color: #428784;
+}
 
 .bminus {
     margin: auto;
@@ -110,9 +155,10 @@ p4 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 8%;
-    top: 14%;
-    width: 0.5%;
+    left: 8.5%;
+    top: 15%;
+    min-block-size: 1%;
+    width: 25px;
     min-width: 1%;
     font-size: 100%;
     padding-top: 0.15%;
@@ -123,30 +169,40 @@ p4 {
     box-shadow: 0 5px #2d2d2d;
 }
 
-    /*When mouse goes over the button for more info, the color of the button changes*/
-    .bminus:hover {
-        background-color: #1e1e1e;
-    }
-    /*Gives the sensation of a real button, just click on it*/
-    .bminus:active {
-        background-color: black;
-        box-shadow: 0 4px #2d2d2d;
-        transform: translateY(3px);
-    }
+/*When mouse goes over the button for more info, the color of the button changes*/
+.bminus:hover:enabled {
+    background-color: #1e1e1e;
+}
+
+/*Gives the sensation of a real button, just click on it*/
+.bminus:active:enabled {
+    background-color: black;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
+
+.bminus:disabled {
+    cursor: not-allowed;
+    color: #428784;
+    border-color: #428784;
+}
+
 p5 {
     position: fixed;
     left: 12%;
-    top: 12%;
+    top: 12.5%;
     font-size: 12px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
+
 select {
     position: fixed;
     left: 11.75%;
-    top: 14.5%;
+    top: 14.75%;
 }
-#Color{
+
+#Color {
     color: black;
     font-size: 15px;
     font-weight: bold;
@@ -154,10 +210,15 @@ select {
     border-radius: 8px;
     border: 1px solid black;
 }
+
+#Color:disabled {
+    cursor: not-allowed;
+}
+
 p1 {
-    position:fixed;
-    left: 2.15%;
-    top: 10%;
+    position: fixed;
+    left: 3%;
+    top: 11%;
     font-size: 14px;
     font-family: Georgia, serif;
     color: #35AFAA;
@@ -170,10 +231,11 @@ p1 {
     border: 2px solid #35afaa;
     background-color: black;
     color: #35afaa;
-    position:fixed;
-    left: 2%;
-    top: 13%;
-    width: 0.5%;
+    position: fixed;
+    left: 3%;
+    top: 14%;
+    min-block-size: 1%;
+    width: 30px;
     min-width: 0.5%;
     font-size: 100%;
     padding-top: 0.4%;
@@ -188,6 +250,7 @@ p1 {
 .brush:hover {
     background-color: #1e1e1e;
 }
+
 /*Gives the sensation of a real button, just click on it*/
 .brush:active {
     background-color: black;
@@ -197,8 +260,8 @@ p1 {
 
 p2 {
     position: fixed;
-    top: 19%;
-    left: 2.15%;
+    top: 20%;
+    left: 3%;
     font-size: 14px;
     font-family: Georgia, serif;
     color: #35AFAA;
@@ -212,9 +275,10 @@ p2 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 2%;
-    top: 22%;
-    width: 0.5%;
+    left: 3%;
+    top: 23%;
+    min-block-size: 1%;
+    width: 30px;
     min-width: 0.5%;
     font-size: 100%;
     padding-top: 0.4%;
@@ -225,10 +289,12 @@ p2 {
     box-shadow: 0 5px #2d2d2d;
 }
 
+
 /*When mouse goes over the button for more info, the color of the button changes*/
 .zoom:hover {
     background-color: #1e1e1e;
 }
+
 /*Gives the sensation of a real button, just click on it*/
 .zoom:active {
     background-color: black;
@@ -236,16 +302,17 @@ p2 {
     transform: translateY(3px);
 }
 
+
 p3 {
     position: fixed;
-    top: 28%;
-    left: 2.15%;
+    top: 29%;
+    left: 3.25%;
     font-size: 14px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
 
-.reset {
+.pan {
     margin: auto;
     color: #35AFAA;
     border-radius: 25%;
@@ -253,9 +320,10 @@ p3 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 2%;
-    top: 31%;
-    width: 0.5%;
+    left: 3%;
+    top: 32%;
+    min-block-size: 1%;
+    width: 30px;
     min-width: 0.5%;
     font-size: 100%;
     padding-top: 0.4%;
@@ -267,11 +335,55 @@ p3 {
 }
 
 /*When mouse goes over the button for more info, the color of the button changes*/
-.reset:hover {
+.pan:hover {
     background-color: #1e1e1e;
 }
+
 /*Gives the sensation of a real button, just click on it*/
-.reset:active {
+.pan:active {
+    background-color: black;
+    box-shadow: 0 4px #2d2d2d;
+    transform: translateY(3px);
+}
+
+p7 {
+    position: fixed;
+    top: 38%;
+    left: 1.75%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.clear {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 3%;
+    top: 41%;
+    min-block-size: 1%;
+    width: 30px;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.7%;
+    padding-right: 1.6%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+/*When mouse goes over the button for more info, the color of the button changes*/
+.clear:hover {
+    background-color: #1e1e1e;
+}
+
+/*Gives the sensation of a real button, just click on it*/
+.clear:active {
     background-color: black;
     box-shadow: 0 4px #2d2d2d;
     transform: translateY(3px);
@@ -279,44 +391,22 @@ p3 {
 
 .viewer {
     /*background-color: #302f2f;*/
-    width: 50%; 
-    height: 99%; 
-    margin-top: -0.5%; 
+    width: 50%;
+    height: 99%;
     min-width: 100px;
-    position: fixed;
+    position: relative;
     left: 25%;
+    top: -3.5%;
 }
+
 #viewer {
     border: groove;
     border-color: white;
-    width: 90%; 
-    height: 90%; 
-    margin-top: 2%; 
-    margin-left: auto; 
+    width: 90%;
+    height: 90%;
+    margin-left: auto;
     margin-right: auto;
     min-width: 100px;
+    color: #5f8c8a;
+    text-align:center;
 }
-
-/* overlay 
-
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100;
-    width: 100;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: #008bba1f;
-}
-
-.container:hover .overlay {
-    opacity: 1;
-}
-*/ 
-
-
-
-
