@@ -82,7 +82,6 @@ function clearBrushes(viewer) {
 }
 
 
-
 function getBrushArea(labelmap2D, image) {
     var areas = {
         red: 0,

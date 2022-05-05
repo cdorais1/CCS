@@ -1,23 +1,36 @@
 ﻿body {
-    margin:auto;
-    padding:0;
+    margin: auto;
+    padding: 0;
     background-color: black;
-    min-width:100S;
+    min-width: 100S;
 }
+
 /*Styling properties for the background*/
 .back-ground {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 10% 90%;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
     width: 100%;
     height: 100vh;
     min-height: 250px;
     margin: auto;
-    position: fixed;
-    min-width: 100%;
+}
+
+.pageHeader {
+    grid-column: 1/end;
+    grid-row: 1;
+}
+
+.buttons {
+    grid-column: 1/2;
+    grid-row: 2;
 }
 
 .logo {
     margin: auto;
     margin-top: 0.1%;
-
     position: relative;
     width: 5.5%;
     min-width: 75px;
@@ -26,12 +39,15 @@
 /*Info button: Styling properties*/
 .info {
     margin: auto;
-    color: #35AFAA;
-    border-radius: 25%;
+    font-size: 17px;
+    color: white;
+    border-radius: 10px;
     border: 2px solid #35afaa;
+    border-spacing: 25px;
     background-color: black;
     color: #35afaa;
     position: relative;
+    top: -1%;
     left: 91%;
     min-block-size: 1%;
     width: 30px;
@@ -43,25 +59,27 @@
     padding-right: 1.1%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
-    top: -2.7%;
-}
-    .info a{
-    text-decoration: none;
-    color: #35afaa;
-    font-size: 24px;
-    font-weight: bold;
 }
 
-/*When mouse goes over the button for more info, the color of the button changes*/
-.info:hover {
-    background-color: #1e1e1e;
-}
-/*Gives the sensation of a real button, just click on it*/
-.info:active {
-    background-color: black;
-    box-shadow: 0 4px #2d2d2d;
-    transform: translateY(3px);
-}
+    .info a {
+        text-decoration: none;
+        color: #35afaa;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .info:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .info:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+
 hr {
     display: block;
     border-block-color: #35AFAA;
@@ -73,11 +91,13 @@ hr {
     background-color: #35AFAA;
     height: 1.4px;
 }
+
 buttons {
     position: relative;
     top: 2%;
     left: 5%;
 }
+
 p4 {
     position: fixed;
     left: 6.5%;
@@ -113,17 +133,19 @@ p4 {
     .bplus:hover:enabled {
         background-color: #1e1e1e;
     }
+
     /*Gives the sensation of a real button, just click on it*/
     .bplus:active:enabled {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
-   .bplus:disabled{
+
+    .bplus:disabled {
         cursor: not-allowed;
         color: #428784;
         border-color: #428784;
-   }
+    }
 
 .bminus {
     margin: auto;
@@ -151,14 +173,16 @@ p4 {
     .bminus:hover:enabled {
         background-color: #1e1e1e;
     }
+
     /*Gives the sensation of a real button, just click on it*/
     .bminus:active:enabled {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
+
     .bminus:disabled {
-        cursor:not-allowed;
+        cursor: not-allowed;
         color: #428784;
         border-color: #428784;
     }
@@ -186,9 +210,10 @@ select {
     border-radius: 8px;
     border: 1px solid black;
 }
-#Color:disabled {
-    cursor:not-allowed;
-}
+
+    #Color:disabled {
+        cursor: not-allowed;
+    }
 
 p1 {
     position: fixed;
@@ -221,16 +246,17 @@ p1 {
     box-shadow: 0 5px #2d2d2d;
 }
 
-/*When mouse goes over the button for more info, the color of the button changes*/
-.brush:hover {
-    background-color: #1e1e1e;
-}
-/*Gives the sensation of a real button, just click on it*/
-.brush:active {
-    background-color: black;
-    box-shadow: 0 4px #2d2d2d;
-    transform: translateY(3px);
-}
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .brush:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .brush:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
 
 p2 {
     position: fixed;
@@ -264,16 +290,17 @@ p2 {
 }
 
 
-/*When mouse goes over the button for more info, the color of the button changes*/
-.zoom:hover {
-    background-color: #1e1e1e;
-}
-/*Gives the sensation of a real button, just click on it*/
-.zoom:active {
-    background-color: black;
-    box-shadow: 0 4px #2d2d2d;
-    transform: translateY(3px);
-}
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .zoom:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .zoom:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
 
 
 p3 {
@@ -311,6 +338,7 @@ p3 {
     .pan:hover {
         background-color: #1e1e1e;
     }
+
     /*Gives the sensation of a real button, just click on it*/
     .pan:active {
         background-color: black;
@@ -353,12 +381,14 @@ p7 {
     .clear:hover {
         background-color: #1e1e1e;
     }
+
     /*Gives the sensation of a real button, just click on it*/
     .clear:active {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
+
 .viewer {
     /*background-color: #302f2f;*/
     width: 50%;
@@ -366,7 +396,7 @@ p7 {
     min-width: 100px;
     position: relative;
     left: 25%;
-    top: -6.5%;
+    top: -3.5%;
 }
 
 #viewer {
@@ -378,34 +408,5 @@ p7 {
     margin-right: auto;
     min-width: 100px;
     color: #5f8c8a;
-    text-align:center;
-}
-
-p6 {
-    position: relative;
-    left: 45%;
-    top: 43%;
-    color: #115452;
     text-align: center;
-    font-size: 24px;
-    font-weight: bolder;
-}
-
-/* overlay */
-/*
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: #008bba1f;
-}
-    */
-.container:hover .overlay {
-    opacity: 1;
 }
