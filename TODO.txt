@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+                                                        ****TO DO***** 
+
+- Export coordinates of annotations/segmentations to a json file that can be uploaded to continue from previous annotations/segmentations
+
+- Display stats on right side of page
+
+- Connect tool buttons to tool functions
+
+- Calculate discrete number of calcified plaque deposits based on brush annotations 
+
+- Calculate volume of calcified plaque using labelmap3D
+=======
                                                         ****TO DO***** 
 
 - Export coordinates of annotations/segmentations to a json file that can be uploaded to continue from previous annotations/segmentations
@@ -9,3 +22,4 @@
 - undo last paint color 
 
 ---- Calculate volume of calcified plaque using labelmap3D (needs some work but works tentatively)
+>>>>>>> acf1ea44ae3c2cf7499ae7970b43db5c471f03a4
