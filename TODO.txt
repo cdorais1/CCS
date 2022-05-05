@@ -1,14 +1,25 @@
+<<<<<<< HEAD
                                                         ****TO DO***** 
 
+- Export coordinates of annotations/segmentations to a json file that can be uploaded to continue from previous annotations/segmentations
 
-- Add link to info doc from [i] button on page
+- Display stats on right side of page
 
-- Implement Stack Scroll
+- Connect tool buttons to tool functions
 
-- Implement Brush with 1 color, then 2 colors
+- Calculate discrete number of calcified plaque deposits based on brush annotations 
 
-- Apply mask to image to prevent image corruption
--- https://rawgit.com/cornerstonejs/cornerstone/master/example/htmloverlays/index.html
+- Calculate volume of calcified plaque using labelmap3D
+=======
+                                                        ****TO DO***** 
 
-- Implement Zoom tool 
--- https://rawgit.com/cornerstonejs/cornerstone/master/example/scrollzoompanwl/index.html
+- Export coordinates of annotations/segmentations to a json file that can be uploaded to continue from previous annotations/segmentations
+
+- Display stats on right side of page
+
+- zoom reset button 
+
+- undo last paint color 
+
+---- Calculate volume of calcified plaque using labelmap3D (needs some work but works tentatively)
+>>>>>>> acf1ea44ae3c2cf7499ae7970b43db5c471f03a4

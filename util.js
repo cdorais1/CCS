@@ -1,66 +1,75 @@
-'use strict';
-window.onload = function () {
-    console.log("this is working.")
+////cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+////cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
+////cornerstoneTools.external.Hammer = Hammer;
+////cornerstoneTools.external.cornerstone = cornerstone;
+////cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 
-    //import assert from 'assert';
-    //const parser = require('dicom-parser');
-    //const cornerstone = require('cornerstone');
-    //const viewer = require('cornerstone-wado-image-loader');
 
-    var realFileBtn = document.getElementById("user-file");
-    var customTxt = document.getElementById("custom-text");
-
-    var file_array = []; //array storing the contents of the passed in dicom file
-    const first_file = file_array[0]; //the first file inputted 
-
-    realFileBtn.addEventListener("change", function () {
-        console.log(realFileBtn.value);
-        if (realFileBtn.value) {
-            console.log("this is also working");
-            file_array.push(realFileBtn); // trying to figure out how to get files from html 
-            console.log(file_array);
-        } else {
-            customTxt.innerHTML = "No file chosen, yet";
-        }
-    });
-
-    // Program steps 
-    /* 1. File is uploaded. Data is parsed into a dataSet object, which is then used to populated the dataManager class.*/
-    function loadFile(first_file) {
-        var reader = new FileReader();
-        reader.onload = function (first_file) {
-            var arrayBuffer = reader.result;
-            // Here we have the file data as an ArrayBuffer.  dicomParser requires as input a
-            // Uint8Array so we create that here
-            var byteArray = new Uint8Array(arrayBuffer);
-            var dataSet = dicomParser.parseDicom(byteArray);
-        }
-        reader.readAsArrayBuffer(file);
-        return dataSet;
-    }
-
-    var ds = loadFile(first_file);
-    var dM = new dataManager(ds);
-
-    /* 2. Parsed information is passed to the Dicom Viewer to be displayed on ThirdPage.html. */
-
-    /* 3. User interacts with the image and a tool is called, affecting the image or calling the controller for calculations. */
-
-    // If stack scroll
-
-    // If pan 
-
-    // If brush
-
-    // If zoom
-
-    // If clear 
+function disable() {
+    document.getElementById("Color").disabled = true;
+    document.getElementById("Pplus").disabled = true;
+    document.getElementById("Mminus").disabled = true;
 }
-cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
-cornerstoneTools.external.Hammer = Hammer;
-cornerstoneTools.external.cornerstone = cornerstone;
-cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
+function enable() {
+    document.getElementById("Color").disabled = false;
+    document.getElementById("Pplus").disabled = false;
+    document.getElementById("Mminus").disabled = false;
+}
+
+// function panbutton that will allow the panning of the image when user zooms in and out
+function panbutton() {
+    cornerstoneTools.setToolDisabled(currentTool);
+    cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
+    currentTool = 'Pan';
+}
+
+// function clearbutton that will clear or the the brushstrokes the users has taken
+function clearbutton() {
+    clearBrushes(viewer);
+}
+
+// function brushbutton that will allow the onclick event when the user is pressing the brush button
+function brushbutton() {
+    cornerstoneTools.setToolDisabled(currentTool);
+    cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
+    currentTool = 'ThresholdsBrush';
+}
+// function decreasebrush that will allow the user to decrease the size of the brush when clicking on the - button
+function decreasebrush() {
+    cornerstoneTools.store.state.tools[1].decreaseBrushSize();
+}
+// function increase brush that will allow the user to increase the size of the brush when clicking on the + button
+function increasebrush() {
+    cornerstoneTools.store.state.tools[1].increaseBrushSize();
+}
+// function zoombutton that will allow the onclick event when the user is pressing the zoom button
+function zoombutton() {
+    cornerstoneTools.setToolDisabled(currentTool);
+    cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
+    currentTool = 'Zoom';
+}
+// function changecolor that will allow the brush to change color as the user desires
+function changecolor() {
+    var select = document.getElementById('Color');
+    var option = select.options[select.selectedIndex].value;
+    // option == 1 is red
+    if (option == 1) {
+        segModule.setters.activeSegmentIndex(viewer, 1);
+        // option == 2 is green
+    } else if (option == 2) {
+        segModule.setters.activeSegmentIndex(viewer, 2);
+        // option == 3 is purple
+    } else if (option == 3) {
+        segModule.setters.activeSegmentIndex(viewer, 3);
+        // option == 5 is blue
+    } else if (option == 68) {
+        segModule.setters.activeSegmentIndex(viewer, 68);
+        // option == 6 is pink
+    } else if (option == 6) {
+        segModule.setters.activeSegmentIndex(viewer, 6);
+    }
+}
+
 
 function clearBrushes(viewer) {
 
@@ -81,7 +90,6 @@ function getBrushArea(labelmap2D, image) {
         purple: 0,
         fuchsia: 0
     };
-
     var pixelSize = image.columnPixelSpacing * image.rowPixelSpacing;
 
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
@@ -110,6 +118,7 @@ function getBrushArea(labelmap2D, image) {
 
     return areas;
 }
+
 function getVolume(labelmap2D, image) {
     const dataSet = dicomParser.parseDicom(image.data.byteArray);
     /* 
@@ -161,6 +170,8 @@ function getVolume(labelmap2D, image) {
 
     return volumes;
 }
+
+
 function getDensity(labelmap2D, image) {
 
     const imagePix = image.getPixelData();
@@ -191,7 +202,7 @@ function getDensity(labelmap2D, image) {
         purple: "",
         fuchsia: ""
     };
-
+    
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1) {
             HUs.red.push(imagePix[i] * slope + intercept);
@@ -213,17 +224,27 @@ function getDensity(labelmap2D, image) {
     var temp = ["", "", "", "", ""];
 
     for (let j = 0; j < HUs.red.length; j++) {
-
-        if (HUs.red[j] > 100 && HUs.red[j] < 131) {
+        
+        if (HUs.red[j] > 100 && HUs.red[j] < 131 &&
+            temp[0] != "high density plaque" &&
+            temp[0] != "low density calcified plaque" &&
+            temp[0] != "high density calcified plaque" &&
+            temp[0] != '1K calcified plaque') {
             temp[0] = "low density plaque";
         }
-        else if (HUs.red[j] > 100 && HUs.red[j] < 130) {
+        else if (HUs.red[j] > 130 && HUs.red[j] < 351 &&
+            temp[0] != "low density calcified plaque" &&
+            temp[0] != "high density calcified plaque" &&
+            temp[0] != '1K calcified plaque') {
             temp[0] = "high density plaque";
         }
-        else if (HUs.red[j] > 350 && HUs.red[j] < 701) {
+        else if (HUs.red[j] > 350 && HUs.red[j] < 701 &&
+            temp[0] != "high density calcified plaque" &&
+            temp[0] != '1K calcified plaque') {
             temp[0] = "low density calcified plaque";
         }
-        else if (HUs.red[j] > 700 && HUs.red[j] < 1001) {
+        else if (HUs.red[j] > 700 && HUs.red[j] < 1001 &&
+            temp[0] != '1K calcified plaque') {
             temp[0] = "high density calcified plaque";
         }
         else if (HUs.red[j] > 1000) {
@@ -232,16 +253,26 @@ function getDensity(labelmap2D, image) {
     }
 
     for (let j = 0; j < HUs.green.length; j++) {
-        if (HUs.green[j] > 100 && HUs.green[j] < 131) {
+        if (HUs.green[j] > 100 && HUs.green[j] < 131 &&
+            temp[1] != "high density plaque" &&
+            temp[1] != "low density calcified plaque" &&
+            temp[1] != "high density calcified plaque" &&
+            temp[1] != '1K calcified plaque') {
             temp[1] = "low density plaque";
         }
-        else if (HUs.green[j] > 100 && HUs.green[j] < 130) {
+        else if (HUs.green[j] > 130 && HUs.green[j] < 351 &&
+            temp[1] != "low density calcified plaque" &&
+            temp[1] != "high density calcified plaque" &&
+            temp[1] != '1K calcified plaque') {
             temp[1] = "high density plaque";
         }
-        else if (HUs.green[j] > 350 && HUs.green[j] < 701) {
+        else if (HUs.green[j] > 350 && HUs.green[j] < 701 &&
+            temp[1] != "high density calcified plaque" &&
+            temp[1] != '1K calcified plaque') {
             temp[1] = "low density calcified plaque";
         }
-        else if (HUs.green[j] > 700 && HUs.green[j] < 1001) {
+        else if (HUs.green[j] > 700 && HUs.green[j] < 1001 &&
+            temp[1] != '1K calcified plaque') {
             temp[1] = "high density calcified plaque";
         }
         else if (HUs.green[j] > 1000) {
@@ -250,16 +281,26 @@ function getDensity(labelmap2D, image) {
     }
 
     for (let j = 0; j < HUs.blue.length; j++) {
-        if (HUs.blue[j] > 100 && HUs.blue[j] < 131) {
+        if (HUs.blue[j] > 100 && HUs.blue[j] < 131 &&
+            temp[2] != "high density plaque" &&
+            temp[2] != "low density calcified plaque" &&
+            temp[2] != "high density calcified plaque" &&
+            temp[2] != '1K calcified plaque') {
             temp[2] = "low density plaque";
         }
-        else if (HUs.blue[j] > 100 && HUs.blue[j] < 130) {
+        else if (HUs.blue[j] > 130 && HUs.blue[j] < 351 &&
+            temp[2] != "low density calcified plaque" &&
+            temp[2] != "high density calcified plaque" &&
+            temp[2] != '1K calcified plaque') {
             temp[2] = "high density plaque";
         }
-        else if (HUs.blue[j] > 350 && HUs.blue[j] < 701) {
+        else if (HUs.blue[j] > 350 && HUs.blue[j] < 701 &&
+            temp[2] != "high density calcified plaque" &&
+            temp[2] != '1K calcified plaque') {
             temp[2] = "low density calcified plaque";
         }
-        else if (HUs.blue[j] > 700 && HUs.blue[j] < 1001) {
+        else if (HUs.blue[j] > 700 && HUs.blue[j] < 1001 &&
+            temp[2] != '1K calcified plaque') {
             temp[2] = "high density calcified plaque";
         }
         else if (HUs.blue[j] > 1000) {
@@ -268,16 +309,26 @@ function getDensity(labelmap2D, image) {
     }
 
     for (let j = 0; j < HUs.purple.length; j++) {
-        if (HUs.purple[j] > 100 && HUs.purple[j] < 131) {
+        if (HUs.purple[j] > 100 && HUs.purple[j] < 131 &&
+            temp[3] != "high density plaque" &&
+            temp[3] != "low density calcified plaque" &&
+            temp[3] != "high density calcified plaque" &&
+            temp[3] != '1K calcified plaque') {
             temp[3] = "low density plaque";
         }
-        else if (HUs.purple[j] > 100 && HUs.purple[j] < 130) {
+        else if (HUs.purple[j] > 130 && HUs.purple[j] < 351 &&
+            temp[3] != "low density calcified plaque" &&
+            temp[3] != "high density calcified plaque" &&
+            temp[3] != '1K calcified plaque') {
             temp[3] = "high density plaque";
         }
-        else if (HUs.purple[j] > 350 && HUs.purple[j] < 701) {
+        else if (HUs.purple[j] > 350 && HUs.purple[j] < 701 &&
+            temp[3] != "high density calcified plaque" &&
+            temp[3] != '1K calcified plaque') {
             temp[3] = "low density calcified plaque";
         }
-        else if (HUs.purple[j] > 700 && HUs.purple[j] < 1001) {
+        else if (HUs.purple[j] > 700 && HUs.purple[j] < 1001 &&
+            temp[3] != '1K calcified plaque') {
             temp[3] = "high density calcified plaque";
         }
         else if (HUs.purple[j] > 1000) {
@@ -286,16 +337,26 @@ function getDensity(labelmap2D, image) {
     }
 
     for (let j = 0; j < HUs.fuchsia.length; j++) {
-        if (HUs.fuchsia[j] > 100 && HUs.fuchsia[j] < 131) {
+        if (HUs.fuchsia[j] > 100 && HUs.fuchsia[j] < 131 &&
+            temp[4] != "high density plaque" &&
+            temp[4] != "low density calcified plaque" &&
+            temp[4] != "high density calcified plaque" &&
+            temp[4] != '1K calcified plaque') {
             temp[4] = "low density plaque";
         }
-        else if (HUs.fuchsia[j] > 100 && HUs.fuchsia[j] < 130) {
+        else if (HUs.fuchsia[j] > 130 && HUs.fuchsia[j] < 351 &&
+            temp[4] != "low density calcified plaque" &&
+            temp[4] != "high density calcified plaque" &&
+            temp[4] != '1K calcified plaque') {
             temp[4] = "high density plaque";
         }
-        else if (HUs.fuchsia[j] > 350 && HUs.fuchsia[j] < 701) {
+        else if (HUs.fuchsia[j] > 350 && HUs.fuchsia[j] < 701 &&
+            temp[4] != "high density calcified plaque" &&
+            temp[4] != '1K calcified plaque') {
             temp[4] = "low density calcified plaque";
         }
-        else if (HUs.fuchsia[j] > 700 && HUs.fuchsia[j] < 1001) {
+        else if (HUs.fuchsia[j] > 700 && HUs.fuchsia[j] < 1001 &&
+            temp[4] != '1K calcified plaque') {
             temp[4] = "high density calcified plaque";
         }
         else if (HUs.fuchsia[j] > 1000) {
@@ -311,6 +372,8 @@ function getDensity(labelmap2D, image) {
 
     return plaqueID;
 }
+
+
 function discreteCount(labelmap2D, image) {
 
     var counts =
@@ -339,6 +402,23 @@ function discreteCount(labelmap2D, image) {
             counts.fuchsia++;
         }
     }
-
+    
     return counts;
+}
+
+function convertToJSON(labelmap2D)
+{
+    var JSONArray = JSON.stringify(labelmap2D.pixelData);
+    JSONArray = [JSONArray];
+    var a = document.createElement("a");
+    var blob1 = new Blob(JSONArray, { type: "text/plain; charset=utf-8" });
+    var url = window.URL || window.webkitURL;
+    var link = url.createObjectURL(blob1);
+    a.download = "annotations.json";
+    a.href = link;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    return JSONArray;
 }

@@ -17,14 +17,16 @@
     width: 5.5%;
     min-width: 75px;
 }
-hr{
+hr {
     display: block;
     border-block-color: #35AFAA;
     border-block-end-style: solid;
     margin: auto;
-    margin-top: 0.000000000001%;
+    position: fixed;
+    top: 8%;
+    width: 100%;
     background-color: #35AFAA;
-    height: 1.5px;
+    height: 1.4px;
 }
 h1 {
     text-align: center;
@@ -34,6 +36,16 @@ h1 {
     text-transform: uppercase;
     color: #35AFAA;
 }
+
+.us {
+    text-align: center;
+    font-size: 17px;
+    font-family: Georgia, serif;
+    color: floralwhite;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
 h2 {
     text-align: center;
     text-decoration-style: solid;
@@ -59,6 +71,22 @@ h3 {
     color: #35AFAA;
 }
 h4 {
+    text-align: center;
+    text-decoration-style: solid;
+    font-size: 20px;
+    font-family: 'Arial Rounded MT';
+    text-transform: uppercase;
+    color: #35AFAA;
+}
+.clinicR {
+    text-align: center;
+    font-size: 17px;
+    font-family: Georgia, serif;
+    color: floralwhite;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+h5 {
     text-align: center;
     text-decoration-style: solid;
     font-size: 20px;

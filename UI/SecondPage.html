@@ -38,13 +38,15 @@
 
         <div class="buttons">
             <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
-            <p1>Brush
+            <p1>
+                Brush
                 <button class="brush" onclick="brushbutton(); enable();">
                     <i class="fa-solid fa-paintbrush"></i>
                 </button>
             </p1>
             <!--Brush size buttons (increase and drecrease) with onclick functionality-->
-            <p4>Brush Size
+            <p4>
+                Brush Size
                 <button id="Pplus" class="bplus" onclick="increasebrush()">
                     <i class="fa-solid fa-plus"></i>
                 </button>
@@ -55,7 +57,8 @@
             <!--brush size increase-->
             <!--brush size decrease-->
             <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
-            <p5>Brush Color
+            <p5>
+                Brush Color
                 <select id="Color" onchange="changecolor()">
                     <option value="1">Default: Red</option>
                     <option value="2">Green</option>
@@ -65,18 +68,21 @@
                 </select>
             </p5>
             <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
-            <p2>Zoom
+            <p2>
+                Zoom
                 <button class="zoom" onclick="zoombutton(); disable();">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </p2>
             <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
-            <p3>Pan
+            <p3>
+                Pan
                 <button class="pan" onclick="panbutton(); disable();">
                     <i class="fa-solid fa-arrows-up-down-left-right"></i>
                 </button>
             </p3>
-            <p6>Clear Brush
+            <p6>
+                Clear Brush
                 <button class="clear" onclick="clearbutton()">
                     <i class="fa-solid fa-trash"></i>
                 </button>
@@ -86,29 +92,29 @@
         <!--viewer for drag and drop-->
         <div class="viewer">
             <!--<div class="overlay">
-        </div>-->
+            </div>-->
             <p id="dragndroptext" style="color:white;text-align:center;">Drag & Drop!</p>
             <p id="viewer"></p>
         </div>
         <div class="stats" style="color:white;">
             <h>Stats!</h>
             <p>
-            <div id="output1"></div>
+                <div id="output1"></div>
             </p>
             <p>
-            <div id="output2"></div>
+                <div id="output2"></div>
             </p>
             <p>
-            <div id="output3"></div>
+                <div id="output3"></div>
             </p>
             <p>
-            <div id="output4"></div>
+                <div id="output4"></div>
             </p>
             <p>
-            <div id="output5"></div>
+                <div id="output5"></div>
             </p>
         </div>
 
-    </body>
-    
+</body>
+
 </html>
