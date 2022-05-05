@@ -53,6 +53,7 @@ function onDrop(event) {
         cornerstoneTools.addTool(ThresholdsBrushTool);
         cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
         cornerstoneTools.addTool(cornerstoneTools.PanTool);
+        cornerstoneTools.addTool(cornerstoneTools.LengthTool);
 
         // This tool allows you to get the area of a circled area using a brush.
         cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
@@ -63,6 +64,7 @@ function onDrop(event) {
         cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
         cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
         cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
+        cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
         currentTool = 'ThresholdsBrush';
 
     });
@@ -87,8 +89,8 @@ window.onkeyup = function (event) {
     }
     else if (event.key == '1') {
         cornerstoneTools.setToolDisabled(currentTool);
-        cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
-        currentTool = 'Pan';
+        cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
+        currentTool = 'Length';
     }
     else if (event.key == '2') {
         var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
@@ -214,7 +216,8 @@ window.onkeyup = function (event) {
     }
     else if (event.key == 'q') {
         var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
-        convertToJSON(labelMap2D);
+        var image = cornerstone.getImage(viewer);
+        convertToJSON(labelMap2D, image);
     }
 
 
