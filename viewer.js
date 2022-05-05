@@ -189,6 +189,29 @@ window.onkeyup = function (event) {
         var image = cornerstone.getImage(viewer);
 
         var areas = getBrushArea(labelMap2D, image);
+
+        var output1 = document.getElementById("output1");
+        var output2 = document.getElementById("output2");
+        var output3 = document.getElementById("output3");
+        var output4 = document.getElementById("output4");
+        var output5 = document.getElementById("output5");
+
+        if (areas.red != null) {
+            output1.innerHTML = "red brush: " + areas.red + 'mm\u00B2';
+        }
+        if (areas.blue != null) {
+            output2.innerHTML = "blue brush: " + areas.blue + 'mm\u00B2';
+        }
+        if (areas.green != null) {
+            output3.innerHTML = "green brush: " + areas.green + 'mm\u00B2';
+        }
+        if (areas.purple != null) {
+            output4.innerHTML = "purple brush: " + areas.purple + 'mm\u00B2';
+        }
+        if (areas.fuchsia != null) {
+            output5.innerHTML = "pink brush: " + areas.fuchsia + 'mm\u00B2';
+        }
+
         console.log("red brush: " + areas.red + 'mm\u00B2');
         console.log("blue brush: " + areas.blue + 'mm\u00B2');
         console.log("green brush: " + areas.green + 'mm\u00B2');
@@ -218,10 +241,9 @@ window.onkeyup = function (event) {
         if (densities.purple != null) {
             output4.innerHTML = "purple: " + densities.purple;
         }
-        if (densities.fuschia != null) {
-            output5.innerHTML = "why isnt this printing" + "pink: " + densities.fuchsia;
+        if (densities.fuchsia != null) {
+            output5.innerHTML = "pink: " + densities.fuchsia;
         }
-        // TODO : Fix output 5 to actually print out
         console.log("red: " + densities.red);
         console.log("blue: " + densities.blue);
         console.log("green: " + densities.green);
@@ -237,7 +259,28 @@ window.onkeyup = function (event) {
         var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
         var image = cornerstone.getImage(viewer);
         var counts = discreteCount(labelMap2D, image);
-        // implement the same as above, replacing output1-5
+
+        var output1 = document.getElementById("output1");
+        var output2 = document.getElementById("output2");
+        var output3 = document.getElementById("output3");
+        var output4 = document.getElementById("output4");
+        var output5 = document.getElementById("output5");
+
+        if (counts.red != null) {
+            output1.innerHTML = "red: " + counts.red;
+        }
+        if (counts.blue != null) {
+            output2.innerHTML = "blue: " + counts.blue;
+        }
+        if (counts.green != null) {
+            output3.innerHTML = "green: " + counts.green;
+        }
+        if (counts.purple != null) {
+            output4.innerHTML = "purple: " + counts.purple;
+        }
+        if (counts.fuchsia != null) {
+            output5.innerHTML = "pink: " + counts.fuchsia;
+        }
         console.log("red: " + counts.red);
         console.log("blue: " + counts.blue);
         console.log("green: " + counts.green);

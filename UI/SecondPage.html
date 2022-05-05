@@ -37,12 +37,12 @@
             
             <div class="buttons">
                 <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
-                <p>Brush</p>
+                <p1>Brush</p1>
                 <button class="brush" onclick="brushbutton(); enable();">
                     <i class="fa-solid fa-paintbrush"></i>
                 </button>
                 <!--Brush size buttons (increase and drecrease) with onclick functionality-->
-                <p>Brush Size</p>
+                <p2>Brush Size</p2>
                 <!--brush size increase-->
                 <button id="Pplus" class="bplus" onclick="increasebrush()">
                    <i class="fa-solid fa-plus"></i>
@@ -52,7 +52,7 @@
                     <i class="fa-solid fa-minus"></i>
                 </button>
                 <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
-                <p>Brush Color</p>
+                <p3>Brush Color</p3>
                 <select id="Color" onchange="changecolor()">
                     <option value="1">Default: Red</option>
                     <option value="2">Green</option>
@@ -61,16 +61,16 @@
                     <option value="6">Pink</option>
                 </select>
                 <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
-                <p>Zoom</p>
+                <p4>Zoom</p4>
                 <button class="zoom" onclick="zoombutton(); disable();">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
                 <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
-                <p>Pan</p>
+                <p5>Pan</p5>
                 <button class="pan" onclick="panbutton(); disable();">
                     <i class="fa-solid fa-arrows-up-down-left-right"></i>
                 </button>
-                <p>Clear Brush</p>
+                <p6>Clear Brush</p6>
                 <button class="clear" onclick="clearbutton()">
                     <i class="fa-solid fa-trash"></i>
                 </button>
