@@ -439,3 +439,22 @@ function convertToJSON(labelmap2D, image)
 
     return JSONArray;
 }
+
+function updateFromJSON(jsonfile)
+{
+    console.log(jsonfile);
+    let reader = new FileReader();
+    console.log(reader);
+    reader.readAsArrayBuffer(jsonfile);
+    var elements = {
+        studyinstanceuid: '',
+        toolsstates: {},
+        currentbrush: 0,
+        labelmap2d: []
+    }
+    var tempo = JSON.stringify(reader);
+    console.log(tempo);
+    var temp = JSON.parse(tempo);
+
+    return temp;
+}
