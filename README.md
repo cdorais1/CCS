@@ -30,4 +30,4 @@ Carotid artherosclerotic plaque in the neck is a common cause of ischemic stroke
 
 # Special Thanks To
 
-The functionality of this project can be attributed to the talented team who developed Cornerstonejs libraries for processing and displaying DICOM images. It is through their examples on their website [cornerstonejs.orq](https://www.cornerstonejs.org/) and their readily available source code [cornerstonejs' git](https://github.com/cornerstonejs) that this project was able to be accomplished at all. 
+The functionality of this project can be attributed to the talented team who developed Cornerstonejs libraries for processing and displaying DICOM images. It is through their examples on their [website](https://www.cornerstonejs.org/) and their readily available source code on [Github](https://github.com/cornerstonejs) that this project was able to be accomplished at all. 
