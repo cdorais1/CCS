@@ -2,7 +2,7 @@
     margin: auto;
     padding: 0;
     background-color: black;
-    min-width: 100S;
+    /*min-width: 100S;*/
 }
 
 /*Styling properties for the background*/
@@ -10,8 +10,8 @@
     display: grid;
     grid-template-columns: 20% 60% 20%;
     grid-template-rows: 10% 90%;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    /*grid-column-gap: 0px;*/
+    /*grid-row-gap: 0px;*/
     width: 100%;
     height: 100vh;
     min-height: 250px;
@@ -32,7 +32,7 @@
     margin: auto;
     margin-top: 0.1%;
     position: relative;
-    width: 5.5%;
+    width: 5.43%;
     min-width: 75px;
 }
 
@@ -47,9 +47,9 @@
     background-color: black;
     color: #35afaa;
     position: relative;
-    top: -1%;
+    top: -30%;
     left: 91%;
-    min-block-size: 1%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.2%;
     font-size: 100%;
@@ -86,10 +86,10 @@ hr {
     border-block-end-style: solid;
     margin: auto;
     position: relative;
-    top: -1.5%;
+    top: -14.4%;
     width: 99.89%;
     background-color: #35AFAA;
-    height: 1.4px;
+    height: 1.6px;
 }
 
 buttons {
@@ -117,14 +117,14 @@ p4 {
     position: fixed;
     left: 6.5%;
     top: 15%;
-    min-block-size: 1%;
+    min-block-size: 3%;
     width: 25px;
     min-width: 0.5%;
     font-size: 100%;
-    padding-top: 0.15%;
+    padding-top: 0.14%;
     padding-bottom: 0.06%;
-    padding-left: 0.3%;
-    padding-right: 1.2%;
+    padding-left: 0.33%;
+    padding-right: 1%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -157,14 +157,14 @@ p4 {
     position: fixed;
     left: 8.5%;
     top: 15%;
-    min-block-size: 1%;
+    min-block-size: 3%;
     width: 25px;
     min-width: 1%;
     font-size: 100%;
-    padding-top: 0.15%;
+    padding-top: 0.14%;
     padding-bottom: 0.06%;
-    padding-left: 0.3%;
-    padding-right: 1.2%;
+    padding-left: 0.33%;
+    padding-right: 1%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -234,7 +234,7 @@ p1 {
     position: fixed;
     left: 3%;
     top: 14%;
-    min-block-size: 1%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
     font-size: 100%;
@@ -277,7 +277,7 @@ p2 {
     position: fixed;
     left: 3%;
     top: 23%;
-    min-block-size: 1%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
     font-size: 100%;
@@ -322,7 +322,7 @@ p3 {
     position: fixed;
     left: 3%;
     top: 32%;
-    min-block-size: 1%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
     font-size: 100%;
@@ -346,7 +346,7 @@ p3 {
         transform: translateY(3px);
     }
 
-p7 {
+p6 {
     position: fixed;
     top: 38%;
     left: 1.75%;
@@ -365,7 +365,7 @@ p7 {
     position: fixed;
     left: 3%;
     top: 41%;
-    min-block-size: 1%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
     font-size: 100%;
@@ -391,22 +391,45 @@ p7 {
 
 .viewer {
     /*background-color: #302f2f;*/
-    width: 50%;
-    height: 99%;
+    width: 80%;
+    height: 100%;
     min-width: 100px;
     position: relative;
-    left: 25%;
-    top: -3.5%;
+    left: 8%;
+    top: -1%;
+
 }
+    .viewer::before {
+        content: "Drag & Drop";
+        color: #302f2f;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+        font-family: 'Arial Rounded MT';
+        position: absolute;
+        top: 45%;
+        left: 36%;
+        z-index: -1;
+    }
 
 #viewer {
     border: groove;
     border-color: white;
     width: 90%;
-    height: 90%;
+    height: 95%;
     margin-left: auto;
     margin-right: auto;
     min-width: 100px;
     color: #5f8c8a;
-    text-align: center;
 }
+
+/*p10 {
+    color: #302f2f;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    font-weight: bolder;
+    font-size: 30px;
+    font-family: 'Arial Rounded MT';
+    left: 38%;
+}*/
