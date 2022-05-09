@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Carotid Calcium Scanner</title>
     <link rel="stylesheet" href="styleSecond.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--This is a page I used to get the icons upload and info in the second page of the UI-->
     <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
     <!-- Here is the connection between the js and html files-->
@@ -16,265 +16,17 @@
     <script src="https://unpkg.com/hammerjs"></script>
     <script src="../tools.js"></script>
     <script src="../util.js"></script>
-    <script>
-
-        cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-        cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
-        cornerstoneTools.external.Hammer = Hammer;
-        cornerstoneTools.external.cornerstone = cornerstone;
-        cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
-        segModule = cornerstoneTools.getModule('segmentation');
-
-        var currentTool = '';
-        var image1;
-        var brush = 0;
-
-        function onDragOver(event) {
-
-            // stop browser processing right away
-            event.stopPropagation();
-            event.preventDefault();
-
-        };
-
-        function onDrop(event) {
-
-            // stop browser processing right away
-            event.stopPropagation();
-            event.preventDefault();
-
-            imageIds = [];
-
-            for (var i = 0; i < event.dataTransfer.files.length; i++) {
-
-                var file = event.dataTransfer.files[i];
-                imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
-
-            }
-
-            cornerstone.loadImage(imageIds[0]).then(function (image) {
-
-                image1 = image;
-                console.log('Loaded', image);
-
-                cornerstoneTools.init();
-
-                var viewer = document.getElementById('viewer');
-
-                cornerstone.enable(viewer);
-                cornerstone.displayImage(viewer, image);
-                cornerstone.getViewport(viewer).labelmap = true;
-
-
-                var stack = { currentImageIdIndex: 0, imageIds: imageIds };
-                cornerstoneTools.addStackStateManager(viewer, ["stack"]);
-                cornerstoneTools.addToolState(viewer, "stack", stack);
-
-                cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
-                cornerstoneTools.addTool(ThresholdsBrushTool);
-                cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
-                cornerstoneTools.addTool(cornerstoneTools.PanTool);
-
-                // This tool allows you to get the area of a circled area using a brush.
-                cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
-
-                // Activate tools as needed; default active tool is brush and stack scroll.
-                cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
-                cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
-                cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
-                cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
-                cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
-                currentTool = 'ThresholdsBrush';
-
-            });
-
-        };
-
-
-        window.onload = function () {
-
-            document.body.addEventListener('dragover', onDragOver);
-            document.body.addEventListener('drop', onDrop);
-        };
-        // function brushbutton that will allow the onclick event when the user is pressing the brush button
-        function brushbutton() {
-            cornerstoneTools.setToolDisabled(currentTool);
-            cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
-            currentTool = 'ThresholdsBrush';
-        }
-        // function decreasebrush that will allow the user to decrease the size of the brush when clicking on the - button
-        function decreasebrush() {
-            cornerstoneTools.store.state.tools[1].decreaseBrushSize();
-        }
-        // function increase brush that will allow the user to increase the size of the brush when clicking on the + button
-        function increasebrush() {
-            cornerstoneTools.store.state.tools[1].increaseBrushSize();
-        }
-        // function zoombutton that will allow the onclick event when the user is pressing the zoom button
-        function zoombutton() {
-            cornerstoneTools.setToolDisabled(currentTool);
-            cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
-            currentTool = 'Zoom';
-        }
-        // function changecolor that will allow the brush to change color as the user desires
-        function changecolor() {
-            var select = document.getElementById('Color');
-            var option = select.options[select.selectedIndex].value;
-            // option == 1 is red
-            if (option == 1) {
-                segModule.setters.activeSegmentIndex(viewer, 1);
-            // option == 2 is green
-            } else if (option == 2) {
-                segModule.setters.activeSegmentIndex(viewer, 2);
-            // option == 3 is purple
-            } else if (option == 3) {
-                segModule.setters.activeSegmentIndex(viewer, 3);
-            // option == 5 is blue
-            } else if (option == 68) {
-                segModule.setters.activeSegmentIndex(viewer, 68);
-            // option == 6 is pink
-            } else if (option == 6) {
-                segModule.setters.activeSegmentIndex(viewer, 6);
-            }
-        }
-        // function panbutton that will allow the panning of the image when user zooms in and out
-        function panbutton() {
-            cornerstoneTools.setToolDisabled(currentTool);
-            cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
-            currentTool = 'Pan';
-        }
-
-        // function clearbutton that will clear or the the brushstrokes the users has taken
-        function clearbutton() {
-            clearBrushes(viewer);
-        }
-        window.onkeyup = function (event) {
-
-            //if (event.key == '-') {
-            //    cornerstoneTools.store.state.tools[1].decreaseBrushSize();
-            //} else if (event.key == '=') {
-            //    cornerstoneTools.store.state.tools[1].increaseBrushSize();
-            //}
-
-
-            //else if (event.key == '0') {
-
-            //    segModule.setters.decrementActiveSegmentIndex(viewer);
-
-            //    if (segModule.getters.activeSegmentIndex(viewer) == 4) {
-            //        segModule.setters.decrementActiveSegmentIndex(viewer);
-
-            //    }
-
-            //    if (segModule.getters.activeSegmentIndex(viewer) == 65535) {
-            //        segModule.setters.activeSegmentIndex(viewer, 6);
-
-            //    }
-            //}
-            //else if (event.key == '9') {
-
-
-            //    segModule.setters.incrementActiveSegmentIndex(viewer);
-
-            //    if (segModule.getters.activeSegmentIndex(viewer) == 4) {
-            //        segModule.setters.incrementActiveSegmentIndex(viewer);
-            //    }
-            //    if (segModule.getters.activeSegmentIndex(viewer) > 6) {
-            //        segModule.setters.activeSegmentIndex(viewer, 1);
-            //    }
-            //}
-            //else if (event.key == '1') {
-
-            //    cornerstoneTools.setToolDisabled(currentTool);
-            //    cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
-            //    currentTool = 'ThresholdsBrush';
-
-            //}
-            //else if (event.key == '2') {
-            //    cornerstoneTools.setToolDisabled(currentTool);
-            //    cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
-            //    currentTool = 'Zoom';
-            //}
-            // cornerstoneTools.getModule('segmentation').setters.incrementActiveSegmentIndex(viewer);
-
-            // this was an else if now it is just an if in case we want to change it back to keys on keyboard
-            if (event.key == '3') {
-                cornerstoneTools.setToolDisabled(currentTool);
-                cornerstoneTools.setToolActive('FreehandRoi', { mouseButtonMask: 1 });
-                currentTool = 'FreehandRoi';
-            }
-            else if (event.key == '4') {
-
-                var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
-                var image = cornerstone.getImage(viewer);
-
-                var areas = getBrushArea(labelMap2D, image);
-                console.log("red brush: " + areas.red + 'mm\u00B2');
-                console.log("blue brush: " + areas.blue + 'mm\u00B2');
-                console.log("green brush: " + areas.green + 'mm\u00B2');
-                console.log("purple brush: " + areas.purple + 'mm\u00B2');
-                console.log("pink brush: " + areas.fuchsia + 'mm\u00B2');
-            }
-            else if (event.key == '5') {
-                var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
-                var image = cornerstone.getImage(viewer);
-                var densities = getDensity(labelMap2D, image);
-                console.log("red: " + densities.red);
-                console.log("blue: " + densities.blue);
-                console.log("green: " + densities.green);
-                console.log("purple: " + densities.purple);
-                console.log("pink: " + densities.fuchsia);
-            }
-            else if (event.key == '1') {
-                cornerstoneTools.setToolDisabled(currentTool);
-                cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
-                currentTool = 'Pan';
-            }
-            else if (event.key == '2') {
-                var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
-                var image = cornerstone.getImage(viewer);
-                var counts = discreteCount(labelMap2D, image);
-                console.log("red: " + counts.red);
-                console.log("blue: " + counts.blue);
-                console.log("green: " + counts.green);
-                console.log("purple: " + counts.purple);
-                console.log("pink: " + counts.fuchsia);
-
-            }
-            else if (event.key == '3') {
-                var image = cornerstone.getImage(viewer);
-                var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
-                var simpleVolumes = getVolume(labelMap2D, image);
-                console.log("red: " + simpleVolumes.red);
-                console.log("blue: " + simpleVolumes.blue);
-                console.log("green: " + simpleVolumes.green);
-                console.log("purple: " + simpleVolumes.purple);
-                console.log("pink: " + simpleVolumes.fuchsia);
-            }
-            else if (event.key == '6') {
-                clearBrushes(viewer);
-            }
-        };
-      
-        function disable() {
-            document.getElementById("Color").disabled = true;
-            document.getElementById("Pplus").disabled = true;
-            document.getElementById("Mminus").disabled = true;
-        }
-        function enable() {
-            document.getElementById("Color").disabled = false;
-            document.getElementById("Pplus").disabled = false;
-            document.getElementById("Mminus").disabled = false;
-        }
-      
-    </script>
+    <script src="../viewer.js"></script>
 </head>
-    <body>
-        <!--The looks:-->
-        <div class="back-ground">
-            <!--Logo-->
-            <img src="imag/logo1.png" class="logo" />
+
+<body>
+    <!--The looks:-->
+    <div class="back-ground">
+        <!--Logo-->
+        <!--Section 1 Header-->
+        <div class="pageHeader">
             <!--this is the info button on the top right corner-->
+            <img src="imag/logo1.png" class="logo" />
             <a href="info.html">
                 <button class="info">
                     <i class="fa fa-info"></i>
@@ -282,24 +34,31 @@
             </a>
             <!--This created the blue line on top of the page-->
             <hr />
-            <div class="Buttons">
-                <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
-                <p1>Brush</p1>
+        </div>
+
+        <div class="buttons">
+            <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
+            <p1>
+                Brush
                 <button class="brush" onclick="brushbutton(); enable();">
                     <i class="fa-solid fa-paintbrush"></i>
                 </button>
-                <!--Brush size buttons (increase and drecrease) with onclick functionality-->
-                <p4>Brush Size</p4>
-                <!--brush size increase-->
+            </p1>
+            <!--Brush size buttons (increase and drecrease) with onclick functionality-->
+            <p4>
+                Brush Size
                 <button id="Pplus" class="bplus" onclick="increasebrush()">
-                   <i class="fa-solid fa-plus"></i>
+                    <i class="fa-solid fa-plus"></i>
                 </button>
-                <!--brush size decrease-->
                 <button id="Mminus" class="bminus" onclick="decreasebrush()">
                     <i class="fa-solid fa-minus"></i>
                 </button>
-                <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
-                <p5>Brush Color</p5>
+            </p4>
+            <!--brush size increase-->
+            <!--brush size decrease-->
+            <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
+            <p5>
+                Brush Color
                 <select id="Color" onchange="changecolor()">
                     <option value="1">Default: Red</option>
                     <option value="2">Green</option>
@@ -307,34 +66,55 @@
                     <option value="68">Blue</option>
                     <option value="6">Pink</option>
                 </select>
-                <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
-                <p2>Zoom</p2>
+            </p5>
+            <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
+            <p2>
+                Zoom
                 <button class="zoom" onclick="zoombutton(); disable();">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
-                <p3>Pan</p3>
+            </p2>
+            <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
+            <p3>
+                Pan
                 <button class="pan" onclick="panbutton(); disable();">
                     <i class="fa-solid fa-arrows-up-down-left-right"></i>
                 </button>
-                <p7>Clear Brush</p7>
+            </p3>
+            <p6>
+                Clear Brush
                 <button class="clear" onclick="clearbutton()">
                     <i class="fa-solid fa-trash"></i>
                 </button>
-            </div>
-
-            <!--Useful message for the user-->
-            <p6>Drag & Drop</p6>
-
-            
-            <!--viewer for drag and drop-->>
-            <div class="viewer">
-                <!--<div class="overlay">
-        </div>-->
-                <p id="viewer"></p>
-
-            </div>
+            </p6>
         </div>
-    </body>
+
+        <!--viewer for drag and drop-->
+        <div class="viewer">
+            <!--<div class="overlay">
+            </div>-->
+            <p id="dragndroptext" style="color:white;text-align:center;">Drag & Drop!</p>
+            <p id="viewer"></p>
+        </div>
+        <div class="stats" style="color:white;">
+            <h>Stats!</h>
+            <p>
+                <div id="output1"></div>
+            </p>
+            <p>
+                <div id="output2"></div>
+            </p>
+            <p>
+                <div id="output3"></div>
+            </p>
+            <p>
+                <div id="output4"></div>
+            </p>
+            <p>
+                <div id="output5"></div>
+            </p>
+        </div>
+
+</body>
 
 </html>

@@ -1,11 +1,10 @@
+
                                                         ****TO DO***** 
 
-- Export coordinates of annotations/segmentations to a json file that can be uploaded to continue from previous annotations/segmentations
+- import json file and apply changes to segmentations. 
 
-- Display stats on right side of page
+- zoom reset button 
 
-- Connect tool buttons to tool functions
+- set up threshold sliders to allow users to set thresholds.
 
-- Calculate discrete number of calcified plaque deposits based on brush annotations 
-
-- Calculate volume of calcified plaque using labelmap3D
+---- Calculate volume of calcified plaque using labelmap3D (needs some work but works tentatively)
