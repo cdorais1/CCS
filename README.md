@@ -6,7 +6,7 @@ A browser-based semi-automatic tool that identifies morphologic features of caro
 
 ## Client Team
 
-Jae Song, MD Neurodiology 
+Jae Song, MD Neuroradiology 
 
 Brett Cucchiara, MD Vasual Neurology
 
