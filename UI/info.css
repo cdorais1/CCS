@@ -22,9 +22,9 @@ hr {
     border-block-color: #35AFAA;
     border-block-end-style: solid;
     margin: auto;
-    position: fixed;
-    top: 8%;
-    width: 100%;
+    position: relative;
+    top: -0.3%;
+    width: 99.89%;
     background-color: #35AFAA;
     height: 1.4px;
 }
@@ -70,6 +70,8 @@ h3 {
     text-transform: uppercase;
     color: #35AFAA;
 }
+
+
 h4 {
     text-align: center;
     text-decoration-style: solid;
@@ -107,14 +109,18 @@ table{
 
 th{
     border: 2px solid #35AFAA;
-    padding: 3%;
+    padding-top: 2%;
+    padding-right: 3%;
+    padding-bottom: 2%;
+    padding-left: 1%;
+
 }
 
 td {
     border: 2px solid #35AFAA;
     color: floralwhite;
     font-family:Georgia, serif;
-    padding: 1%
+    padding: 1%;
     
 }
 tr {
