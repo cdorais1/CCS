@@ -113,10 +113,21 @@ function getCircleWithThreshold(
     const y0 = Math.floor(yCoord);
     let circleArray = [];
 
-    // if no thresholds, set all pixels range
+    
+    var userMinThreshold = document.getElementById("userMinThreshold").value;
+    var userMaxThreshold = document.getElementById("userMaxThreshold").value;
+    
+    if (userMinThreshold == null) {
+        userMinThreshold = 80;
+    }
+    if (userMaxThreshold == null) {
+        userMaxThreshold = image.maxPixelValue;
+    }
+    
+    console.log("Min:" + userMinThreshold + " Max: " + userMaxThreshold);
+    
     if (!thresholds) {
-        // thresholds = [image.minPixelValue, image.maxPixelValue];
-        thresholds = [80, image.maxPixelValue];
+        thresholds = [userMinThreshold, userMaxThreshold];
     }
 
     function isInsideThresholds(v, t) {
