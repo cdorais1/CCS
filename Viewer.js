@@ -140,27 +140,64 @@ window.onkeyup = function (event) {
         var image = cornerstone.getImage(viewer);
 
         var areas = getBrushArea(labelMap2D, image);
+        var densities = getDensity(labelMap2D, image);
+        var counts = discreteCount(labelMap2D, image);
+        //var simpleVolumes = getVolume(labelMap2D, image);
 
-        var output1 = document.getElementById("output1");
-        var output2 = document.getElementById("output2");
-        var output3 = document.getElementById("output3");
-        var output4 = document.getElementById("output4");
-        var output5 = document.getElementById("output5");
+        var output1a = document.getElementById("output1a");
+        //var output1v = document.getElementById("output1v");
+        var output1d = document.getElementById("output1d");
+        var output1c = document.getElementById("output1c");
 
-        if (areas.red != null) {
-            output1.innerHTML = "red brush: " + areas.red + 'mm\u00B2';
+        var output2a = document.getElementById("output2a");
+        var output2d = document.getElementById("output2d");
+        var output2c = document.getElementById("output2c");
+        //var output2v = document.getElementById("output2v");
+
+        var output3a = document.getElementById("output3a");
+        var output3d = document.getElementById("output3d");
+        var output3c = document.getElementById("output3c");
+        //var output3v = document.getElementById("output3v");
+
+        var output4a = document.getElementById("output4a");
+        var output4d = document.getElementById("output4d");
+        var output4c = document.getElementById("output4c");
+        //var output4v = document.getElementById("output4v");
+
+        var output5a = document.getElementById("output5a");
+        var output5d = document.getElementById("output5d");
+        var output5c = document.getElementById("output5c");
+        //var output5v = document.getElementById("output5v");
+
+        if (areas.red != null && /*simpleVolumes.red != null &&*/ densities.red != null && counts.red != null) {
+            output1c.innerHTML = "Count: " + counts.red;
+            output1a.innerHTML = "Area: " + areas.red + 'mm\u00B2';
+            output1d.innerHTML = "Density: " + densities.red;
+            //output1v.innerHTML = "Volume: " + simpleVolumes.red + 'mm\u00B3';
         }
-        if (areas.blue != null) {
-            output2.innerHTML = "blue brush: " + areas.blue + 'mm\u00B2';
+        if (areas.blue != null && /*simpleVolumes.blue != null &&*/ densities.blue != null && counts.blue != null) {
+            output2c.innerHTML = "Count: " + counts.blue;
+            output2a.innerHTML = "Area: " + areas.blue + 'mm\u00B2';
+            output2d.innerHTML = "Density: " + densities.blue;
+            //output2v.innerHTML = "Volume: " + simpleVolumes.blue + 'mm\u00B3';
         }
-        if (areas.green != null) {
-            output3.innerHTML = "green brush: " + areas.green + 'mm\u00B2';
+        if (areas.green != null && /*simpleVolumes.green != null &&*/ densities.green != null && counts.green != null) {
+            output3c.innerHTML = "Count: " + counts.green;
+            output3a.innerHTML = "Area: " + areas.green + 'mm\u00B2';
+            output3d.innerHTML = "Density: " + densities.green;
+            //output3v.innerHTML = "Volume: " + simpleVolumes.green + 'mm\u00B3';
         }
-        if (areas.purple != null) {
-            output4.innerHTML = "purple brush: " + areas.purple + 'mm\u00B2';
+        if (areas.purple != null && /*simpleVolumes.purple != null &&*/ densities.purple != null && counts.purple != null) {
+            output4c.innerHTML = "Count: " + counts.purple;
+            output4a.innerHTML = "Area: " + areas.purple + 'mm\u00B2';
+            output4d.innerHTML = "Density: " + densities.purple;
+            //output4v.innerHTML = "Volume: " + simpleVolumes.purple + 'mm\u00B3';
         }
-        if (areas.fuchsia != null) {
-            output5.innerHTML = "pink brush: " + areas.fuchsia + 'mm\u00B2';
+        if (areas.fuchsia != null && /*simpleVolumes.fuchsia != null &&*/ densities.fuchsia != null && counts.fuchsia != null) {
+            output5c.innerHTML = "Count: " + counts.fuchsia;
+            output5a.innerHTML = "Area: " + areas.fuchsia + 'mm\u00B2';
+            output5d.innerHTML = "Density: " + densities.fuchsia;
+            //output5v.innerHTML = "Volume: " + simpleVolumes.fuchsia + 'mm\u00B3';
         }
 
         console.log("red brush: " + areas.red + 'mm\u00B2');
