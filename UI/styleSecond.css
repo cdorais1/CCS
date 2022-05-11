@@ -587,6 +587,11 @@ p10 {
     color: red;
     font-family:'Times New Roman';
 }
+#output1v {
+    color: red;
+    font-family: 'Times New Roman';
+}
+
 #output1a {
     color: red;
     font-family: 'Times New Roman';
@@ -596,47 +601,59 @@ p10 {
     font-family: 'Times New Roman';
 }
 #output2c {
-    color: blue;
+    color: dodgerblue;
     font-family: 'Times New Roman';
 }
 
 #output2a {
-    color: blue;
+    color: dodgerblue;
+    font-family: 'Times New Roman';
+}
+#output2v {
+    color: dodgerblue;
     font-family: 'Times New Roman';
 }
 
 #output2d {
-    color: blue;
+    color: dodgerblue;
     font-family: 'Times New Roman';
 }
 
 #output3c {
-    color: green;
+    color: lime;
+    font-family: 'Times New Roman';
+}
+#output3v {
+    color: lime;
     font-family: 'Times New Roman';
 }
 
 #output3a {
-    color: green;
+    color: lime;
     font-family: 'Times New Roman';
 }
 
 #output3d {
-    color: green;
+    color: lime;
     font-family: 'Times New Roman';
 }
 
 #output4c {
-    color: purple;
+    color: fuchsia;
+    font-family: 'Times New Roman';
+}
+#output4v {
+    color: fuchsia;
     font-family: 'Times New Roman';
 }
 
 #output4a {
-    color: purple;
+    color: fuchsia;
     font-family: 'Times New Roman';
 }
 
 #output4d {
-    color: purple;
+    color: fuchsia;
     font-family: 'Times New Roman';
 }
 #output5c {
@@ -645,6 +662,10 @@ p10 {
 }
 
 #output5a {
+    color: hotpink;
+    font-family: 'Times New Roman';
+}
+#output5v {
     color: hotpink;
     font-family: 'Times New Roman';
 }
