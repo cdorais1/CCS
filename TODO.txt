@@ -7,4 +7,6 @@
 
 - set up threshold sliders to allow users to set thresholds.
 
+-increase/decrease brush size buttons broken 
+
 ---- Calculate volume of calcified plaque using labelmap3D (needs some work but works tentatively)
