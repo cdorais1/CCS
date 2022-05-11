@@ -2,7 +2,7 @@
     margin: auto;
     padding: 0;
     background-color: black;
-    min-width: 100S;
+    /*min-width: 100S;*/
 }
 
 /*Styling properties for the background*/
@@ -10,8 +10,8 @@
     display: grid;
     grid-template-columns: 20% 60% 20%;
     grid-template-rows: 10% 90%;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    /*grid-column-gap: 0px;*/
+    /*grid-row-gap: 0px;*/
     width: 100%;
     height: 100vh;
     min-height: 250px;
@@ -32,7 +32,7 @@
     margin: auto;
     margin-top: 0.1%;
     position: relative;
-    width: 5.5%;
+    width: 5.43%;
     min-width: 75px;
 }
 
@@ -47,9 +47,9 @@
     background-color: black;
     color: #35afaa;
     position: relative;
-    top: -1%;
+    top: -30%;
     left: 91%;
-    min-block-size: 1%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.2%;
     font-size: 100%;
@@ -86,10 +86,10 @@ hr {
     border-block-end-style: solid;
     margin: auto;
     position: relative;
-    top: -1.5%;
+    top: -14.4%;
     width: 99.89%;
     background-color: #35AFAA;
-    height: 1.4px;
+    height: 1.6px;
 }
 
 buttons {
@@ -98,6 +98,8 @@ buttons {
     left: 5%;
 }
 
+
+/*p4 corresponds to brush size (plus and minus)*/
 p4 {
     position: fixed;
     left: 6.5%;
@@ -117,14 +119,14 @@ p4 {
     position: fixed;
     left: 6.5%;
     top: 15%;
-    min-block-size: 1%;
+    min-block-size: 3%;
     width: 25px;
     min-width: 0.5%;
     font-size: 100%;
-    padding-top: 0.15%;
+    padding-top: 0.14%;
     padding-bottom: 0.06%;
-    padding-left: 0.3%;
-    padding-right: 1.2%;
+    padding-left: 0.33%;
+    padding-right: 1%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -157,14 +159,14 @@ p4 {
     position: fixed;
     left: 8.5%;
     top: 15%;
-    min-block-size: 1%;
+    min-block-size: 3%;
     width: 25px;
     min-width: 1%;
     font-size: 100%;
-    padding-top: 0.15%;
+    padding-top: 0.14%;
     padding-bottom: 0.06%;
-    padding-left: 0.3%;
-    padding-right: 1.2%;
+    padding-left: 0.33%;
+    padding-right: 1%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -187,6 +189,7 @@ p4 {
         border-color: #428784;
     }
 
+/*p5 corresponds to brush color selection*/
 p5 {
     position: fixed;
     left: 12%;
@@ -215,6 +218,7 @@ select {
         cursor: not-allowed;
     }
 
+/*p1 corresponds to brush*/
 p1 {
     position: fixed;
     left: 3%;
@@ -234,7 +238,7 @@ p1 {
     position: fixed;
     left: 3%;
     top: 14%;
-    min-block-size: 1%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
     font-size: 100%;
@@ -257,10 +261,10 @@ p1 {
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
-
+/*p2 corresponds to zoom*/
 p2 {
     position: fixed;
-    top: 20%;
+    top: 29%;
     left: 3%;
     font-size: 14px;
     font-family: Georgia, serif;
@@ -276,8 +280,8 @@ p2 {
     color: #35afaa;
     position: fixed;
     left: 3%;
-    top: 23%;
-    min-block-size: 1%;
+    top: 32%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
     font-size: 100%;
@@ -302,10 +306,10 @@ p2 {
         transform: translateY(3px);
     }
 
-
+/*p3 corresponds to pan*/
 p3 {
     position: fixed;
-    top: 29%;
+    top: 38%;
     left: 3.25%;
     font-size: 14px;
     font-family: Georgia, serif;
@@ -321,15 +325,15 @@ p3 {
     color: #35afaa;
     position: fixed;
     left: 3%;
-    top: 32%;
-    min-block-size: 1%;
+    top: 41%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
     font-size: 100%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.6%;
-    padding-right: 1.6%;
+    padding-left: 0.7%;
+    padding-right: 1.5%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -346,9 +350,10 @@ p3 {
         transform: translateY(3px);
     }
 
-p7 {
+/*p6 corresponds to clear brush*/
+p6 {
     position: fixed;
-    top: 38%;
+    top: 20%;
     left: 1.75%;
     font-size: 14px;
     font-family: Georgia, serif;
@@ -364,8 +369,8 @@ p7 {
     color: #35afaa;
     position: fixed;
     left: 3%;
-    top: 41%;
-    min-block-size: 1%;
+    top: 23%;
+    min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
     font-size: 100%;
@@ -388,25 +393,328 @@ p7 {
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
+/*p7 corresponds to undo brush*/
+p7 {
+    position: fixed;
+    top: 20%;
+    left: 8%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
 
+.undo {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 9.25%;
+    top: 23%;
+    min-block-size: 5%;
+    width: 30px;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.7%;
+    padding-right: 1.6%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .undo:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .undo:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+
+/*p8 corresponds to redo brush*/
+p8 {
+    position: fixed;
+    top: 20%;
+    left: 14.5%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.redo {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 15.65%;
+    top: 23%;
+    min-block-size: 5%;
+    width: 30px;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.7%;
+    padding-right: 1.6%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .redo:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .redo:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+
+/*p9 corresponds to length button*/
+p9 {
+    position: fixed;
+    top: 47%;
+    left: 3%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.lengthl {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 3%;
+    top: 50%;
+    min-block-size: 5%;
+    width: 30px;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.6%;
+    padding-right: 1.7%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .lengthl:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .lengthl:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+
+/*p10 corresponds to the display statistics*/
+p10 {
+    position: fixed;
+    top: 56%;
+    left: 1%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.statsb {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 3%;
+    top: 59%;
+    min-block-size: 5%;
+    width: 30px;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.7%;
+    padding-right: 1.6%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .statsb:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .statsb:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+.stats {
+    border: 1px groove #808080;
+    border-radius: 1%;
+    position: relative;
+    left: -5%;
+    top: -1.5%;
+    font-family:'Arial Rounded MT';
+    font: italic;
+    background-color: #343434;
+    width: 103.5% ;
+    height: 101%;
+}
+.stats h{
+    text-decoration-line: underline;
+}
+#output1c {
+    color: red;
+    font-family:'Times New Roman';
+}
+#output1v {
+    color: red;
+    font-family: 'Times New Roman';
+}
+
+#output1a {
+    color: red;
+    font-family: 'Times New Roman';
+}
+#output1d {
+    color: red;
+    font-family: 'Times New Roman';
+}
+#output2c {
+    color: dodgerblue;
+    font-family: 'Times New Roman';
+}
+
+#output2a {
+    color: dodgerblue;
+    font-family: 'Times New Roman';
+}
+#output2v {
+    color: dodgerblue;
+    font-family: 'Times New Roman';
+}
+
+#output2d {
+    color: dodgerblue;
+    font-family: 'Times New Roman';
+}
+
+#output3c {
+    color: lime;
+    font-family: 'Times New Roman';
+}
+#output3v {
+    color: lime;
+    font-family: 'Times New Roman';
+}
+
+#output3a {
+    color: lime;
+    font-family: 'Times New Roman';
+}
+
+#output3d {
+    color: lime;
+    font-family: 'Times New Roman';
+}
+
+#output4c {
+    color: fuchsia;
+    font-family: 'Times New Roman';
+}
+#output4v {
+    color: fuchsia;
+    font-family: 'Times New Roman';
+}
+
+#output4a {
+    color: fuchsia;
+    font-family: 'Times New Roman';
+}
+
+#output4d {
+    color: fuchsia;
+    font-family: 'Times New Roman';
+}
+#output5c {
+    color: hotpink;
+    font-family: 'Times New Roman';
+}
+
+#output5a {
+    color: hotpink;
+    font-family: 'Times New Roman';
+}
+#output5v {
+    color: hotpink;
+    font-family: 'Times New Roman';
+}
+
+#output5d {
+    color: hotpink;
+    font-family: 'Times New Roman';
+}
 .viewer {
     /*background-color: #302f2f;*/
-    width: 50%;
-    height: 99%;
+    width: 80%;
+    height: 100%;
     min-width: 100px;
     position: relative;
-    left: 25%;
-    top: -3.5%;
+    left: 8%;
+    top: -1%;
+
 }
+    .viewer::before {
+        content: "Drag & Drop";
+        color: #302f2f;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+        font-family: 'Arial Rounded MT';
+        position: absolute;
+        top: 45%;
+        left: 36%;
+        z-index: -1;
+    }
 
 #viewer {
     border: groove;
     border-color: white;
     width: 90%;
-    height: 90%;
+    height: 95%;
     margin-left: auto;
     margin-right: auto;
     min-width: 100px;
     color: #5f8c8a;
-    text-align: center;
 }
+
+/*p10 {
+    color: #302f2f;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    font-weight: bolder;
+    font-size: 30px;
+    font-family: 'Arial Rounded MT';
+    left: 38%;
+}*/
