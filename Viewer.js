@@ -60,13 +60,13 @@ function onDrop(event) {
             cornerstoneTools.addToolState(viewer, "stack", stack);
 
             cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
-            cornerstoneTools.addTool(ThresholdsBrushTool);
             cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
             cornerstoneTools.addTool(cornerstoneTools.PanTool);
             cornerstoneTools.addTool(cornerstoneTools.LengthTool);
+            cornerstoneTools.addTool(ThresholdsBrushTool);
 
-            // This tool allows you to get the area of a circled area using a brush.
-            cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
+//            This tool allows you to get the area of a circled area using a brush.
+//            cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
 
             // Activate tools as needed; default active tool is brush and stack scroll.
             cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
@@ -262,9 +262,9 @@ window.onkeyup = function (event) {
         clearBrushes(viewer);
     }
     else if (event.key == 'q') {
-        var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
+//        var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
         var image = cornerstone.getImage(viewer);
-        convertToJSON(labelMap2D, image);
+        convertToJSON(/*labelMap2D,*/ image);
     }
 
 

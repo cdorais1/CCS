@@ -487,26 +487,39 @@ function discreteCount(labelmap2D, image) {
     return counts;
 }
 
-function convertToJSON(labelmap2D, image)
+function convertToJSON(/*labelmap2D,*/ image)
 {
     const dataSet = dicomParser.parseDicom(image.data.byteArray);
     const studyInstanceUIDval = dataSet.string('x0020000d');
     const toolStatesval = cornerstoneTools.store.state.tools;
     const currentBrushval = cornerstoneTools.getModule('segmentation').getters.activeSegmentIndex(viewer);
-
+// Need to convert typed arrays before adding to json.
+//    const typedArray = cornerstoneTools.getModule('segmentation').getters.labelmap2D(viewer).labelmap2D.pixelData;
+//    const twoDlab = [...typedArray];
     const structure =
     {
         studyInstanceUID: studyInstanceUIDval,
-        ToolsStates: toolStatesval,
         currentBrush: currentBrushval,
-        LabelMap2D: labelmap2D.pixelData
+        ToolZero: cornerstoneTools.store.state.tools[0],
+        ToolOne: cornerstoneTools.store.state.tools[1],
+        ToolTwo: cornerstoneTools.store.state.tools[2],
+        ToolThree: cornerstoneTools.store.state.tools[3],
+        ToolFour: cornerstoneTools.store.state.tools[4],
+        ToolFive: cornerstoneTools.store.state.tools[5]
+
+        //studyInstanceUID: studyInstanceUIDval,
+        //ToolsStates: toolStatesval,
+        //currentBrush: currentBrushval,
+        //labelMap2D: twoDlab 
     };
 
-    var baseArray = structure;
+    console.log("Structure: ");
+    console.log(structure);
+    var JSONArray = JSON.stringify(structure);
 
-    var JSONArray = JSON.stringify(baseArray);
-
-
+    console.log("JSON Interpretation: " + JSONArray);
+    //var JSONArray = JSON.stringify([1, 2, 3, 4]);
+    //console.log("array= " + JSONArray);
     JSONArray = [JSONArray];
     var a = document.createElement("a");
     var blob1 = new Blob(JSONArray, { type: "text/plain; charset=utf-8" });
@@ -523,19 +536,16 @@ function convertToJSON(labelmap2D, image)
 
 function updateFromJSON(jsonfile)
 {
+    var temp;
     console.log(jsonfile);
     let reader = new FileReader();
     console.log(reader);
-    reader.readAsArrayBuffer(jsonfile);
-    var elements = {
-        studyinstanceuid: '',
-        toolsstates: {},
-        currentbrush: 0,
-        labelmap2d: []
+    reader.readAsText(jsonfile);
+    reader.onload = function () {
+        var temp1 = reader.result;
+        temp = JSON.parse(temp1);
+        console.log(temp);
     }
-    var tempo = JSON.stringify(reader);
-    console.log(tempo);
-    var temp = JSON.parse(tempo);
 
     return temp;
 }
