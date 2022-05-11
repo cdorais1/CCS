@@ -13,5 +13,6 @@
 
 - uploading a second pair of dicoms fucks up everything
 
+- Take the project to the next level?  
 
 ---- Calculate volume of calcified plaque using labelmap3D (needs some work but works tentatively)
