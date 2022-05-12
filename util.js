@@ -36,11 +36,11 @@ function brushbutton() {
 }
 // function decreasebrush that will allow the user to decrease the size of the brush when clicking on the - button
 function decreasebrush() {
-    cornerstoneTools.store.state.tools[1].decreaseBrushSize();
+    cornerstoneTools.store.state.tools[4].decreaseBrushSize();
 }
 // function increase brush that will allow the user to increase the size of the brush when clicking on the + button
 function increasebrush() {
-    cornerstoneTools.store.state.tools[1].increaseBrushSize();
+    cornerstoneTools.store.state.tools[4].increaseBrushSize();
 }
 // function zoombutton that will allow the onclick event when the user is pressing the zoom button
 function zoombutton() {
@@ -485,67 +485,4 @@ function discreteCount(labelmap2D, image) {
     }
     
     return counts;
-}
-
-function convertToJSON(/*labelmap2D,*/ image)
-{
-    const dataSet = dicomParser.parseDicom(image.data.byteArray);
-    const studyInstanceUIDval = dataSet.string('x0020000d');
-    const toolStatesval = cornerstoneTools.store.state.tools;
-    const currentBrushval = cornerstoneTools.getModule('segmentation').getters.activeSegmentIndex(viewer);
-// Need to convert typed arrays before adding to json.
-//    const typedArray = cornerstoneTools.getModule('segmentation').getters.labelmap2D(viewer).labelmap2D.pixelData;
-//    const twoDlab = [...typedArray];
-    const structure =
-    {
-        studyInstanceUID: studyInstanceUIDval,
-        currentBrush: currentBrushval,
-        ToolZero: cornerstoneTools.store.state.tools[0],
-        ToolOne: cornerstoneTools.store.state.tools[1],
-        ToolTwo: cornerstoneTools.store.state.tools[2],
-        ToolThree: cornerstoneTools.store.state.tools[3],
-        ToolFour: cornerstoneTools.store.state.tools[4],
-        ToolFive: cornerstoneTools.store.state.tools[5]
-
-        //studyInstanceUID: studyInstanceUIDval,
-        //ToolsStates: toolStatesval,
-        //currentBrush: currentBrushval,
-        //labelMap2D: twoDlab 
-    };
-
-    console.log("Structure: ");
-    console.log(structure);
-    var JSONArray = JSON.stringify(structure);
-
-    console.log("JSON Interpretation: " + JSONArray);
-    //var JSONArray = JSON.stringify([1, 2, 3, 4]);
-    //console.log("array= " + JSONArray);
-    JSONArray = [JSONArray];
-    var a = document.createElement("a");
-    var blob1 = new Blob(JSONArray, { type: "text/plain; charset=utf-8" });
-    var url = window.URL || window.webkitURL;
-    var link = url.createObjectURL(blob1);
-    a.download = "annotations.json";
-    a.href = link;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    return JSONArray;
-}
-
-function updateFromJSON(jsonfile)
-{
-    var temp;
-    console.log(jsonfile);
-    let reader = new FileReader();
-    console.log(reader);
-    reader.readAsText(jsonfile);
-    reader.onload = function () {
-        var temp1 = reader.result;
-        temp = JSON.parse(temp1);
-        console.log(temp);
-    }
-
-    return temp;
 }
