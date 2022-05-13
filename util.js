@@ -306,18 +306,24 @@ function getDensity(labelmap2D, image) {
             HUs.fuchsia[1]++;
         }
     }
-    HUs.red[0] /= HUs.red[1];
-    HUs.green[0] /= HUs.green[1];
-    HUs.purple[0] /= HUs.purple[1];
-    HUs.blue[0] /= HUs.blue[1];
-    HUs.fuchsia[0] /= HUs.fuchsia[1];
+    if (HUs.red[1] != 0)
+        HUs.red[0] /= HUs.red[1];
+    if (HUs.green[1] != 0)
+        HUs.green[0] /= HUs.green[1];
+    if (HUs.purple[1] != 0)
+        HUs.purple[0] /= HUs.purple[1];
+    if (HUs.blue[1] != 0)
+        HUs.blue[0] /= HUs.blue[1];
+    if (HUs.fuchsia[1] != 0)
+        HUs.fuchsia[0] /= HUs.fuchsia[1];
 
 
     var temp = ["", "", "", "", ""];
 
-    
+    if (HUs.red[0] < 101)
+        temp[0] = "N/A";
         
-    if (HUs.red[0] > 100 && HUs.red[0] < 131 &&
+    else if  (HUs.red[0] > 100 && HUs.red[0] < 131 &&
         temp[0] != "high density plaque" &&
         temp[0] != "low density calcified plaque" &&
         temp[0] != "high density calcified plaque" &&
@@ -342,9 +348,11 @@ function getDensity(labelmap2D, image) {
     else if (HUs.red[0] > 1000) {
         temp[0] = "1K calcified plaque";
     }
-    
 
-    if (HUs.green[0] > 100 && HUs.green[0] < 131 &&
+    if (HUs.green[0] < 101)
+        temp[1] = "N/A";
+
+    else if (HUs.green[0] > 100 && HUs.green[0] < 131 &&
         temp[1] != "high density plaque" &&
         temp[1] != "low density calcified plaque" &&
         temp[1] != "high density calcified plaque" &&
@@ -370,7 +378,9 @@ function getDensity(labelmap2D, image) {
         temp[1] = "1K calcified plaque";
     }
 
-    if (HUs.blue[0] > 100 && HUs.blue[0] < 131 &&
+    if (HUs.blue[0] < 101)
+        temp[2] = "N/A";
+    else if (HUs.blue[0] > 100 && HUs.blue[0] < 131 &&
         temp[2] != "high density plaque" &&
         temp[2] != "low density calcified plaque" &&
         temp[2] != "high density calcified plaque" &&
@@ -395,8 +405,10 @@ function getDensity(labelmap2D, image) {
     else if (HUs.blue[0] > 1000) {
         temp[2] = "1K calcified plaque";
     }
-    
-    if (HUs.purple[0] > 100 && HUs.purple[0] < 131 &&
+    if (HUs.purple[0] < 101)
+        temp[3] = "N/A";
+
+    else if (HUs.purple[0] > 100 && HUs.purple[0] < 131 &&
         temp[3] != "high density plaque" &&
         temp[3] != "low density calcified plaque" &&
         temp[3] != "high density calcified plaque" &&
@@ -422,8 +434,9 @@ function getDensity(labelmap2D, image) {
         temp[3] = "1K calcified plaque";
     }
 
-
-    if (HUs.fuchsia[0] > 100 && HUs.fuchsia[0] < 131 &&
+    if (HUs.fuchsia[0] < 101)
+        temp[4] = "N/A";
+    else if (HUs.fuchsia[0] > 100 && HUs.fuchsia[0] < 131 &&
         temp[4] != "high density plaque" &&
         temp[4] != "low density calcified plaque" &&
         temp[4] != "high density calcified plaque" &&
@@ -449,11 +462,11 @@ function getDensity(labelmap2D, image) {
         temp[4] = "1K calcified plaque";
     }
 
-    plaqueID.red = HUs.red[0] + ": " + temp[0];
-    plaqueID.green = HUs.green[0] + ": " + temp[1];
-    plaqueID.blue = HUs.blue[0] + ": " + temp[2];
-    plaqueID.purple = HUs.purple[0] + ": " + temp[3];
-    plaqueID.fuchsia = HUs.fuchsia[0] + ": " + temp[4];
+    plaqueID.red = HUs.red[0] + " HU: " + temp[0];
+    plaqueID.green = HUs.green[0] + " HU: " + temp[1];
+    plaqueID.blue = HUs.blue[0] + " HU: " + temp[2];
+    plaqueID.purple = HUs.purple[0] + " HU: " + temp[3];
+    plaqueID.fuchsia = HUs.fuchsia[0] + " HU: " + temp[4];
 
     return plaqueID;
 }
