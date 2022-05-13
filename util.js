@@ -270,11 +270,11 @@ function getDensity(labelmap2D, image) {
 
     var HUs =
     {
-        red: [],
-        green: [],
-        blue: [],
-        purple: [],
-        fuchsia: []
+        red: [0, 0],
+        green: [0, 0],
+        blue: [0, 0],
+        purple: [0, 0],
+        fuchsia: [0, 0]
     };
     var plaqueID = {
         red: "",
@@ -286,170 +286,174 @@ function getDensity(labelmap2D, image) {
     
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1) {
-            HUs.red.push(imagePix[i] * slope + intercept);
+            HUs.red[0] += imagePix[i] * slope + intercept;
+            HUs.red[1]++;
         }
         else if (labelmap2D.pixelData[i] == 2) {
-            HUs.green.push(imagePix[i] * slope + intercept);
+            HUs.green[0] += imagePix[i] * slope + intercept;
+            HUs.green[1]++;
         }
         else if (labelmap2D.pixelData[i] == 3) {
-            HUs.purple.push(imagePix[i] * slope + intercept);
+            HUs.purple[0] += imagePix[i] * slope + intercept;
+            HUs.purple[1]++;
         }
         else if (labelmap2D.pixelData[i] == 68) {
-            HUs.blue.push(imagePix[i] * slope + intercept);
+            HUs.blue[0] += imagePix[i] * slope + intercept;
+            HUs.blue[1]++;
         }
         else if (labelmap2D.pixelData[i] == 6) {
-            HUs.fuchsia.push(imagePix[i] * slope + intercept);
+            HUs.fuchsia[0] += imagePix[i] * slope + intercept;
+            HUs.fuchsia[1]++;
         }
     }
+    HUs.red[0] /= HUs.red[1];
+    HUs.green[0] /= HUs.green[1];
+    HUs.purple[0] /= HUs.purple[1];
+    HUs.blue[0] /= HUs.blue[1];
+    HUs.fuchsia[0] /= HUs.fuchsia[1];
+
 
     var temp = ["", "", "", "", ""];
 
-    for (let j = 0; j < HUs.red.length; j++) {
+    
         
-        if (HUs.red[j] > 100 && HUs.red[j] < 131 &&
-            temp[0] != "high density plaque" &&
-            temp[0] != "low density calcified plaque" &&
-            temp[0] != "high density calcified plaque" &&
-            temp[0] != '1K calcified plaque') {
-            temp[0] = "low density plaque";
-        }
-        else if (HUs.red[j] > 130 && HUs.red[j] < 351 &&
-            temp[0] != "low density calcified plaque" &&
-            temp[0] != "high density calcified plaque" &&
-            temp[0] != '1K calcified plaque') {
-            temp[0] = "high density plaque";
-        }
-        else if (HUs.red[j] > 350 && HUs.red[j] < 701 &&
-            temp[0] != "high density calcified plaque" &&
-            temp[0] != '1K calcified plaque') {
-            temp[0] = "low density calcified plaque";
-        }
-        else if (HUs.red[j] > 700 && HUs.red[j] < 1001 &&
-            temp[0] != '1K calcified plaque') {
-            temp[0] = "high density calcified plaque";
-        }
-        else if (HUs.red[j] > 1000) {
-            temp[0] = "1K calcified plaque";
-        }
+    if (HUs.red[0] > 100 && HUs.red[0] < 131 &&
+        temp[0] != "high density plaque" &&
+        temp[0] != "low density calcified plaque" &&
+        temp[0] != "high density calcified plaque" &&
+        temp[0] != '1K calcified plaque') {
+        temp[0] = "low density plaque";
+    }
+    else if (HUs.red[0] > 130 && HUs.red[0] < 351 &&
+        temp[0] != "low density calcified plaque" &&
+        temp[0] != "high density calcified plaque" &&
+        temp[0] != '1K calcified plaque') {
+        temp[0] = "high density plaque";
+    }
+    else if (HUs.red[0] > 350 && HUs.red[0] < 701 &&
+        temp[0] != "high density calcified plaque" &&
+        temp[0] != '1K calcified plaque') {
+        temp[0] = "low density calcified plaque";
+    }
+    else if (HUs.red[0] > 700 && HUs.red[0] < 1001 &&
+        temp[0] != '1K calcified plaque') {
+        temp[0] = "high density calcified plaque";
+    }
+    else if (HUs.red[0] > 1000) {
+        temp[0] = "1K calcified plaque";
+    }
+    
+
+    if (HUs.green[0] > 100 && HUs.green[0] < 131 &&
+        temp[1] != "high density plaque" &&
+        temp[1] != "low density calcified plaque" &&
+        temp[1] != "high density calcified plaque" &&
+        temp[1] != '1K calcified plaque') {
+        temp[1] = "low density plaque";
+    }
+    else if (HUs.green[0] > 130 && HUs.green[0] < 351 &&
+        temp[1] != "low density calcified plaque" &&
+        temp[1] != "high density calcified plaque" &&
+        temp[1] != '1K calcified plaque') {
+        temp[1] = "high density plaque";
+    }
+    else if (HUs.green[0] > 350 && HUs.green[0] < 701 &&
+        temp[1] != "high density calcified plaque" &&
+        temp[1] != '1K calcified plaque') {
+        temp[1] = "low density calcified plaque";
+    }
+    else if (HUs.green[0] > 700 && HUs.green[0] < 1001 &&
+        temp[1] != '1K calcified plaque') {
+        temp[1] = "high density calcified plaque";
+    }
+    else if (HUs.green[0] > 1000) {
+        temp[1] = "1K calcified plaque";
     }
 
-    for (let j = 0; j < HUs.green.length; j++) {
-        if (HUs.green[j] > 100 && HUs.green[j] < 131 &&
-            temp[1] != "high density plaque" &&
-            temp[1] != "low density calcified plaque" &&
-            temp[1] != "high density calcified plaque" &&
-            temp[1] != '1K calcified plaque') {
-            temp[1] = "low density plaque";
-        }
-        else if (HUs.green[j] > 130 && HUs.green[j] < 351 &&
-            temp[1] != "low density calcified plaque" &&
-            temp[1] != "high density calcified plaque" &&
-            temp[1] != '1K calcified plaque') {
-            temp[1] = "high density plaque";
-        }
-        else if (HUs.green[j] > 350 && HUs.green[j] < 701 &&
-            temp[1] != "high density calcified plaque" &&
-            temp[1] != '1K calcified plaque') {
-            temp[1] = "low density calcified plaque";
-        }
-        else if (HUs.green[j] > 700 && HUs.green[j] < 1001 &&
-            temp[1] != '1K calcified plaque') {
-            temp[1] = "high density calcified plaque";
-        }
-        else if (HUs.green[j] > 1000) {
-            temp[1] = "1K calcified plaque";
-        }
+    if (HUs.blue[0] > 100 && HUs.blue[0] < 131 &&
+        temp[2] != "high density plaque" &&
+        temp[2] != "low density calcified plaque" &&
+        temp[2] != "high density calcified plaque" &&
+        temp[2] != '1K calcified plaque') {
+        temp[2] = "low density plaque";
+    }
+    else if (HUs.blue[0] > 130 && HUs.blue[0] < 351 &&
+        temp[2] != "low density calcified plaque" &&
+        temp[2] != "high density calcified plaque" &&
+        temp[2] != '1K calcified plaque') {
+        temp[2] = "high density plaque";
+    }
+    else if (HUs.blue[0] > 350 && HUs.blue[0] < 701 &&
+        temp[2] != "high density calcified plaque" &&
+        temp[2] != '1K calcified plaque') {
+        temp[2] = "low density calcified plaque";
+    }
+    else if (HUs.blue[0] > 700 && HUs.blue[0] < 1001 &&
+        temp[2] != '1K calcified plaque') {
+        temp[2] = "high density calcified plaque";
+    }
+    else if (HUs.blue[0] > 1000) {
+        temp[2] = "1K calcified plaque";
+    }
+    
+    if (HUs.purple[0] > 100 && HUs.purple[0] < 131 &&
+        temp[3] != "high density plaque" &&
+        temp[3] != "low density calcified plaque" &&
+        temp[3] != "high density calcified plaque" &&
+        temp[3] != '1K calcified plaque') {
+        temp[3] = "low density plaque";
+    }
+    else if (HUs.purple[0] > 130 && HUs.purple[0] < 351 &&
+        temp[3] != "low density calcified plaque" &&
+        temp[3] != "high density calcified plaque" &&
+        temp[3] != '1K calcified plaque') {
+        temp[3] = "high density plaque";
+    }
+    else if (HUs.purple[0] > 350 && HUs.purple[0] < 701 &&
+        temp[3] != "high density calcified plaque" &&
+        temp[3] != '1K calcified plaque') {
+        temp[3] = "low density calcified plaque";
+    }
+    else if (HUs.purple[0] > 700 && HUs.purple[0] < 1001 &&
+        temp[3] != '1K calcified plaque') {
+        temp[3] = "high density calcified plaque";
+    }
+    else if (HUs.purple[0] > 1000) {
+        temp[3] = "1K calcified plaque";
     }
 
-    for (let j = 0; j < HUs.blue.length; j++) {
-        if (HUs.blue[j] > 100 && HUs.blue[j] < 131 &&
-            temp[2] != "high density plaque" &&
-            temp[2] != "low density calcified plaque" &&
-            temp[2] != "high density calcified plaque" &&
-            temp[2] != '1K calcified plaque') {
-            temp[2] = "low density plaque";
-        }
-        else if (HUs.blue[j] > 130 && HUs.blue[j] < 351 &&
-            temp[2] != "low density calcified plaque" &&
-            temp[2] != "high density calcified plaque" &&
-            temp[2] != '1K calcified plaque') {
-            temp[2] = "high density plaque";
-        }
-        else if (HUs.blue[j] > 350 && HUs.blue[j] < 701 &&
-            temp[2] != "high density calcified plaque" &&
-            temp[2] != '1K calcified plaque') {
-            temp[2] = "low density calcified plaque";
-        }
-        else if (HUs.blue[j] > 700 && HUs.blue[j] < 1001 &&
-            temp[2] != '1K calcified plaque') {
-            temp[2] = "high density calcified plaque";
-        }
-        else if (HUs.blue[j] > 1000) {
-            temp[2] = "1K calcified plaque";
-        }
+
+    if (HUs.fuchsia[0] > 100 && HUs.fuchsia[0] < 131 &&
+        temp[4] != "high density plaque" &&
+        temp[4] != "low density calcified plaque" &&
+        temp[4] != "high density calcified plaque" &&
+        temp[4] != '1K calcified plaque') {
+        temp[4] = "low density plaque";
+    }
+    else if (HUs.fuchsia[0] > 130 && HUs.fuchsia[0] < 351 &&
+        temp[4] != "low density calcified plaque" &&
+        temp[4] != "high density calcified plaque" &&
+        temp[4] != '1K calcified plaque') {
+        temp[4] = "high density plaque";
+    }
+    else if (HUs.fuchsia[0] > 350 && HUs.fuchsia[0] < 701 &&
+        temp[4] != "high density calcified plaque" &&
+        temp[4] != '1K calcified plaque') {
+        temp[4] = "low density calcified plaque";
+    }
+    else if (HUs.fuchsia[0] > 700 && HUs.fuchsia[0] < 1001 &&
+        temp[4] != '1K calcified plaque') {
+        temp[4] = "high density calcified plaque";
+    }
+    else if (HUs.fuchsia[0] > 1000) {
+        temp[4] = "1K calcified plaque";
     }
 
-    for (let j = 0; j < HUs.purple.length; j++) {
-        if (HUs.purple[j] > 100 && HUs.purple[j] < 131 &&
-            temp[3] != "high density plaque" &&
-            temp[3] != "low density calcified plaque" &&
-            temp[3] != "high density calcified plaque" &&
-            temp[3] != '1K calcified plaque') {
-            temp[3] = "low density plaque";
-        }
-        else if (HUs.purple[j] > 130 && HUs.purple[j] < 351 &&
-            temp[3] != "low density calcified plaque" &&
-            temp[3] != "high density calcified plaque" &&
-            temp[3] != '1K calcified plaque') {
-            temp[3] = "high density plaque";
-        }
-        else if (HUs.purple[j] > 350 && HUs.purple[j] < 701 &&
-            temp[3] != "high density calcified plaque" &&
-            temp[3] != '1K calcified plaque') {
-            temp[3] = "low density calcified plaque";
-        }
-        else if (HUs.purple[j] > 700 && HUs.purple[j] < 1001 &&
-            temp[3] != '1K calcified plaque') {
-            temp[3] = "high density calcified plaque";
-        }
-        else if (HUs.purple[j] > 1000) {
-            temp[3] = "1K calcified plaque";
-        }
-    }
-
-    for (let j = 0; j < HUs.fuchsia.length; j++) {
-        if (HUs.fuchsia[j] > 100 && HUs.fuchsia[j] < 131 &&
-            temp[4] != "high density plaque" &&
-            temp[4] != "low density calcified plaque" &&
-            temp[4] != "high density calcified plaque" &&
-            temp[4] != '1K calcified plaque') {
-            temp[4] = "low density plaque";
-        }
-        else if (HUs.fuchsia[j] > 130 && HUs.fuchsia[j] < 351 &&
-            temp[4] != "low density calcified plaque" &&
-            temp[4] != "high density calcified plaque" &&
-            temp[4] != '1K calcified plaque') {
-            temp[4] = "high density plaque";
-        }
-        else if (HUs.fuchsia[j] > 350 && HUs.fuchsia[j] < 701 &&
-            temp[4] != "high density calcified plaque" &&
-            temp[4] != '1K calcified plaque') {
-            temp[4] = "low density calcified plaque";
-        }
-        else if (HUs.fuchsia[j] > 700 && HUs.fuchsia[j] < 1001 &&
-            temp[4] != '1K calcified plaque') {
-            temp[4] = "high density calcified plaque";
-        }
-        else if (HUs.fuchsia[j] > 1000) {
-            temp[4] = "1K calcified plaque";
-        }
-    }
-
-    plaqueID.red = temp[0];
-    plaqueID.green = temp[1];
-    plaqueID.blue = temp[2];
-    plaqueID.purple = temp[3];
-    plaqueID.fuchsia = temp[4];
+    plaqueID.red = HUs.red[0] + ": " + temp[0];
+    plaqueID.green = HUs.green[0] + ": " + temp[1];
+    plaqueID.blue = HUs.blue[0] + temp[2];
+    plaqueID.purple = HUs.purple[0] + ": " + temp[3];
+    plaqueID.fuchsia = HUs.fuchsia[0] + ": " + temp[4];
 
     return plaqueID;
 }

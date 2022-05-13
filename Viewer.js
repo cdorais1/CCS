@@ -8,6 +8,7 @@ segModule = cornerstoneTools.getModule('segmentation');
 var currentTool = '';
 var image1;
 
+
 function onDragOver(event) {
 
     // stop browser processing right away
@@ -22,6 +23,7 @@ function onDrop(event) {
     event.stopPropagation();
     event.preventDefault();
 
+    console.log(event.dataTransfer.files);
     var file = event.dataTransfer.files[0];
 
     if (file.name.includes('.json') == true) {
@@ -72,7 +74,7 @@ function onDrop(event) {
             cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
             cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
             cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
-            cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
+//            cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
             currentTool = 'ThresholdsBrush';
@@ -93,9 +95,16 @@ window.onkeyup = function (event) {
 
     // this was an else if now it is just an if in case we want to change it back to keys on keyboard
     if (event.key == '0') {
-        cornerstoneTools.setToolDisabled(currentTool);
-        cornerstoneTools.setToolActive('FreehandRoi', { mouseButtonMask: 1 });
-        currentTool = 'FreehandRoi';
+        //cornerstoneTools.setToolDisabled(currentTool);
+        //cornerstoneTools.setToolActive('FreehandRoi', { mouseButtonMask: 1 });
+        //currentTool = 'FreehandRoi';
+        let dataSet = dicomParser.parseDicom(cornerstone.getImage(viewer).data.byteArray);
+        console.log("dataset: ");
+        console.log(dataSet);
+        console.log("Instance Number: ");
+        console.log(dataSet.uint16('x00200013'));
+        console.log("Study Instance UID: ");
+        console.log(dataSet.string('x0020000d'));
     }
     else if (event.key == '1') {
         cornerstoneTools.setToolDisabled(currentTool);
