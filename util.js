@@ -451,7 +451,7 @@ function getDensity(labelmap2D, image) {
 
     plaqueID.red = HUs.red[0] + ": " + temp[0];
     plaqueID.green = HUs.green[0] + ": " + temp[1];
-    plaqueID.blue = HUs.blue[0] + temp[2];
+    plaqueID.blue = HUs.blue[0] + ": " + temp[2];
     plaqueID.purple = HUs.purple[0] + ": " + temp[3];
     plaqueID.fuchsia = HUs.fuchsia[0] + ": " + temp[4];
 
