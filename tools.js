@@ -116,7 +116,7 @@ function getCircleWithThreshold(
     // if no thresholds, set all pixels range
     if (!thresholds) {
         // thresholds = [image.minPixelValue, image.maxPixelValue];
-        thresholds = [80, image.maxPixelValue];
+        thresholds = [70, image.maxPixelValue];
     }
 
     function isInsideThresholds(v, t) {
