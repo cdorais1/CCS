@@ -4,12 +4,14 @@
 ////cornerstoneTools.external.cornerstone = cornerstone;
 ////cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 
-
+// turn off brush tools
 function disable() {
     document.getElementById("Color").disabled = true;
     document.getElementById("Pplus").disabled = true;
     document.getElementById("Mminus").disabled = true;
 }
+
+// turn on brush tools
 function enable() {
     document.getElementById("Color").disabled = false;
     document.getElementById("Pplus").disabled = false;
@@ -121,6 +123,7 @@ function displaystats() {
     var output5c = document.getElementById("output5c");
     var output5v = document.getElementById("output5v");
 
+    // if values exist, show the values in statistics
     if (areas.red != null && simpleVolumes.red != null && densities.red != null && counts.red != null) {
         output1c.innerHTML = "Count: " + counts.red;
         output1a.innerHTML = "Area: " + areas.red + 'mm\u00B2';
@@ -152,9 +155,9 @@ function displaystats() {
         output5v.innerHTML = "Volume: " + simpleVolumes.fuchsia + 'mm\u00B3';
     }
 }
-function clearBrushes(viewer) {
 
-    // Taken from Marc's code, put here so people looking at the source don't see this haha.
+// clear all brush annotations
+function clearBrushes(viewer) {
     segModule.setters.deleteSegment(viewer, 1);
     segModule.setters.deleteSegment(viewer, 2);
     segModule.setters.deleteSegment(viewer, 3);
@@ -162,7 +165,7 @@ function clearBrushes(viewer) {
     segModule.setters.deleteSegment(viewer, 6);
 }
 
-
+//For the brush area statistic
 function getBrushArea(labelmap2D, image) {
     var areas = {
         red: 0,
@@ -171,8 +174,11 @@ function getBrushArea(labelmap2D, image) {
         purple: 0,
         fuchsia: 0
     };
+    
+    //dimensions for the size of a pixel
     var pixelSize = image.columnPixelSpacing * image.rowPixelSpacing;
 
+    //counts pixels for each color
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1) {
             areas.red++;
@@ -191,6 +197,7 @@ function getBrushArea(labelmap2D, image) {
         }
     }
 
+    //multiply # of pixels by the dimensions of a single pixel
     areas.red *= pixelSize;
     areas.blue *= pixelSize;
     areas.green *= pixelSize;
@@ -200,6 +207,7 @@ function getBrushArea(labelmap2D, image) {
     return areas;
 }
 
+//For the volume statistic
 function getVolume(labelmap2D, image) {
     const dataSet = dicomParser.parseDicom(image.data.byteArray);
     /* 
@@ -209,7 +217,7 @@ function getVolume(labelmap2D, image) {
      * (0018, 0088) is the tag associated with "spacing between slices", which is not mandatory to include.
     */
 
-
+    //dimension for volume (thickness)
     const sliceString = dataSet.string('x00180050');
     const dicomDepth = parseFloat(sliceString);
 
@@ -225,6 +233,7 @@ function getVolume(labelmap2D, image) {
         fuchsia: 0,
     };
 
+    // counts pixels for each color
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1) {
             volumes.red++;
@@ -242,7 +251,8 @@ function getVolume(labelmap2D, image) {
             volumes.fuchsia++;
         }
     }
-
+    
+    //multiply # of pixels by the volume of a single pixel
     volumes.red *= voxelSize;
     volumes.green *= voxelSize;
     volumes.blue *= voxelSize;
@@ -252,9 +262,10 @@ function getVolume(labelmap2D, image) {
     return volumes;
 }
 
-
+//For the density statistic
 function getDensity(labelmap2D, image) {
 
+    //demensions for the density of a pixel
     const imagePix = image.getPixelData();
     const slope = image.slope;
     const intercept = image.intercept;
@@ -284,6 +295,7 @@ function getDensity(labelmap2D, image) {
         fuchsia: ""
     };
     
+    // counts pixels for each color
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1) {
             HUs.red[0] += imagePix[i] * slope + intercept;
@@ -306,6 +318,7 @@ function getDensity(labelmap2D, image) {
             HUs.fuchsia[1]++;
         }
     }
+    //taking average 
     if (HUs.red[1] != 0)
         HUs.red[0] /= HUs.red[1];
     if (HUs.green[1] != 0)
@@ -320,6 +333,7 @@ function getDensity(labelmap2D, image) {
 
     var temp = ["", "", "", "", ""];
 
+    //calculating density of plaque
     if (HUs.red[0] < 101)
         temp[0] = "N/A";
         
@@ -471,7 +485,7 @@ function getDensity(labelmap2D, image) {
     return plaqueID;
 }
 
-
+//For discrete count statistics
 function discreteCount(labelmap2D, image) {
 
     var counts =
@@ -483,6 +497,7 @@ function discreteCount(labelmap2D, image) {
         fuchsia: 0
     };
 
+    //counts pixels by color
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1 && counts.red == 0) {
             counts.red++;
