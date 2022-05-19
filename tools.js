@@ -112,17 +112,7 @@ function getCircleWithThreshold(
     const x0 = Math.floor(xCoord);
     const y0 = Math.floor(yCoord);
     let circleArray = [];
-    //This is for potential later use if we need to change how intense the brush stoke should be or not.
 
-    //const alphaSlider = document.getElementById('fill-alpha');
-
-    //alphaSlider.defaultValue = Math.floor(segmentationModule.configuration.fillAlpha * 255);
-    //alphaSlider.addEventListener('input', event => {
-    //    const normalisedAlpha = event.target.value / 255.0;
-
-    //    segmentationModule.configuration.fillAlpha = normalisedAlpha;
-    //    cornerstone.updateImage(element);
-    //});
     var userMinThreshold = document.getElementById("userMinThreshold").value;
     var userMaxThreshold = document.getElementById("userMaxThreshold").value;
 
@@ -135,18 +125,7 @@ function getCircleWithThreshold(
 
     //// if no thresholds, set all pixels range
     if (!thresholds) {
-        //    // thresholds = [image.minPixelValue, image.maxPixelValue];
         thresholds = [userMinThreshold, userMaxThreshold];
-    //    //var maxthres = document.getElementById("maxthres");
-    //    //maxthres = thresholds[1];
-    //    //const thresslider = document.getElementById("threshold-slider");
-    //    //thresslider.defaultValue = Math.floor(thresholds[0]);
-    //    //thresslider.addEventListener('input', evnt => {
-    //    //    const normalisedThres = thresholds[0] / 255;
-    //    //    segmentationModule.configuration.activeSegmentIndex = normalisedThres;
-    //    //    console.log(segmentationModule.configuration.activeSegmentIndex);
-    //    //    cornerstone.updateImage(element);
-    //    //});
 
     }
 
@@ -156,15 +135,6 @@ function getCircleWithThreshold(
     console.log("item1:" + item1);
     var item2 = thresholds[1];
     console.log("item2" + item2);
-    //var maxthres = document.getElementById("maxthres");
-    //maxthres = thresholds[1];
-    //const thresslider = document.getElementById("threshold-slider");
-    //thresslider.defaultValue = Math.floor(thresholds[0]);
-    //thresslider.addEventListener('input', event => {
-    //    const normalisedThres = event.target.image.minPixelValue;
-    //    thresholds[1] = normalisedThres;
-    //    cornerstone.updateImage(element);
-    //});
 
     function isInsideThresholds(v, t) {
         return v >= t[0] && v <= t[1];
