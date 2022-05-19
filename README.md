@@ -24,6 +24,10 @@ Anthony Tran
 
 Steven Tran
 
+
+# Who We Are 
+We are a team of five undergraduate students majoring in Computer Science at University of Massachusetts, Boston. This project helped bring us together and solidify our abilities to collaborate and work as team due to the challenge of the task at hand and the desire to make a tool that could benefit researchers working on this necessary field of study. Our goal was to make a successful scanning tool that will meet the needs and expectations of our clients in the University of Pennsylvania's Radiology Department. We designed this tool to help with the phenotyping of calcific atherosclerotic plaque deposits in the carotid artery, but this tool can also be used for other medical purposes as needed.
+
 # Clinical Relevance
 
 Carotid artherosclerotic plaque in the neck is a common cause of ischemic stroke in the brain. Atherosclerosis is the deposition of inflamed fat in the vessel walls that lead to hardening of the arteries. Hardened arteries with inflammation can lead to unstable plaque, which can break into pieces and travel and obstruct blood vessels in the brain. Lack of oxygenated blood flow causes strokes. Understanding plaque features that lead to instability are therefore absolutely critical for doctors to identify patients at risk for stroke. Calcific plaque is fascinating as it may have dual roles in both plaque stability and instability. Using noninvasive diagnostic neuroimaging exams such as computed tomographic angiography (CTA) to image the blood vessels, we identify patients with diseased vessels with atherosclerotic plaque. Our client team includes neuroradiologists, vascular neurologists, and vascular surgeons at the University of Pennsylvania. 
