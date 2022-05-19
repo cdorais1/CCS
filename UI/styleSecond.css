@@ -264,7 +264,7 @@ p1 {
 /*p2 corresponds to zoom*/
 p2 {
     position: fixed;
-    top: 29%;
+    top: 43%;
     left: 3%;
     font-size: 14px;
     font-family: Georgia, serif;
@@ -280,7 +280,7 @@ p2 {
     color: #35afaa;
     position: fixed;
     left: 3%;
-    top: 32%;
+    top: 46%;
     min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
@@ -309,7 +309,7 @@ p2 {
 /*p3 corresponds to pan*/
 p3 {
     position: fixed;
-    top: 38%;
+    top: 52%;
     left: 3.25%;
     font-size: 14px;
     font-family: Georgia, serif;
@@ -325,7 +325,7 @@ p3 {
     color: #35afaa;
     position: fixed;
     left: 3%;
-    top: 41%;
+    top: 55%;
     min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
@@ -484,7 +484,7 @@ p8 {
 /*p9 corresponds to length button*/
 p9 {
     position: fixed;
-    top: 47%;
+    top: 61%;
     left: 3%;
     font-size: 14px;
     font-family: Georgia, serif;
@@ -500,7 +500,7 @@ p9 {
     color: #35afaa;
     position: fixed;
     left: 3%;
-    top: 50%;
+    top: 64%;
     min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
@@ -525,10 +525,65 @@ p9 {
         transform: translateY(3px);
     }
 
+/*p11 corresponds to the low pixel intensity threshold*/
+p11 {
+    position: fixed;
+    top: 29%;
+    left: 1.75%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+#userMinThreshold {
+    position: fixed;
+    top: 32%;
+    left: 2%;
+}
+
+
+
+/*p11 corresponds to the high pixel intensity threshold*/
+p12 {
+    position: fixed;
+    top: 36%;
+    left: 1.75%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+#userMaxThreshold{
+    position: fixed;
+    top: 39%;
+    left: 2%;
+}
+/*style for the sliders for the low and high pixel intensity threshold*/
+input[type="range"] {
+    margin: 30px 0 20px 0;
+    -webkit-appearance: none;
+    background-color: #808080;
+    height: 3px;
+    margin: 10px auto;
+}
+
+    input[type="range"]:focus {
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #35afaa;
+        border-radius: 50%;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+    }
+
 /*p10 corresponds to the display statistics*/
 p10 {
     position: fixed;
-    top: 56%;
+    top: 70%;
     left: 1%;
     font-size: 14px;
     font-family: Georgia, serif;
@@ -544,7 +599,7 @@ p10 {
     color: #35afaa;
     position: fixed;
     left: 3%;
-    top: 59%;
+    top: 73%;
     min-block-size: 5%;
     width: 30px;
     min-width: 0.5%;
