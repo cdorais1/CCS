@@ -112,11 +112,20 @@ function getCircleWithThreshold(
     const x0 = Math.floor(xCoord);
     const y0 = Math.floor(yCoord);
     let circleArray = [];
+    //const alphaSlider = document.getElementById('fill-alpha');
 
+    //alphaSlider.defaultValue = Math.floor(segmentationModule.configuration.fillAlpha * 255);
+    //alphaSlider.addEventListener('input', event => {
+    //    const normalisedAlpha = event.target.value / 255.0;
+
+    //    segmentationModule.configuration.fillAlpha = normalisedAlpha;
+    //    cornerstone.updateImage(element);
+    //});
     // if no thresholds, set all pixels range
     if (!thresholds) {
         // thresholds = [image.minPixelValue, image.maxPixelValue];
         thresholds = [80, image.maxPixelValue];
+
     }
 
     function isInsideThresholds(v, t) {

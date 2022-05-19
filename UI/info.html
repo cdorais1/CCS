@@ -23,8 +23,9 @@
                 University of Massachusetts in Boston. We are hard-working students that chose a very challenging
                 but exciting project to work on. This project brought us together to collaborate and
                 work as team. Our purpose is to make a successful scanning tool that will meet the needs and
-                expectations of our client.
-
+                expectations of our client. We design this tool to help with the penotyping of the calcific 
+                atherosclerosis in the carotid artery. However, this tool can also be used for other medical 
+                purposes.
             </p1>
         </div>
         <h2>Our tool</h2>
@@ -32,11 +33,19 @@
         <div class="ourtool">
             <p2>
                 A browser-based semi-automatic tool that identifies morphologic features of carotid
-                atherosclerotic calcifications. The current goal of this project is based around allowing
+                atherosclerotic calcifications. The current goal of this project and tool is based around allowing
                 users to identify areas of calcific plaque build-up and calculating morphologic features
-                of the build up based on the user annotation. Later goals include automatic identification
-                of calcific plaque structures and potentially a machine learning algorithm to improve
-                detection of calcific plaque.
+                of the build up based on the user annotation. The user will be able to use the brush tool to paint
+                on the medical images and get those annotations by a single click on the display button. The user can use 
+                the plus and minus button to change the size of the brush. They also have the opportunity to pick
+                between 5 colors (red, green, blue, purple, and pink). There is also a button that clears all the 
+                brush annotations on the DICOM image. In case the user does not want to clear all the brush annotations,
+                they have the choice to undo single brush strokes. Moreover, if a brush stroke has been deleted by mistake
+                there is a redo button that will bring back that brush stroke. Other important tools are the zoom button, 
+                which allows for expansion or diminution, the pan button, which allows to move the image around. Last 
+                but not least, there is the length button. With the length button, the user can take the length between
+                two points on the medical image. The purpose for this button is to find the distance of the calcific plaque
+                from the lumen.
             </p2>
         </div>
         <h3>How to use the scanner</h3>
@@ -48,14 +57,16 @@
             </tr>
             <tr>
                 <td><i class="fa-solid fa-paintbrush"></i></td>
-                <td>Brush Tool: Press on this button to paint on the DICOM images. When pressing on this button 
-                    the increase and decrease of the brush size, as well as, the brush color buttons and choices 
-                    are enabled.</td>
+                <td>
+                    Brush Tool: Press on this button to paint on the DICOM images. When pressing on this button
+                    the increase and decrease of the brush size, as well as, the brush color buttons and choices
+                    are enabled.
+                </td>
             </tr>
             <tr>
                 <td><i class="fa-solid fa-plus"></i></td>
                 <td>
-                    Brush size: Press on this button to increase the size of your brush. 
+                    Brush size: Press on this button to increase the size of your brush.
                 </td>
             </tr>
             <tr>
@@ -66,21 +77,46 @@
             </tr>
             <tr>
                 <td>Brush-Color</td>
-                <td>Press on this button to change the color of your brush. The color choices are red, green, purple, blue and pink.
-                    The default color for the brush is red.</td>
+                <td>
+                    Press on this button to change the color of your brush. The color choices are red, green, purple, blue and pink.
+                    The default color for the brush is red.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-trash"></i></td>
+                <td>Clear Brush Button: Press on this button to clear any brush annotation on the DICOM image.</td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-arrow-rotate-left"></i></td>
+                <td>Undo Brush Button: Press on this button to undo your brush strokes one by one.</td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-arrow-rotate-right"></i></td>
+                <td>Redo Brush Button: Press on this button to redo a brush stroke that you may have deleted by mistake.</td>
             </tr>
             <tr>
                 <td><i class="fa-solid fa-magnifying-glass"></i></td>
-                <td>Zoom Button: Press on this button to enable the zoom button. When pressing on the zoom button the brush size, and
-                    the brush color buttons are disabled. To enable them again press on the brush button.</td>
+                <td>
+                    Zoom Button: Press on this button to enable the zoom button. When pressing on the zoom button the brush size, and
+                    the brush color buttons are disabled. To enable them again press on the brush button.
+                </td>
             </tr>
             <tr>
                 <td><i class="fa-solid fa-arrows-up-down-left-right"></i></td>
                 <td>Pan Button: Press on this button to allow movement of your image when there is zoom in applied.</td>
             </tr>
             <tr>
-                <td><i class="fa-solid fa-trash"></i></td>
-                <td>Clear Brush Button: Press on this button to clear any brush annotation on the DICOM image.</td>
+                <td><i class="fa-solid fa-arrows-left-right-to-line"></i></td>
+                <td>Length Button: Press on this button to take the length between two points. This tool is designed
+                to take the distance of a calcific plaque from the lumen. However, if this tool is being used for 
+                other medical occasions, the user can still take the length between two points.</td>
+            </tr>
+            <tr>
+                <td><i class="fas fa-chart-line"></i></td>
+                <td>Display Statistics Button: Press on this button to display on the right side of the image 
+                viewer the statistics that have been calculated by painting on the DICOM image. Those statistics include
+                count of brush strokes (in this occasion for calcific plaques), the area the brush stroke is covering, the
+                pixel density of that area, and the volume. These statistics are being printed according to the chosen color.</td>
             </tr>
         </table>
         <h4>Clinic Relevance</h4>
@@ -91,17 +127,14 @@
                 Atherosclerosis is the deposition of inflamed fat in the vessel walls that lead to hardening
                 of the arteries. Hardened arteries with inflammation can lead to unstable plaque, which can
                 break into pieces and travel and obstruct blood vessels in the brain. Lack ofoxygenated blood
-                flow causes strokes. Understanding plaque features that lead to instability are therefore
+                flow causes strokes. Understanding plaque features that lead to instability are, therefore,
                 absolutely critical for doctors to identify patients at risk for stroke. Calcific plaque is
                 fascinating as it may have dual roles in both plaque stability and instability. This project
-                will involve characterizing qualitative and quantitative morphologic features of calcific plaque.
+                 involves characterizing qualitative and quantitative morphologic features of calcific plaque.
                 Using noninvasive diagnostic neuroimaging exams such as computed tomographic angiography (CTA)
                 to image the blood vessels, we identify patients with diseased vessels with atherosclerotic plaque.
                 Our client team includes neuroradiologists, vascular neurologists, and vascular surgeons at the
-                University of Pennsylvania. Our goal is to develop a browser-based semi-automated tool that
-                identifies morphologic features of carotid atherosclerotic calcifications. Specific morphologic
-                features of interest include, for example, size, number of discrete calcifications, density
-                (e.g., pixel signal intensity), and spatial information relative to the carotid artery vessel wall.
+                University of Pennsylvania. 
             </p3>
         </div>
         <h5>Scientific Definitions</h5>

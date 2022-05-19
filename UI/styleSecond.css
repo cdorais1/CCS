@@ -525,6 +525,12 @@ p9 {
         transform: translateY(3px);
     }
 
+/*#slider {
+    position: relative;
+    top: 69%;
+
+}*/
+
 /*p10 corresponds to the display statistics*/
 p10 {
     position: fixed;
