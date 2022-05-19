@@ -110,7 +110,7 @@ function convertToJSON(/*labelmap2D,*/ image) {
             shouldErase: v5
         };
     }
-
+    // Reassemble the ThresholdBrushTool in a json-friendly format.
     const ToolFive = {
         activeStrategy: ts1,
         defaultStrategy: ts2,
@@ -138,6 +138,7 @@ function convertToJSON(/*labelmap2D,*/ image) {
 
     let toolStack = [ToolOne, ToolTwo, ToolThree, ToolFour, ToolFive];
 
+    // Create structure for json upload.
     const structure =
     {
         activeBrushSegment: cornerstoneTools.getModule('segmentation').getters.activeSegmentIndex,
@@ -145,9 +146,11 @@ function convertToJSON(/*labelmap2D,*/ image) {
         tools: toolStack
     };
 
+    // Make structure json-acceptable. 
     var JSONArray = JSON.stringify(structure);
-
     JSONArray = [JSONArray];
+
+    // Create element for downloading json file.
     var a = document.createElement("a");
     var blob1 = new Blob(JSONArray, { type: "text/plain; charset=utf-8" });
     var url = window.URL || window.webkitURL;
@@ -161,25 +164,23 @@ function convertToJSON(/*labelmap2D,*/ image) {
     return JSONArray;
 }
 
+// Allow users to resume annotations from a previous save state.
 function updateFromJSON(jsonfile) {
 
     let temp;
     console.log(jsonfile);
     let reader = new FileReader();
-    console.log(reader);
+
+    // Get contents of passed in json file.
     reader.readAsText(jsonfile);
     reader.onload = function () {
         let result = reader.result;
         temp = JSON.parse(result);
-        console.log(temp);
-
+        
         if (dicomParser.parseDicom(cornerstone.getImage(viewer).data.byteArray).string('x0020000d') == temp.studyInstanceUID) {
             console.log("Study Instance UIDs match!");
             console.log(dicomParser.parseDicom(cornerstone.getImage(viewer).data.byteArray).string('x0020000d'));
             console.log(temp.studyInstanceUID);
-
-            // Set up a variable for when we take apart the array of tool state configurations for json import.
-            const toolStates = cornerstoneTools.store.state;
 
             // All tools but the brush tool can be added to the json with minimal problem due to lack of typed arrays.
             const ToolOne = temp.tools[0]; //Stack Scroll Mousewheel Tool
@@ -268,7 +269,6 @@ function updateFromJSON(jsonfile) {
                 };
 
                 let v40 = new Uint16Array(paintEventData.previousPixelData);
-//                let v4 = [...v40];
                 let v5 = paintEventData.shouldErase;
 
                 var paint_event_data = {
@@ -281,6 +281,7 @@ function updateFromJSON(jsonfile) {
                 };
             }
 
+            // Reassemble the ThresholdBrush in the correct configuration.
             const ToolFive = {
                 activeStrategy: ts1,
                 defaultStrategy: ts2,
@@ -305,6 +306,7 @@ function updateFromJSON(jsonfile) {
                 configuration: ts20,
                 options: ts21
             }
+            // Assemble the tools in the correct order to pass into the tool state manager.
             toolsStates = [ToolOne, ToolTwo, ToolThree, ToolFour, ToolFive];
             console.log(toolsStates);
 
@@ -314,8 +316,6 @@ function updateFromJSON(jsonfile) {
             console.log(dicomParser.parseDicom(cornerstone.getImage(viewer).data.byteArray).string('x0020000d'));
             console.log(temp.studyInstanceUID);
         }
-
-        
     }
 
     return 0;
