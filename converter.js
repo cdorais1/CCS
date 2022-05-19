@@ -3,7 +3,9 @@
  * const typedArray = cornerstoneTools.getModule('segmentation').getters.labelmap2D(viewer).labelmap2D.pixelData; // This is an Uint16 Array
  * const twoDlab = [...typedArray];
 */
-function convertToJSON(/*labelmap2D,*/ image) {
+
+// Convert annotation data to json format and export a json file with tool configurations.
+function convertToJSON(image) {
     // Get study instance Universal Identifier from the dicom 
     const dataSet = dicomParser.parseDicom(image.data.byteArray);
     const studyInstanceUIDval = dataSet.string('x0020000d');
