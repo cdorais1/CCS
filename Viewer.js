@@ -279,6 +279,6 @@ window.onkeyup = function (event) {
     //press q for json download
     else if (event.key == 'q') {
         var image = cornerstone.getImage(viewer);
-        convertToJSON(/*labelMap2D,*/ image);
+        convertToJSON(image);
     }
 };

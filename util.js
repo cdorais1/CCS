@@ -1,56 +1,51 @@
-////cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-////cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
-////cornerstoneTools.external.Hammer = Hammer;
-////cornerstoneTools.external.cornerstone = cornerstone;
-////cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
-
-// turn off brush tools
+// Turn off brush tools.
 function disable() {
     document.getElementById("Color").disabled = true;
     document.getElementById("Pplus").disabled = true;
     document.getElementById("Mminus").disabled = true;
 }
 
-// turn on brush tools
+// Turn on brush tools.
 function enable() {
     document.getElementById("Color").disabled = false;
     document.getElementById("Pplus").disabled = false;
     document.getElementById("Mminus").disabled = false;
 }
 
-// function panbutton that will allow the panning of the image when user zooms in and out
+// Enables pan tool to allow users to move image in viewport.
 function panbutton() {
     cornerstoneTools.setToolDisabled(currentTool);
     cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
     currentTool = 'Pan';
 }
 
-// function clearbutton that will clear or the the brushstrokes the users has taken
+// Clears all brush strokes on the currently displayed image.
 function clearbutton() {
     clearBrushes(viewer);
 }
 
-// function brushbutton that will allow the onclick event when the user is pressing the brush button
+// Enables brush tool when clicked.
 function brushbutton() {
     cornerstoneTools.setToolDisabled(currentTool);
     cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
     currentTool = 'ThresholdsBrush';
 }
-// function decreasebrush that will allow the user to decrease the size of the brush when clicking on the - button
+// Allows the user to decrease the size of the brush when clicking on the - button.
 function decreasebrush() {
     cornerstoneTools.store.state.tools[4].decreaseBrushSize();
 }
-// function increase brush that will allow the user to increase the size of the brush when clicking on the + button
+// Allows the user to increase the size of the brush when clicking on the + button.
 function increasebrush() {
     cornerstoneTools.store.state.tools[4].increaseBrushSize();
 }
-// function zoombutton that will allow the onclick event when the user is pressing the zoom button
+// Enables Zoom tool when clicked.
 function zoombutton() {
     cornerstoneTools.setToolDisabled(currentTool);
     cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
     currentTool = 'Zoom';
 }
-// function changecolor that will allow the brush to change color as the user desires
+
+// Allows users to change brush color.
 function changecolor() {
     var select = document.getElementById('Color');
     var option = select.options[select.selectedIndex].value;
@@ -72,23 +67,23 @@ function changecolor() {
     }
 }
 
-// function undo, press to undo a brush stroke
+// function undo: press to undo a brush stroke.
 function undo(){
     segModule.setters.undo(viewer);
 }
 
-// function redo, press to redo a brush stroke
+// function redo: press to redo a brush stroke.
 function redo() {
     segModule.setters.redo(viewer);
 }
 
-//function lengthl, button that will get the length between the calcific plaque and the lumen
+// Enables tool that will get the length between the calcific plaque and the lumen.
 function lengthl() {
     cornerstoneTools.setToolDisabled(currentTool);
     cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
     currentTool = 'Length';
 }
-// function diplaystats, by pressing this button the stats are being displayed
+// Displays statistics captured by paint event data.
 function displaystats() {
     var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
     var image = cornerstone.getImage(viewer);
@@ -123,7 +118,7 @@ function displaystats() {
     var output5c = document.getElementById("output5c");
     var output5v = document.getElementById("output5v");
 
-    // if values exist, show the values in statistics
+    // If values exist, show the values in statistics.
     if (areas.red != null && simpleVolumes.red != null && densities.red != null && counts.red != null) {
         output1c.innerHTML = "Count: " + counts.red;
         output1a.innerHTML = "Area: " + areas.red + 'mm\u00B2';
@@ -156,7 +151,7 @@ function displaystats() {
     }
 }
 
-// clear all brush annotations
+// Clear all brush annotations.
 function clearBrushes(viewer) {
     segModule.setters.deleteSegment(viewer, 1);
     segModule.setters.deleteSegment(viewer, 2);
@@ -165,7 +160,7 @@ function clearBrushes(viewer) {
     segModule.setters.deleteSegment(viewer, 6);
 }
 
-//For the brush area statistic
+// Calculate area under brush markings using pixel data and pixel dimensions.
 function getBrushArea(labelmap2D, image) {
     var areas = {
         red: 0,
@@ -175,10 +170,10 @@ function getBrushArea(labelmap2D, image) {
         fuchsia: 0
     };
     
-    //dimensions for the size of a pixel
+    // Dimensions for the size of a pixel
     var pixelSize = image.columnPixelSpacing * image.rowPixelSpacing;
 
-    //counts pixels for each color
+    // Counts total pixels for each color.
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1) {
             areas.red++;
@@ -197,7 +192,7 @@ function getBrushArea(labelmap2D, image) {
         }
     }
 
-    //multiply # of pixels by the dimensions of a single pixel
+    // Multiply number of pixels by the dimensions of a single pixel.
     areas.red *= pixelSize;
     areas.blue *= pixelSize;
     areas.green *= pixelSize;
@@ -207,23 +202,21 @@ function getBrushArea(labelmap2D, image) {
     return areas;
 }
 
-//For the volume statistic
+// Calculate volume of area under paint annotatations using pixel data and pixel dimensions.
 function getVolume(labelmap2D, image) {
     const dataSet = dicomParser.parseDicom(image.data.byteArray);
-    /* 
+
+    /*
      * (0018, 0050) is the tag associated with "slice thickness"
      * (0020, 0032) is the tag associated with the "image position", which is 
      * an x, y, z coordinate of the upper left hand corner of the image. 
      * (0018, 0088) is the tag associated with "spacing between slices", which is not mandatory to include.
     */
-
-    //dimension for volume (thickness)
     const sliceString = dataSet.string('x00180050');
     const dicomDepth = parseFloat(sliceString);
 
 
     const voxelSize = dicomDepth * image.columnPixelSpacing * image.rowPixelSpacing;
-    //    const voxelSize = image.columnPixelSpacing * image.rowPixelSpacing * 1.5;
 
     var volumes = {
         red: 0,
@@ -233,7 +226,7 @@ function getVolume(labelmap2D, image) {
         fuchsia: 0,
     };
 
-    // counts pixels for each color
+    // Counts total pixels for each color.
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1) {
             volumes.red++;
@@ -252,7 +245,7 @@ function getVolume(labelmap2D, image) {
         }
     }
     
-    //multiply # of pixels by the volume of a single pixel
+    // Multiply # of pixels by the volume of a single pixel.
     volumes.red *= voxelSize;
     volumes.green *= voxelSize;
     volumes.blue *= voxelSize;
@@ -262,10 +255,10 @@ function getVolume(labelmap2D, image) {
     return volumes;
 }
 
-//For the density statistic
+// Calculate density of the annotated area.
 function getDensity(labelmap2D, image) {
 
-    //demensions for the density of a pixel
+    // demensions for the density of a pixel
     const imagePix = image.getPixelData();
     const slope = image.slope;
     const intercept = image.intercept;
@@ -318,7 +311,7 @@ function getDensity(labelmap2D, image) {
             HUs.fuchsia[1]++;
         }
     }
-    //taking average 
+    // Calculate average HU value.  
     if (HUs.red[1] != 0)
         HUs.red[0] /= HUs.red[1];
     if (HUs.green[1] != 0)
@@ -333,30 +326,20 @@ function getDensity(labelmap2D, image) {
 
     var temp = ["", "", "", "", ""];
 
-    //calculating density of plaque
+    // Add plain English description of the meaning of the HU value for all brush colors.
     if (HUs.red[0] < 101)
         temp[0] = "N/A";
         
-    else if  (HUs.red[0] > 100 && HUs.red[0] < 131 &&
-        temp[0] != "high density plaque" &&
-        temp[0] != "low density calcified plaque" &&
-        temp[0] != "high density calcified plaque" &&
-        temp[0] != '1K calcified plaque') {
+    else if  (HUs.red[0] > 100 && HUs.red[0] < 131) {
         temp[0] = "low density plaque";
     }
-    else if (HUs.red[0] > 130 && HUs.red[0] < 351 &&
-        temp[0] != "low density calcified plaque" &&
-        temp[0] != "high density calcified plaque" &&
-        temp[0] != '1K calcified plaque') {
+    else if (HUs.red[0] > 130 && HUs.red[0] < 351) {
         temp[0] = "high density plaque";
     }
-    else if (HUs.red[0] > 350 && HUs.red[0] < 701 &&
-        temp[0] != "high density calcified plaque" &&
-        temp[0] != '1K calcified plaque') {
+    else if (HUs.red[0] > 350 && HUs.red[0] < 701) {
         temp[0] = "low density calcified plaque";
     }
-    else if (HUs.red[0] > 700 && HUs.red[0] < 1001 &&
-        temp[0] != '1K calcified plaque') {
+    else if (HUs.red[0] > 700 && HUs.red[0] < 1001) {
         temp[0] = "high density calcified plaque";
     }
     else if (HUs.red[0] > 1000) {
@@ -366,26 +349,16 @@ function getDensity(labelmap2D, image) {
     if (HUs.green[0] < 101)
         temp[1] = "N/A";
 
-    else if (HUs.green[0] > 100 && HUs.green[0] < 131 &&
-        temp[1] != "high density plaque" &&
-        temp[1] != "low density calcified plaque" &&
-        temp[1] != "high density calcified plaque" &&
-        temp[1] != '1K calcified plaque') {
+    else if (HUs.green[0] > 100 && HUs.green[0] < 131) {
         temp[1] = "low density plaque";
     }
-    else if (HUs.green[0] > 130 && HUs.green[0] < 351 &&
-        temp[1] != "low density calcified plaque" &&
-        temp[1] != "high density calcified plaque" &&
-        temp[1] != '1K calcified plaque') {
+    else if (HUs.green[0] > 130 && HUs.green[0] < 351) {
         temp[1] = "high density plaque";
     }
-    else if (HUs.green[0] > 350 && HUs.green[0] < 701 &&
-        temp[1] != "high density calcified plaque" &&
-        temp[1] != '1K calcified plaque') {
+    else if (HUs.green[0] > 350 && HUs.green[0] < 701) {
         temp[1] = "low density calcified plaque";
     }
-    else if (HUs.green[0] > 700 && HUs.green[0] < 1001 &&
-        temp[1] != '1K calcified plaque') {
+    else if (HUs.green[0] > 700 && HUs.green[0] < 1001) {
         temp[1] = "high density calcified plaque";
     }
     else if (HUs.green[0] > 1000) {
@@ -394,26 +367,16 @@ function getDensity(labelmap2D, image) {
 
     if (HUs.blue[0] < 101)
         temp[2] = "N/A";
-    else if (HUs.blue[0] > 100 && HUs.blue[0] < 131 &&
-        temp[2] != "high density plaque" &&
-        temp[2] != "low density calcified plaque" &&
-        temp[2] != "high density calcified plaque" &&
-        temp[2] != '1K calcified plaque') {
+    else if (HUs.blue[0] > 100 && HUs.blue[0] < 131) {
         temp[2] = "low density plaque";
     }
-    else if (HUs.blue[0] > 130 && HUs.blue[0] < 351 &&
-        temp[2] != "low density calcified plaque" &&
-        temp[2] != "high density calcified plaque" &&
-        temp[2] != '1K calcified plaque') {
+    else if (HUs.blue[0] > 130 && HUs.blue[0] < 351) {
         temp[2] = "high density plaque";
     }
-    else if (HUs.blue[0] > 350 && HUs.blue[0] < 701 &&
-        temp[2] != "high density calcified plaque" &&
-        temp[2] != '1K calcified plaque') {
+    else if (HUs.blue[0] > 350 && HUs.blue[0] < 701) {
         temp[2] = "low density calcified plaque";
     }
-    else if (HUs.blue[0] > 700 && HUs.blue[0] < 1001 &&
-        temp[2] != '1K calcified plaque') {
+    else if (HUs.blue[0] > 700 && HUs.blue[0] < 1001) {
         temp[2] = "high density calcified plaque";
     }
     else if (HUs.blue[0] > 1000) {
@@ -422,26 +385,16 @@ function getDensity(labelmap2D, image) {
     if (HUs.purple[0] < 101)
         temp[3] = "N/A";
 
-    else if (HUs.purple[0] > 100 && HUs.purple[0] < 131 &&
-        temp[3] != "high density plaque" &&
-        temp[3] != "low density calcified plaque" &&
-        temp[3] != "high density calcified plaque" &&
-        temp[3] != '1K calcified plaque') {
+    else if (HUs.purple[0] > 100 && HUs.purple[0] < 131) {
         temp[3] = "low density plaque";
     }
-    else if (HUs.purple[0] > 130 && HUs.purple[0] < 351 &&
-        temp[3] != "low density calcified plaque" &&
-        temp[3] != "high density calcified plaque" &&
-        temp[3] != '1K calcified plaque') {
+    else if (HUs.purple[0] > 130 && HUs.purple[0] < 351) {
         temp[3] = "high density plaque";
     }
-    else if (HUs.purple[0] > 350 && HUs.purple[0] < 701 &&
-        temp[3] != "high density calcified plaque" &&
-        temp[3] != '1K calcified plaque') {
+    else if (HUs.purple[0] > 350 && HUs.purple[0] < 701) {
         temp[3] = "low density calcified plaque";
     }
-    else if (HUs.purple[0] > 700 && HUs.purple[0] < 1001 &&
-        temp[3] != '1K calcified plaque') {
+    else if (HUs.purple[0] > 700 && HUs.purple[0] < 1001) {
         temp[3] = "high density calcified plaque";
     }
     else if (HUs.purple[0] > 1000) {
@@ -450,26 +403,16 @@ function getDensity(labelmap2D, image) {
 
     if (HUs.fuchsia[0] < 101)
         temp[4] = "N/A";
-    else if (HUs.fuchsia[0] > 100 && HUs.fuchsia[0] < 131 &&
-        temp[4] != "high density plaque" &&
-        temp[4] != "low density calcified plaque" &&
-        temp[4] != "high density calcified plaque" &&
-        temp[4] != '1K calcified plaque') {
+    else if (HUs.fuchsia[0] > 100 && HUs.fuchsia[0] < 131) {
         temp[4] = "low density plaque";
     }
-    else if (HUs.fuchsia[0] > 130 && HUs.fuchsia[0] < 351 &&
-        temp[4] != "low density calcified plaque" &&
-        temp[4] != "high density calcified plaque" &&
-        temp[4] != '1K calcified plaque') {
+    else if (HUs.fuchsia[0] > 130 && HUs.fuchsia[0] < 351) {
         temp[4] = "high density plaque";
     }
-    else if (HUs.fuchsia[0] > 350 && HUs.fuchsia[0] < 701 &&
-        temp[4] != "high density calcified plaque" &&
-        temp[4] != '1K calcified plaque') {
+    else if (HUs.fuchsia[0] > 350 && HUs.fuchsia[0] < 701) {
         temp[4] = "low density calcified plaque";
     }
-    else if (HUs.fuchsia[0] > 700 && HUs.fuchsia[0] < 1001 &&
-        temp[4] != '1K calcified plaque') {
+    else if (HUs.fuchsia[0] > 700 && HUs.fuchsia[0] < 1001) {
         temp[4] = "high density calcified plaque";
     }
     else if (HUs.fuchsia[0] > 1000) {
@@ -497,7 +440,7 @@ function discreteCount(labelmap2D, image) {
         fuchsia: 0
     };
 
-    //counts pixels by color
+    // If color exists on labelmap, increment count to 1.
     for (let i = 0; i < labelmap2D.pixelData.length; i++) {
         if (labelmap2D.pixelData[i] == 1 && counts.red == 0) {
             counts.red++;
@@ -515,6 +458,6 @@ function discreteCount(labelmap2D, image) {
             counts.fuchsia++;
         }
     }
-    
+
     return counts;
 }
