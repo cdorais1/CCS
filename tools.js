@@ -147,6 +147,7 @@ function getCircleWithThreshold(
     //    //    console.log(segmentationModule.configuration.activeSegmentIndex);
     //    //    cornerstone.updateImage(element);
     //    //});
+
     }
 
     console.log("MAX:" + image.maxPixelValue);

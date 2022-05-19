@@ -1,6 +1,6 @@
 # Carotid Calcium Scanner (CCS)
 
-A browser-based semi-automatic tool that identifies morphologic features of carotid atherosclerotic calcifications. The current goal of this project is based around allowing users to identify areas of calcific plaque build-up and calculating morphologic features of the build up based on the user annotations. Later goals include automatic identification of calcific plaque structures and potentially a machine learning algorithm to improve detection of calcific plaque. Specific morphologic features of interest include, for example, size, number of discrete calcifications, density (e.g., pixel signal intensity), and spatial information relative to the carotid artery vessel wall.
+A browser-based semi-automatic tool that identifies morphologic features of carotid atherosclerotic calcifications. The current goal of this project is based around allowing users to identify areas of calcific plaque build-up and calculating morphologic features of the build up based on the user annotations. Later goals include automatic identification of calcific plaque structures and potentially a machine learning algorithm to improve detection of calcific plaque. Specific morphologic features of interest include, for example, size, number of discrete calcifications, density (e.g., pixel signal intensity), and spatial information relative to the carotid artery vessel wall. Read our project proposal included in this repository.
 
 # Team Description
 
@@ -23,6 +23,10 @@ Kleopatra Gjini
 Anthony Tran
 
 Steven Tran
+
+
+# Who We Are 
+We are a team of five undergraduate students majoring in Computer Science at University of Massachusetts, Boston. This project helped bring us together and solidify our abilities to collaborate and work as team due to the challenge of the task at hand and the desire to make a tool that could benefit researchers working on this necessary field of study. Our goal was to make a successful scanning tool that will meet the needs and expectations of our clients in the University of Pennsylvania's Radiology Department. We designed this tool to help with the phenotyping of calcific atherosclerotic plaque deposits in the carotid artery, but this tool can also be used for other medical purposes as needed.
 
 # Clinical Relevance
 
