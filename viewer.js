@@ -111,6 +111,7 @@ window.onkeyup = function (event) {
         console.log("Study Instance UID: ");
         console.log(dataSet.string('x0020000d'));
     }
+
     // press b to get the brush
     else if (event.key == 'b') {
         cornerstoneTools.setToolDisabled(currentTool);
@@ -143,6 +144,7 @@ window.onkeyup = function (event) {
         cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
         currentTool = 'Pan';
     }
+
     
     //discrete calcifications 
     else if (event.key == '2') {
@@ -252,8 +254,9 @@ window.onkeyup = function (event) {
         console.log("pink brush: " + areas.fuchsia + 'mm\u00B2');
     }
     
-    // press 5 for display statistics (densities)
+    // press 4 for display statistics (densities)
     else if (event.key == '4') {
+
         var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
         var image = cornerstone.getImage(viewer);
         var densities = getDensity(labelMap2D, image);
@@ -286,18 +289,20 @@ window.onkeyup = function (event) {
         console.log("pink: " + densities.fuchsia);
     }
     
-    //press 6 for undo
+    //press u for undo
     else if (event.key == 'u') {
         segModule.setters.undo(viewer);
     }
     
-    //press 7 for redo
+    //press r for redo
     else if (event.key == 'r') {
         segModule.setters.redo(viewer);
     }
     
-    //press 8 for clear
+    //press c for clear
+
     else if (event.key == 'c') {
+
         clearBrushes(viewer);
     }
     
