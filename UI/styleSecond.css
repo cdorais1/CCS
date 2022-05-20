@@ -342,7 +342,7 @@ p3 {
     font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.5%;
+    padding-left: 0.55%;
     padding-right: 1.7%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
@@ -392,7 +392,7 @@ p6 {
     padding-top: 0.4%;
     padding-bottom: 0.4%;
     padding-left: 0.6%;
-    padding-right: 1.7%;
+    padding-right: 1.6%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -435,7 +435,7 @@ p7 {
     padding-top: 0.4%;
     padding-bottom: 0.4%;
     padding-left: 0.5%;
-    padding-right: 1.7%;
+    padding-right: 1.65%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -522,8 +522,8 @@ p9 {
     font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.4%;
-    padding-right: 1.7%;
+    padding-left: 0.5%;
+    padding-right: 1.8%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
