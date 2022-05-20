@@ -113,10 +113,20 @@ function getCircleWithThreshold(
     const y0 = Math.floor(yCoord);
     let circleArray = [];
 
-    // if no thresholds, set all pixels range
+    var userMinThreshold = document.getElementById("userMinThreshold").value;
+    var userMaxThreshold = document.getElementById("userMaxThreshold").value;
+
+    if (userMinThreshold == null) {
+        userMinThreshold = 80;
+    }
+    if (userMaxThreshold == null) {
+        userMaxThreshold = image.maxPixelValue;
+    }
+
+    //// if no thresholds, set all pixels range
     if (!thresholds) {
-        // thresholds = [image.minPixelValue, image.maxPixelValue];
-        thresholds = [80, image.maxPixelValue];
+        thresholds = [userMinThreshold, userMaxThreshold];
+
     }
 
     function isInsideThresholds(v, t) {
@@ -162,44 +172,3 @@ function getCircleWithThreshold(
 
     return circleArray;
 }
-
-//function getBrushArea(labelmap2D, image)
-//{
-//     var areas = {
-//        size: 5,
-//        red: 0,
-//        blue: 0,
-//        green: 0,
-//        purple: 0,
-//        fuchsia: 0
-//    };
-//    pixelSize = image.columnPixelSpacing * image.rowPixelSpacing;
-
-//    for (let i = 0; i < labelmap2D.pixelData.length; i++) {
-//        if (labelmap2D.pixelData[i] == 1) {
-//            areas.red++;
-//        }
-//        else if (labelmap2D.pixelData[i] == 2) {
-//            areas.green++;
-//        }
-//        else if (labelmap2D.pixelData[i] == 3) {
-//            areas.purple++;
-//        }
-//        else if (labelmap2D.pixelData[i] == 5) {
-//            areas.blue++;
-//        }
-//        else if (labelmap2D.pixelData[i] == 6) {
-//            areas.fuchsia++;
-//        }
-//    }
-
-//    areas.red *= pixelSize;
-//    areas.blue *= pixelSize;
-//    areas.green *= pixelSize;
-//    areas.purple *= pixelSize;
-//    areas.fuchsia *= pixelSize;
-
-//    return areas;
-//}
-
-//function getDensity()

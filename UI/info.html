@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <title>Carotid Calcium Scanner</title>
     <link rel="stylesheet" href="info.css" />
+    <!--This is a page I used to get the icons upload and info in the second page of the UI-->
+    <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="background">
@@ -17,45 +19,150 @@
         <!--Description of who we are-->
         <div class="us">
             <p1>
-                We are a team of five undergraduate students, who are majoring in Computer Science at the 
-                University of Massachusetts in Boston. We are hard-working students that chose a very challenging
-                but exciting project to work on. This project brought us together to collaborate and
-                work as team. Our purpose is to make a successful scanning tool that will meet the needs and 
-                expectations of our client.
-                
+                We are a team of five undergraduate students majoring in Computer Science at University
+                of Massachusetts, Boston. This project helped bring us together and solidify our 
+                abilities to collaborate and work as team due to the challenge of the task at hand and
+                the desire to make a tool that could benefit researchers working on this necessary field
+                of study. Our goal was to make a successful scanning tool that will meet the needs and
+                expectations of our clients in the University of Pennsylvania's Radiology Department. We
+                designed this tool to help with the phenotyping of calcific atherosclerotic plaque deposits
+                in the carotid artery, but this tool can also be used for other medical purposes as needed.
             </p1>
         </div>
         <h2>Our tool</h2>
         <!--Description of our tool-->
         <div class="ourtool">
-            <p2>A browser-based semi-automatic tool that identifies morphologic features of carotid
-            atherosclerotic calcifications. The current goal of this project is based around allowing
-            users to identify areas of calcific plaque build-up and calculating morphologic features 
-            of the build up based on the user annotation. Later goals include automatic identification 
-            of calcific plaque structures and potentially a machine learning algorithm to improve 
-            detection of calcific plaque.</p2>
+            <p2>
+                CCS is a browser-based, semi-automatic tool that helps users identify morphologic features of
+                carotid atherosclerotic calcifications. The current goal of this project is based around
+                allowing users to identify areas of calcific plaque build-up and calculating morphologic
+                features of the deposit based on the user annotation. Users will be able to use the brush
+                tool to paint on the medical images and get calculations based on those annotations with a
+                single click on the "Display Statistics" button. Users can use the Plus and Minus button to
+                change the size of the brush to allow for more precise paint strokes or faster coverage of
+                large areas. They also have the opportunity to pick between five colors listed in a drop-down
+                menu for annotations: Red, Green, Blue, Purple, and Pink. There is a "Clear Brushes" button
+                that clears all of brush markings on the displayed image. In case the user does not want to clear
+                all annotations, there is an option to undo single brush strokes as well as a redo button that
+                will return the brush stroke. Other available tools are the Zoom button, the Pan button, and the
+                Length button. The Zoom tool allows users to magnify or reduce the image based around the
+                location clicked on by the user, the Pan tool allows users to move their image around in the
+                viewer, and the Length Tool enable users to take the distance between two points on the image.
+            </p2>
         </div>
         <h3>How to use the scanner</h3>
         <!--Description of how to use the tool-->
+        <table>
+            <tr>
+                <th>Buttons</th>
+                <th>Descriptions</th>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-paintbrush"></i></td>
+                <td>
+                    Brush Tool: Allows users to paint on the diplayed DICOM image. When clicked, the Increment and
+                    Decrement of the brush size and the brush color drop-down menu are enabled. If you are a keyboard
+                    fan, you can press also press "b" to enable this tool.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-plus"></i></td>
+                <td>
+                    Brush size: Press on this to increase the size of your brush. If you are a keyboard
+                    fan, you can press also press "=" to enable this tool.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-minus"></i></td>
+                <td>
+                    Brush size: Press on this to decrease the size of your brush. If you are a keyboard
+                    fan, you can press also press "-" to enable this tool.
+                </td>
+            </tr>
+            <tr>
+                <td>Brush-Color</td>
+                <td>
+                    Press on this to open a drop-down menu and change the color of your brush. The color choices are
+                    red, green, purple, blue and pink. The default color for the brush is red.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-trash"></i></td>
+                <td>
+                    Clear Brush Button: Press on this to clear any brush annotations on the DICOM image. If you are a keyboard
+                    fan, you can press also press "c" to enable this tool.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-arrow-rotate-left"></i></td>
+                <td>
+                    Undo Brush Button: Press on this to undo your brush strokes, starting with the most recently
+                    placed brushstroke. If you are a keyboard fan, you can press also press "u" to enable this tool.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-arrow-rotate-right"></i></td>
+                <td>
+                    Redo Brush Button: Press on this to redo a brush stroke that you may have deleted by mistake.
+                    If you are a keyboard fan, you can press also press "r" to enable this tool.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-magnifying-glass"></i></td>
+                <td>
+                    Zoom Button: Press on this to enable the Zoom tool. When clicked, the brush size, and
+                    the brush color buttons are disabled. To enable them again press on the brush button.
+                    If you are a keyboard fan, you can press also press "z" to enable this tool.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-arrows-up-down-left-right"></i></td>
+                <td>
+                    Pan Button: Press on this to allow movement of your image. Most useful when zoom is applied.
+                    If you are a keyboard fan, you can press also press "p" to enable this tool.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-arrows-left-right-to-line"></i></td>
+                <td>
+                    Length Button: Press on this to take the length between two points placed by the user. 
+                    If you are a keyboard fan, you can press also press "l" to enable this tool.
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fas fa-chart-line"></i></td>
+                <td>
+                    Display Statistics Button: Press on this to display the statistics calculated from the user's
+                    annotations to the right of the image. Those statistics include the discrete count of paint spots,
+                    the area delineated by the paint markings, the plaque density of that area based on Hounsfield Units
+                    and and the volume. These statistics being printed correspond to the matching paint color used on
+                    the DICOM.
+                </td>
+            </tr>
+            <tr>
+                <td>Q</td>
+                <td>
+                    Export JSON file: Press the key "q" on the keyboard to export the JSON file that will contain all the 
+                    necessary annotations done on the DICOM image.
+                </td>    
+        </table>
         <h4>Clinic Relevance</h4>
         <!--Description of the clinic relevance of our project-->
         <div class="clinicR">
             <p3>
-                Carotid artherosclerotic plaque in the neck is a common cause of ischemic stroke in the brain.
-                Atherosclerosis is the deposition of inflamed fat in the vessel walls that lead to hardening 
-                of the arteries. Hardened arteries with inflammation can lead to unstable plaque, which can
-                break into pieces and travel and obstruct blood vessels in the brain. Lack ofoxygenated blood
-                flow causes strokes. Understanding plaque features that lead to instability are therefore 
-                absolutely critical for doctors to identify patients at risk for stroke. Calcific plaque is
-                fascinating as it may have dual roles in both plaque stability and instability. This project 
-                will involve characterizing qualitative and quantitative morphologic features of calcific plaque. 
-                Using noninvasive diagnostic neuroimaging exams such as computed tomographic angiography (CTA) 
-                to image the blood vessels, we identify patients with diseased vessels with atherosclerotic plaque.
-                Our client team includes neuroradiologists, vascular neurologists, and vascular surgeons at the
-                University of Pennsylvania. Our goal is to develop a browser-based semi-automated tool that 
-                identifies morphologic features of carotid atherosclerotic calcifications. Specific morphologic 
-                features of interest include, for example, size, number of discrete calcifications, density 
-                (e.g., pixel signal intensity), and spatial information relative to the carotid artery vessel wall.
+                Carotid artherosclerotic plaque in the carotid artery is a common cause of ischemic stroke in 
+                the brain. Atherosclerosis is the deposition of inflamed fat in the vessel walls that lead to 
+                hardening of the arteries. Hardened arteries with inflammation can result in unstable plaque,
+                which can then break into pieces and travel to obstruct blood vessels in the brain. Lack of
+                oxygenated blood flow can cause stroke, brain damage, and even death. Understanding plaque
+                features that lead to instability is therefore absolutely critical for doctors to identify
+                patients at risk for stroke. Calcific plaque is fascinating as it may have dual roles in both
+                plaque stability and instability. This project involves helping researchers identify and
+                characterize qualitative and quantitative morphologic features of calcific plaque. Using
+                noninvasive diagnostic neuroimaging exams such as computed tomographic angiography (CTA) to
+                image the blood vessels, users can identify patients with diseased vessels showing signs of
+                atherosclerotic plaque buildup. Our client team includes neuroradiologists, vascular
+                neurologists, and vascular surgeons at the University of Pennsylvania. 
             </p3>
         </div>
         <h5>Scientific Definitions</h5>
@@ -76,9 +183,11 @@
             </tr>
             <tr>
                 <td>CT</td>
-                <td> A Computed Tomography scan combines a series of X-ray images taken from different angles 
-                around your body and uses computer processing to create cross-sectional images (slices) of the 
-                bones, blood vessels and soft tissues inside your body</td>
+                <td>
+                    A Computed Tomography scan combines a series of X-ray images taken from different angles
+                    around your body and uses computer processing to create cross-sectional images (slices)
+                    of the bones, blood vessels, and soft tissues inside your body.
+                </td>
             </tr>
             <tr>
                 <td>CTA</td>
@@ -90,41 +199,49 @@
             </tr>
             <tr>
                 <td>Plaque</td>
-                <td>The buildup of fats, cholesterol and other potentially harmful substances in and/or on the artery walls</td>
+                <td>The buildup of fats, cholesterol, and other potentially harmful substances in and/or on the artery walls. </td>
             </tr>
             <tr>
                 <td>Atherosclerosis</td>
-                <td>Thickening or hardening of the artery caused by a build up of  plaque on the inner artery lining</td>
+                <td>Thickening or hardening of the artery caused by a build up of plaque on the inner artery lining. </td>
             </tr>
             <tr>
                 <td>Calcifications</td>
-                <td>Calcium that has built up in a body tissue, which causes it to harden. Calcification of the arteries
-                causes the arterial wall to stiffen and become inflamed, which can result in chunks of calcified plaque 
-                to break off and obstruct blood flow to the brain</td>
+                <td>
+                    Calcium that has built up in a body tissue, causing it to harden. Calcification of the arteries
+                    causes the arterial wall to stiffen and become inflamed, which can result in chunks of calcified plaque
+                    breaking off and obstructing blood flow to the brain.
+                </td>
             </tr>
             <tr>
                 <td>Cerebrovascular Ischemic Event</td>
-                <td>A term for when the flow of blood to the brain is reduced to a point where it cannot meet its
-                metabolic demand. This leads to a reduction in oxygen flow to the brain, death of brain tissue, stroke, or death</td>
+                <td>
+                    A term for when the flow of blood to the brain is reduced to a point where it cannot meet its
+                    metabolic demand. This leads to a reduction in oxygen flow to the brain, death of brain tissue,
+                    stroke, or death.
+                </td>
             </tr>
             <tr>
                 <td>Stroke</td>
-                <td>the sudden death of brain cells due to a lack of oxygen. The lack of oxygen is generally due to a
-                blockage of blood flow or rupture of an artery connected to the brain</td>
+                <td>
+                    The sudden death of brain cells due to a lack of oxygen. The lack of oxygen is generally due to a
+                    blockage of blood flow or rupture of an artery connected to the brain.
+                </td>
             </tr>
             <tr>
                 <td>Lumen</td>
-                <td>The cavity or channel within a tube or tubular organ such as a blood vessel or the intestine</td>
+                <td>The cavity or channel within a tube or tubular organ such as a blood vessel or the intestine. </td>
             </tr>
             <tr>
                 <td>Stenosis</td>
-                <td>An abnormal narrowing of a channel in the body; in this case, referring to narrowing 
-                of the artery due to atherosclerosis</td>
+                <td>
+                    An abnormal narrowing of a channel in the body: in this case, referring to narrowing
+                    of the artery due to atherosclerosis.
+                </td>
             </tr>
         </table>
         <!--Table of all the necessary scientific and tool definitions-->
         <h5></h5>
     </div>
-
 </body>
 </html>
