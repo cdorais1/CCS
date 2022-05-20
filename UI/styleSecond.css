@@ -620,7 +620,7 @@ p10 {
     position: fixed;
     left: 3%;
     top: 73%;
-    min-block-size: 5%;
+    min-block-size: 2%;
     width: 2%;
     min-width: 0.5%;
     font-size: 120%;
