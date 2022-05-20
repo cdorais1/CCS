@@ -261,6 +261,11 @@ p1 {
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
+    /*Changes color when the user works with this button*/
+    .brush:focus {
+        background-color: #35afaa;
+        color: black;
+    }
 /*p2 corresponds to zoom*/
 p2 {
     position: fixed;
@@ -305,6 +310,11 @@ p2 {
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
+    /*Changes color when the user presses on this button*/
+    .zoom:focus {
+        background-color: #35afaa;
+        color: black;
+    }
 
 /*p3 corresponds to pan*/
 p3 {
@@ -348,6 +358,11 @@ p3 {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
+    }
+/*Changes color when the user presses on this button*/
+    .pan:focus {
+        background-color: #35afaa;
+        color: black;
     }
 
 /*p6 corresponds to clear brush*/
@@ -524,6 +539,11 @@ p9 {
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
+/*Changes color when the user presses on this button*/
+    .lengthl:focus{
+        background-color: #35afaa;
+        color: black;
+    }
 
 /*p11 corresponds to the low pixel intensity threshold*/
 p11 {
@@ -622,6 +642,11 @@ p10 {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
+    }
+/*Changes color when the user presses on this button*/
+    .statsb:focus {
+        background-color: #35afaa;
+        color: black;
     }
 .stats {
     border: 1px groove #808080;
