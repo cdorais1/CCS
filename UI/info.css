@@ -107,7 +107,13 @@ table{
     left: 17%;
 
 }
-
+h6{
+    text-align: center;
+    text-decoration-style: solid;
+    font-size: 40px;
+    font-family:'Brush Script MT';
+    color: #35AFAA;
+}
 th{
     border: 2px solid #35AFAA;
     padding-top: 2%;

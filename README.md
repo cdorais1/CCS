@@ -1,6 +1,8 @@
 # Carotid Calcium Scanner (CCS)
 
-[CCS](https://cdorais1.github.io/CCS/) is a browser-based semi-automatic tool that identifies morphologic features of carotid atherosclerotic calcifications. The current goal of this project is based around allowing users to identify areas of calcific plaque build-up and calculating morphologic features of the build up based on the user annotations. Later goals include automatic identification of calcific plaque structures and potentially a machine learning algorithm to improve detection of calcific plaque. Specific morphologic features of interest include, for example, size, number of discrete calcifications, density (e.g., pixel signal intensity), and spatial information relative to the carotid artery vessel wall. Read our project proposal included in this repository.
+CCS is a browser-based semi-automatic tool that identifies morphologic features of carotid atherosclerotic calcifications. The current goal of this project is based around allowing users to identify areas of calcific plaque build-up and calculating morphologic features of the build up based on the user annotations. Later goals include automatic identification of calcific plaque structures and potentially a machine learning algorithm to improve detection of calcific plaque. Specific morphologic features of interest include, for example, size, number of discrete calcifications, density (e.g., pixel signal intensity), and spatial information relative to the carotid artery vessel wall. Read our project proposal included in this repository.
+
+You can reach the application [here](https://cdorais1.github.io/CCS/).
 
 # Team Description
 
