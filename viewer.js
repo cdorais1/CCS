@@ -28,19 +28,32 @@ function onDrop(event) {
 
     //checks if the file is a json file
     if (file.name.includes('.json') == true) {
-        console.log(updateFromJSON(file));
-        console.log("This is working as intended.");
+        // If DICOM was not previously dragged and dropped, the viewer element
+        // will not be enabled and an error will display.Catch error and give
+        // an alert to the user that they must drop a DICOM first,
+        // and do not allow it to reach updateFromJSON() function.
 
+        try {
+            cornerstone.getEnabledElement(viewer);
+        }
+        catch (error) {
+            console.log(error);
+            console.log("You cannot upload a json file without first uploading a DICOM.");
+            alert("You cannot upload a json file without first uploading a DICOM.");
+            return;
+        }
+
+        // Otherwise, call function.
+        updateFromJSON(file);
         return;
     }
-
 
     else {
         // array of DICOM IMAGES
         imageIds = [];
         
         //adds all files to the file manager
-        for (var i = 0; i < event.dataTransfer.files.length; i++) {
+        for (let i = 0; i < event.dataTransfer.files.length; i++) {
             file = event.dataTransfer.files[i];
             imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
         }
@@ -71,14 +84,10 @@ function onDrop(event) {
             cornerstoneTools.addTool(cornerstoneTools.LengthTool);
             cornerstoneTools.addTool(ThresholdsBrushTool);
 
-//            This tool allows you to get the area of a circled area using a brush.
-//            cornerstoneTools.addTool(cornerstoneTools.FreehandRoiTool);
-
             // Activate tools as needed; default active tool is brush and stack scroll.
             cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
             cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
             cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
-//            cornerstoneTools.setToolPassive('FreehandRoi', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
             currentTool = 'ThresholdsBrush';
@@ -296,7 +305,7 @@ window.onkeyup = function (event) {
     
     //press r for redo
     else if (event.key == 'r') {
-//        segModule.setters.redo(viewer);
+        segModule.setters.redo(viewer);
     }
     
     //press c for clear
