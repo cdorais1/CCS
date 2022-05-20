@@ -53,7 +53,7 @@ function onDrop(event) {
 
             cornerstoneTools.init();
             
-            // viewere variable
+            // viewer variable
             var viewer = document.getElementById('viewer');
 
             cornerstone.enable(viewer);
@@ -296,7 +296,7 @@ window.onkeyup = function (event) {
     
     //press r for redo
     else if (event.key == 'r') {
-        segModule.setters.redo(viewer);
+//        segModule.setters.redo(viewer);
     }
     
     //press c for clear
