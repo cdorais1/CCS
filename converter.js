@@ -7,9 +7,10 @@
 // Convert annotation data to json format and export a json file with tool configurations.
 function convertToJSON(image) {
     // Get study instance Universal Identifier from the dicom 
-    const dataSet = dicomParser.parseDicom(image.data.byteArray);
-    const studyInstanceUIDval = dataSet.string('x0020000d');
+    const dataSet = dicomParser.parseDicom(image.data.byteArray);   
 
+    const studyInstanceUIDval = dataSet.string('x0020000d');
+    
     // Set up a variable for when we take apart the array of tool state configurations for json import.
     const toolStates = cornerstoneTools.store.state;
 
@@ -22,7 +23,7 @@ function convertToJSON(image) {
     // The ThresholdBrushTool has many components that are fine when imported, but has multiple typed arrays that misbehave when passed to json format.
     let ts1 = toolStates.tools[4].activeStrategy;
     let ts2 = toolStates.tools[4].defaultStrategy;
-    let ts3 = toolStates.tools[4].element;
+//    let ts3 = toolStates.tools[4].element;
     let ts4 = toolStates.tools[4].hideDefaultCursor;
     let ts5 = toolStates.tools[4].initialConfiguration;
     let ts6 = toolStates.tools[4].mode;
@@ -116,7 +117,7 @@ function convertToJSON(image) {
     const ToolFive = {
         activeStrategy: ts1,
         defaultStrategy: ts2,
-        element: ts3,
+        element: cornerstone.getEnabledElement(viewer),
         hideDefaultCursor: ts4,
         initialConfiguration: ts5,
         mode: ts6,
@@ -150,6 +151,10 @@ function convertToJSON(image) {
 
     // Make structure json-acceptable. 
     var JSONArray = JSON.stringify(structure);
+    console.log("Brush: ");
+    console.log(ToolFive);
+
+
     JSONArray = [JSONArray];
 
     // Create element for downloading json file.
@@ -162,6 +167,7 @@ function convertToJSON(image) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+
 
     return JSONArray;
 }
@@ -287,7 +293,7 @@ function updateFromJSON(jsonfile) {
             const ToolFive = {
                 activeStrategy: ts1,
                 defaultStrategy: ts2,
-                element: ts3,
+                element: null,
                 hideDefaultCursor: ts4,
                 initialConfiguration: ts5,
                 mode: ts6,
@@ -308,10 +314,28 @@ function updateFromJSON(jsonfile) {
                 configuration: ts20,
                 options: ts21
             }
-            // Assemble the tools in the correct order to pass into the tool state manager.
-            toolsStates = [ToolOne, ToolTwo, ToolThree, ToolFour, ToolFive];
-            console.log(toolsStates);
+            // Check if current ThresholdsBrushTool's paintEventData is undefined. 
+            if (cornerstoneTools.store.state.tools[4].paintEventData != undefined) {
+                cornerstoneTools.store.state.tools[4].paintEventData.labelmap2D = ToolFive.paintEventData.labelmap2D;
 
+                // Update Active Segment Index
+                cornerstoneTools.store.state.tools[4].paintEventData.labelmap3D.activeSegmentIndex
+                    = ToolFive.paintEventData.labelmap3D.activeSegmentIndex;
+                // Update Color LUT Index
+                cornerstoneTools.store.state.tools[4].paintEventData.labelmap3D.colorLUTIndex
+                    = ToolFive.paintEventData.labelmap3D.colorLUTIndex;
+                // Update labelmaps2D
+                cornerstoneTools.store.state.tools[4].paintEventData.labelmap3D.labelmaps2D
+                    = ToolFive.paintEventData.labelmap3D.labelmaps2D;
+                // Update redo
+                cornerstoneTools.store.state.tools[4].paintEventData.labelmap3D.redo
+                    = ToolFive.paintEventData.labelmap3D.redo;
+                // Update undo
+                cornerstoneTools.store.state.tools[4].paintEventData.labelmap3D.undo
+                    = ToolFive.paintEventData.labelmap3D.undo;
+            }
+
+            cornerstone.updateImage(viewer);
         }
         else {
             console.log("Too bad! No match!");

@@ -129,13 +129,6 @@ function getCircleWithThreshold(
 
     }
 
-    console.log("MAX:" + image.maxPixelValue);
-    console.log("MIN:" + image.minPixelValue);
-    var item1 = thresholds[0];
-    console.log("item1:" + item1);
-    var item2 = thresholds[1];
-    console.log("item2" + item2);
-
     function isInsideThresholds(v, t) {
         return v >= t[0] && v <= t[1];
     }
