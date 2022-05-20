@@ -50,9 +50,9 @@
     top: -30%;
     left: 91%;
     min-block-size: 5%;
-    width: 30px;
+    width: 2%;
     min-width: 0.2%;
-    font-size: 100%;
+    font-size: 120%;
     padding-top: 0.35%;
     padding-bottom: 0.35%;
     padding-left: 0.7%;
@@ -120,9 +120,9 @@ p4 {
     left: 6.5%;
     top: 15%;
     min-block-size: 3%;
-    width: 25px;
+    width: 1.5%;
     min-width: 0.5%;
-    font-size: 100%;
+    font-size: 110%;
     padding-top: 0.14%;
     padding-bottom: 0.06%;
     padding-left: 0.33%;
@@ -160,9 +160,9 @@ p4 {
     left: 8.5%;
     top: 15%;
     min-block-size: 3%;
-    width: 25px;
+    width: 1.5%;
     min-width: 1%;
-    font-size: 100%;
+    font-size: 110%;
     padding-top: 0.14%;
     padding-bottom: 0.06%;
     padding-left: 0.33%;
@@ -239,9 +239,9 @@ p1 {
     left: 3%;
     top: 14%;
     min-block-size: 5%;
-    width: 30px;
+    width: 2%;
     min-width: 0.5%;
-    font-size: 100%;
+    font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
     padding-left: 0.5%;
@@ -260,6 +260,11 @@ p1 {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
+    }
+    /*Changes color when the user works with this button*/
+    .brush:focus {
+        background-color: #35afaa;
+        color: black;
     }
 /*p2 corresponds to zoom*/
 p2 {
@@ -282,13 +287,13 @@ p2 {
     left: 3%;
     top: 46%;
     min-block-size: 5%;
-    width: 30px;
+    width: 2%;
     min-width: 0.5%;
-    font-size: 100%;
+    font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.6%;
-    padding-right: 1.6%;
+    padding-left: 0.5%;
+    padding-right: 1.67%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -304,6 +309,11 @@ p2 {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
+    }
+    /*Changes color when the user presses on this button*/
+    .zoom:focus {
+        background-color: #35afaa;
+        color: black;
     }
 
 /*p3 corresponds to pan*/
@@ -327,13 +337,13 @@ p3 {
     left: 3%;
     top: 55%;
     min-block-size: 5%;
-    width: 30px;
+    width: 2%;
     min-width: 0.5%;
-    font-size: 100%;
+    font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.7%;
-    padding-right: 1.5%;
+    padding-left: 0.55%;
+    padding-right: 1.65%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -348,6 +358,11 @@ p3 {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
+    }
+/*Changes color when the user presses on this button*/
+    .pan:focus {
+        background-color: #35afaa;
+        color: black;
     }
 
 /*p6 corresponds to clear brush*/
@@ -371,13 +386,13 @@ p6 {
     left: 3%;
     top: 23%;
     min-block-size: 5%;
-    width: 30px;
+    width: 2%;
     min-width: 0.5%;
-    font-size: 100%;
+    font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.7%;
-    padding-right: 1.6%;
+    padding-left: 0.6%;
+    padding-right: 1.55%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -414,12 +429,12 @@ p7 {
     left: 9.25%;
     top: 23%;
     min-block-size: 5%;
-    width: 30px;
+    width: 2%;
     min-width: 0.5%;
-    font-size: 100%;
+    font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.7%;
+    padding-left: 0.5%;
     padding-right: 1.6%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
@@ -458,13 +473,13 @@ p8 {
     left: 15.65%;
     top: 23%;
     min-block-size: 5%;
-    width: 30px;
+    width: 2%;
     min-width: 0.5%;
-    font-size: 100%;
+    font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.7%;
-    padding-right: 1.6%;
+    padding-left: 0.5%;
+    padding-right: 1.65%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -502,13 +517,13 @@ p9 {
     left: 3%;
     top: 64%;
     min-block-size: 5%;
-    width: 30px;
+    width: 2%;
     min-width: 0.5%;
-    font-size: 100%;
+    font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.6%;
-    padding-right: 1.7%;
+    padding-left: 0.5%;
+    padding-right: 1.77%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -523,6 +538,11 @@ p9 {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
+    }
+/*Changes color when the user presses on this button*/
+    .lengthl:focus{
+        background-color: #35afaa;
+        color: black;
     }
 
 /*p11 corresponds to the low pixel intensity threshold*/
@@ -601,13 +621,13 @@ p10 {
     left: 3%;
     top: 73%;
     min-block-size: 5%;
-    width: 30px;
+    width: 2%;
     min-width: 0.5%;
-    font-size: 100%;
+    font-size: 120%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
-    padding-left: 0.7%;
-    padding-right: 1.6%;
+    padding-left: 0.55%;
+    padding-right: 1.57%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -622,6 +642,11 @@ p10 {
         background-color: black;
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
+    }
+/*Changes color when the user presses on this button*/
+    .statsb:focus {
+        background-color: #35afaa;
+        color: black;
     }
 .stats {
     border: 1px groove #808080;
