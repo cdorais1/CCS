@@ -49,10 +49,10 @@ function onDrop(event) {
     }
 
     else {
-        // array of DICOM IMAGES
+        // array of DICOM ImageIds
         imageIds = [];
         
-        //adds all files to the file manager
+        //adds all files to an array of ImageIds for the Stack Manager.
         for (let i = 0; i < event.dataTransfer.files.length; i++) {
             file = event.dataTransfer.files[i];
             imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
