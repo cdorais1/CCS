@@ -6,7 +6,8 @@ cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 segModule = cornerstoneTools.getModule('segmentation');
 
 var currentTool = '';
-
+var imageIds = [];
+var check = 0;
 
 
 function onDragOver(event) {
@@ -49,10 +50,8 @@ function onDrop(event) {
     }
 
     else {
-        // array of DICOM IMAGES
-        imageIds = [];
-        
-        //adds all files to the file manager
+
+        // Adds all files to an array of ImageIds for the Stack Manager.
         for (let i = 0; i < event.dataTransfer.files.length; i++) {
             file = event.dataTransfer.files[i];
             imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
@@ -64,34 +63,49 @@ function onDrop(event) {
 
             console.log('Loaded', image);
 
-            cornerstoneTools.init();
-            
-            // viewer variable
-            var viewer = document.getElementById('viewer');
+            if (check) {
+                // Display image. 
+                var viewer = document.getElementById('viewer');
+                cornerstone.enable(viewer);
+                cornerstone.displayImage(viewer, image);
 
-            cornerstone.enable(viewer);
-            cornerstone.displayImage(viewer, image);
+                // Remove stack tool state and update stack with new imageIds, then add it back in.
+                cornerstoneTools.removeToolState(viewer, "stack");
+                var stack = { currentImageIdIndex: 0, imageIds: imageIds };
 
-            //enables stack state for image viewer
-            var stack = { currentImageIdIndex: 0, imageIds: imageIds };
-            cornerstoneTools.addStackStateManager(viewer, ["stack"]);
-            cornerstoneTools.addToolState(viewer, "stack", stack);
+                cornerstoneTools.addStackStateManager(viewer, ["stack"]);
+                cornerstoneTools.addToolState(viewer, "stack", stack);
+            }
+            else {
+                check = 1;
+                cornerstoneTools.init();
 
-            //adds cornerstone tools
-            cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
-            cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
-            cornerstoneTools.addTool(cornerstoneTools.PanTool);
-            cornerstoneTools.addTool(cornerstoneTools.LengthTool);
-            cornerstoneTools.addTool(ThresholdsBrushTool);
+                // viewer variable
+                var viewer = document.getElementById('viewer');
 
-            // Activate tools as needed; default active tool is brush and stack scroll.
-            cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
-            cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
-            cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
-            cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
-            cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
-            currentTool = 'ThresholdsBrush';
+                cornerstone.enable(viewer);
+                cornerstone.displayImage(viewer, image);
 
+                //enables stack state for image viewer
+                var stack = { currentImageIdIndex: 0, imageIds: imageIds };
+                cornerstoneTools.addStackStateManager(viewer, ["stack"]);
+                cornerstoneTools.addToolState(viewer, "stack", stack);
+
+                //adds cornerstone tools
+                cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
+                cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
+                cornerstoneTools.addTool(cornerstoneTools.PanTool);
+                cornerstoneTools.addTool(cornerstoneTools.LengthTool);
+                cornerstoneTools.addTool(ThresholdsBrushTool);
+
+                // Activate tools as needed; default active tool is brush and stack scroll.
+                cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
+                cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
+                cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
+                cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
+                cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
+                currentTool = 'ThresholdsBrush';
+            }
         });
 
     };
