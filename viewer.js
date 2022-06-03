@@ -56,8 +56,7 @@ function onDrop(event) {
             file = event.dataTransfer.files[i];
             imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
         }
-
-        
+      
         cornerstone.loadImage(imageIds[0]).then(function (image) {
 
             // Get viewer canvas initialized by cornerstone.
