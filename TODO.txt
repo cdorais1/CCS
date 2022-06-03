@@ -1,0 +1,65 @@
+---------------------------------------------------------------------------| Current Tasks: |---------------------------------------------------------------------------
+
+Webpage-related/HTML and CSS
+
+- increase size of viewer to full window 
+-- note size discrepancies so that there isn't a lot of blank space on the page
+-- image is typically 512x512px when loaded with cornerstone loadImage()
+
+- combine all html to a single file to avoid weirdness with url 
+-- (see https://cdorais1.github.io/CCS/UI/SecondPage.html URL as example)
+
+- splash screen fade via timeout after a short stretch of time (e.g. 1s)
+-- no need for "Get Started" button
+
+- remove top bar 
+-- find a new spot for the logo, maybe at end of the tool bar?
+
+- reorganize toolbar 
+-- move toolbar to top of screen
+-- have color selector be colors instead of text
+-- shrink tool icons so they line up better
+
+- statistics panel as floating window rather than a fixed box
+-- should be able to be moved around screen as needed 
+-- slight transparency so that images under box can be seen through
+-- NYU project had this implemented; see if we can look at their project again for a reference?
+
+- remove clear button and replace with eraser tool 
+-- Jae specifically requested this; she would rather be able to do minute changes rather than trash her work entirely 
+-- emphasis on the frustration that could occur if all annotations were cleared; maybe we can implement an "ARE YOU SURE???" popup when clear is clicked?
+- "minimize UI"/ simplify display 
+-- the name of the game is minimal design and has been for many years; how simple can we make our UI without losing valuable information 
+    or making the experience cumbersome? Will require some trial and error to determine what is the best minimal example.
+
+- add "download annotationas as JSON file" button to toolbar (currently bound to 'q' key)
+-- need to determine what image denotes "download JSON" for ease of user understanding
+
+- add button to allow for changes between axial, coronal, and saggital views of imaging
+-- potential preview of each view in empty space on edge of display? 
+
+
+JS-related
+
+- implement json upload for tool restoration
+-- current issues detailed in "issues" tab on github; will add additional found issues as needed.
+-- THIS IS AN IMPERATIVE
+
+- remove clear annotations code 
+-- maybe comment out initially, and move to full removal
+-- alternatively, maybe implement an "are you sure" so users are warned before ruining their work 
+
+- add eraser tool 
+-- the eraser is currently bound to ctrl + click when brush is active, but there is probably an actual tool in cornerstoneTools for erasers.
+   Otherwise, we might be able to attach this to an actual button on the tool bar because extra key strokes aren't intuitive.  
+
+- zoom bound to right click and always active (click and drag cursor) && pan bound to mouse wheel click and always active 
+-- Discussion with D. Haehn illuminated the difference between zoom/pan interactions with 2D images versus 3D images 
+-- need to find a happy medium for users without clickable or existing mouse wheels (e.g. specialty mouses, touchpad users); 
+   may need to incude a caveat on the information page of web app to let users know of alternative methods to access these tools.
+-- See conversation on project discord 6/3/22 re: discussion of zoom/pan
+
+- Allow for changing between cross-sectional orientation from coronal to axial to saggital to improve ability to annotate
+-- current orientation is axial
+-- saggital is plane that bisects the left and right side of a body 
+-- coronal bisects the front and back of the body 
