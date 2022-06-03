@@ -15,12 +15,19 @@ Webpage-related/HTML and CSS
 - remove top bar 
 -- find a new spot for the logo, maybe at end of the tool bar?
 
+- correct threshold slider
+-- make into a single slider
+-- add a text box area for users to type in values
+-- set scale to HUs rather than pixel values 
+
 - reorganize toolbar 
 -- move toolbar to top of screen
 -- have color selector be colors instead of text
 -- shrink tool icons so they line up better
 
 - statistics panel as floating window rather than a fixed box
+-- change the font used to something that looks nicer
+-- should not display the stats of colors that haven't been used on the images
 -- should be able to be moved around screen as needed 
 -- slight transparency so that images under box can be seen through
 -- NYU project had this implemented; see if we can look at their project again for a reference?
@@ -50,7 +57,7 @@ JS-related
 -- alternatively, maybe implement an "are you sure" so users are warned before ruining their work 
 
 - add eraser tool 
--- the eraser is currently bound to ctrl + click when brush is active, but there is probably an actual tool in cornerstoneTools for erasers.
+-- the eraser is currently bound to ctrl + click when brush is active, but there is probably an actual tool in cornerstoneTools for erasers
    Otherwise, we might be able to attach this to an actual button on the tool bar because extra key strokes aren't intuitive.  
 
 - zoom bound to right click and always active (click and drag cursor) && pan bound to mouse wheel click and always active 
@@ -63,3 +70,19 @@ JS-related
 -- current orientation is axial
 -- saggital is plane that bisects the left and right side of a body 
 -- coronal bisects the front and back of the body 
+
+- correct threshold slider
+-- make into a single slider
+-- add a text box area for users to type in values
+-- set scale to HUs rather than pixel values 
+
+- implement removal of length tool annotations
+-- check cornerstoneTools for code for that; definitely an easy fix
+
+- need to implement a way to count individual blobs of paint annotations on the DICOM rather than by color; going to need 
+  to use something like the percolation problem to find the paint blobs' boundaries  
+-- Not necessarily imperative if users use single colors for single annotations as suggested by D. Haehn previously,
+   but still a nice stretch goal 
+
+- enable server upload for DICOMs and allow multiple users to annotate at the same time
+-- need to look into this more; this is an entirely new field for this team and will require heavy research
