@@ -6,7 +6,7 @@ cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 segModule = cornerstoneTools.getModule('segmentation');
 
 var currentTool = '';
-
+var imageIds = [];
 
 
 function onDragOver(event) {
@@ -25,6 +25,8 @@ function onDrop(event) {
 
     console.log(event.dataTransfer.files);
     var file = event.dataTransfer.files[0];
+    console.log(sortImages(event.dataTransfer.files));
+    console.log("here");
 
     //checks if the file is a json file
     if (file.name.includes('.json') == true) {
@@ -47,37 +49,53 @@ function onDrop(event) {
         updateFromJSON(file);
         return;
     }
+    // If images are already loaded into the viewer, do not go through with tool initialization
+    else if (currentTool != '') {
+        // Adds all files to the array of ImageIds for the Stack Manager.
+        for (let i = 0; i < event.dataTransfer.files.length; i++) {
+            file = event.dataTransfer.files[i];
+            imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
+        }
+      
+        cornerstone.loadImage(imageIds[0]).then(function (image) {
+
+            // Get viewer canvas initialized by cornerstone.
+            cornerstone.getEnabledElement(viewer);
+
+
+            // Remove previous stack manager from tools, then add a new stack
+            // manager containing the newest batch of images.
+            cornerstoneTools.removeTool(viewer, "stack", cornerstoneTools.getToolState(viewer, stack));
+
+            var stack = { currentImageIdIndex: 0, imageIds: imageIds };
+            cornerstoneTools.addStackStateManager(viewer, ["stack"]);
+            cornerstoneTools.addToolState(viewer, "stack", stack);
+        });
+
+    }
 
     else {
-        // array of DICOM ImageIds
-        imageIds = [];
-        
-        //adds all files to an array of ImageIds for the Stack Manager.
+
+        // Adds all files to an array of ImageIds for the Stack Manager.
         for (let i = 0; i < event.dataTransfer.files.length; i++) {
             file = event.dataTransfer.files[i];
             imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
         }
         
-        console.log(imageIds);
-
         cornerstone.loadImage(imageIds[0]).then(function (image) {
 
             console.log('Loaded', image);
 
-            cornerstoneTools.init();
-            
-            // viewer variable
+            // Enable viewer element for cornerstone. 
             var viewer = document.getElementById('viewer');
-
             cornerstone.enable(viewer);
-            cornerstone.displayImage(viewer, image);
 
             //enables stack state for image viewer
             var stack = { currentImageIdIndex: 0, imageIds: imageIds };
             cornerstoneTools.addStackStateManager(viewer, ["stack"]);
             cornerstoneTools.addToolState(viewer, "stack", stack);
 
-            //adds cornerstone tools
+            // Set up tool set for annotations of images. 
             cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
             cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
             cornerstoneTools.addTool(cornerstoneTools.PanTool);
@@ -92,6 +110,9 @@ function onDrop(event) {
             cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
             currentTool = 'ThresholdsBrush';
 
+            // Display first image in imageIDs. 
+            cornerstone.displayImage(viewer, image);
+
         });
 
     };
@@ -102,6 +123,8 @@ window.onload = function () {
 
     document.body.addEventListener('dragover', onDragOver);
     document.body.addEventListener('drop', onDrop);
+    cornerstoneTools.init();
+
 };
 // function brushbutton that will allow the onclick event when the user is pressing the brush button
 
