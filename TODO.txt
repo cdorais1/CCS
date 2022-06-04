@@ -39,7 +39,7 @@ Webpage-related/HTML and CSS
 -- the name of the game is minimal design and has been for many years; how simple can we make our UI without losing valuable information 
     or making the experience cumbersome? Will require some trial and error to determine what is the best minimal example.
 
-- add "download annotationas as JSON file" button to toolbar (currently bound to 'q' key)
+- add "download annotations as JSON file" button to toolbar (currently bound to 'q' key)
 -- need to determine what image denotes "download JSON" for ease of user understanding
 
 - add button to allow for changes between axial, coronal, and saggital views of imaging
