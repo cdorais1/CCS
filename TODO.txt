@@ -45,6 +45,12 @@ Webpage-related/HTML and CSS
 - add button to allow for changes between axial, coronal, and saggital views of imaging
 -- potential preview of each view in empty space on edge of display? 
 
+- correct threshold slider
+-- make into a single slider
+-- add a text box area for users to type in values
+-- set scale to HUs rather than pixel values 
+
+
 
 JS-related
 
@@ -70,11 +76,6 @@ JS-related
 -- current orientation is axial
 -- saggital is plane that bisects the left and right side of a body 
 -- coronal bisects the front and back of the body 
-
-- correct threshold slider
--- make into a single slider
--- add a text box area for users to type in values
--- set scale to HUs rather than pixel values 
 
 - implement removal of length tool annotations
 -- check cornerstoneTools for code for that; definitely an easy fix
