@@ -48,14 +48,14 @@ Webpage-related/HTML and CSS
 - add button to allow for changes between axial, coronal, and saggital views of imaging
 -- potential preview of each view in empty space on edge of display? 
 
+
+JS-related
+
+
 - correct threshold slider
 -- make into a single slider
 -- add a text box area for users to type in values
 -- set scale to HUs rather than pixel values 
-
-
-
-JS-related
 
 - implement json upload for tool restoration
 -- current issues detailed in "issues" tab on github; will add additional found issues as needed.
