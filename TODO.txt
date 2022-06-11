@@ -66,6 +66,7 @@ JS-related
 -- alternatively, maybe implement an "are you sure" so users are warned before ruining their work 
 
 - add eraser tool 
+-- EraserTool for annotations bound to 'e' key; needs button and to be bound to the eraser for the paint brush/segmentation
 -- the eraser is currently bound to ctrl + click when brush is active, //but there is probably an actual tool in cornerstoneTools for erasers//
    Otherwise, we might be able to attach this to an actual button on the tool bar because extra key strokes aren't intuitive.  
 --- There is an eraser tool, but it's tied to annotation. value shouldErase is tied to paint event data, so if we can flip that value with a 
