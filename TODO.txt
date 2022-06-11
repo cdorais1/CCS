@@ -35,6 +35,8 @@ Webpage-related/HTML and CSS
 - "minimize UI"/ simplify display 
 -- the name of the game is minimal design and has been for many years; how simple can we make our UI without losing valuable information 
     or making the experience cumbersome? Will require some trial and error to determine what is the best minimal example.
+-- Button for eraser should be bound to both segmentation and annotation, but depending on last tool used, will switch between
+   segmentation eraser or annotation eraser to make things easier for user and not have 2 "eraser" buttons 
 
 - add "download annotations as JSON file" button to toolbar (currently bound to 'q' key)
 -- need to determine what image denotes "download JSON" for ease of user understanding
@@ -60,8 +62,10 @@ JS-related
 -- alternatively, maybe implement an "are you sure" so users are warned before ruining their work 
 
 - add eraser tool 
--- the eraser is currently bound to ctrl + click when brush is active, but there is probably an actual tool in cornerstoneTools for erasers
+-- the eraser is currently bound to ctrl + click when brush is active, //but there is probably an actual tool in cornerstoneTools for erasers//
    Otherwise, we might be able to attach this to an actual button on the tool bar because extra key strokes aren't intuitive.  
+--- There is an eraser tool, but it's tied to annotation. value shouldErase is tied to paint event data, so if we can flip that value with a 
+    button and turn the brush into an eraser, that would be our eraser. 
 
 - zoom bound to right click and always active (click and drag cursor) && pan bound to mouse wheel click and always active 
 -- Discussion with D. Haehn illuminated the difference between zoom/pan interactions with 2D images versus 3D images 
