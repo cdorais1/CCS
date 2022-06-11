@@ -5,8 +5,9 @@ cornerstoneTools.external.cornerstone = cornerstone;
 cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 segModule = cornerstoneTools.getModule('segmentation');
 
-var currentTool = '';
-var imageIds = [];
+let currentTool = '';
+let imageIds = [];
+
 
 
 function onDragOver(event) {
@@ -14,7 +15,6 @@ function onDragOver(event) {
     // stop browser processing right away
     event.stopPropagation();
     event.preventDefault();
-
 };
 
 function onDrop(event) {
@@ -22,6 +22,7 @@ function onDrop(event) {
     // stop browser processing right away
     event.stopPropagation();
     event.preventDefault();
+
 
     console.log(event.dataTransfer.files);
     var file = event.dataTransfer.files[0];
@@ -56,7 +57,7 @@ function onDrop(event) {
             file = event.dataTransfer.files[i];
             imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
         }
-      
+
         cornerstone.loadImage(imageIds[0]).then(function (image) {
 
             // Get viewer canvas initialized by cornerstone.
@@ -74,9 +75,9 @@ function onDrop(event) {
 
     }
 
-    else {
+    else {   
+        // Add files to an array of ImageIds for the Stack Manager.
 
-        // Adds all files to an array of ImageIds for the Stack Manager.
         for (let i = 0; i < event.dataTransfer.files.length; i++) {
             file = event.dataTransfer.files[i];
             imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
@@ -84,9 +85,10 @@ function onDrop(event) {
         
         cornerstone.loadImage(imageIds[0]).then(function (image) {
 
-            console.log('Loaded', image);
+            console.log('Loaded', image);  
+            
+            // Enable viewer for Cornerstone and display image.
 
-            // Enable viewer element for cornerstone. 
             var viewer = document.getElementById('viewer');
             cornerstone.enable(viewer);
 
@@ -101,6 +103,7 @@ function onDrop(event) {
             cornerstoneTools.addTool(cornerstoneTools.PanTool);
             cornerstoneTools.addTool(cornerstoneTools.LengthTool);
             cornerstoneTools.addTool(ThresholdsBrushTool);
+            cornerstoneTools.addTool(cornerstoneTools.EraserTool);
 
             // Activate tools as needed; default active tool is brush and stack scroll.
             cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
@@ -108,6 +111,7 @@ function onDrop(event) {
             cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
+            cornerstoneTools.setToolPassive('Eraser', { mouseButtonMask: 1 });
             currentTool = 'ThresholdsBrush';
 
             // Display first image in imageIDs. 
@@ -176,7 +180,11 @@ window.onkeyup = function (event) {
         cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
         currentTool = 'Pan';
     }
-
+    else if (event.key == 'e') {
+        cornerstoneTools.setToolDisabled(currentTool);
+        cornerstoneTools.setToolActive('Eraser', { mouseButtonMask: 1 });
+        currentTool = 'Eraser';
+    }
     
     //discrete calcifications 
     else if (event.key == '2') {
