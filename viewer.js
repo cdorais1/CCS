@@ -9,6 +9,7 @@ let currentTool = '';
 let imageIds = [];
 
 
+
 function onDragOver(event) {
 
     // stop browser processing right away
@@ -25,6 +26,8 @@ function onDrop(event) {
 
     console.log(event.dataTransfer.files);
     var file = event.dataTransfer.files[0];
+    console.log(sortImages(event.dataTransfer.files));
+    console.log("here");
 
     //checks if the file is a json file
     if (file.name.includes('.json') == true) {
@@ -74,28 +77,27 @@ function onDrop(event) {
 
     else {   
         // Add files to an array of ImageIds for the Stack Manager.
+
         for (let i = 0; i < event.dataTransfer.files.length; i++) {
             file = event.dataTransfer.files[i];
             imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
         }
         
-        console.log(imageIds);
-
         cornerstone.loadImage(imageIds[0]).then(function (image) {
 
             console.log('Loaded', image);  
             
             // Enable viewer for Cornerstone and display image.
+
             var viewer = document.getElementById('viewer');
             cornerstone.enable(viewer);
-            cornerstone.displayImage(viewer, image);
 
             //enables stack state for image viewer
             var stack = { currentImageIdIndex: 0, imageIds: imageIds };
             cornerstoneTools.addStackStateManager(viewer, ["stack"]);
             cornerstoneTools.addToolState(viewer, "stack", stack);
 
-            //adds cornerstone tools
+            // Set up tool set for annotations of images. 
             cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
             cornerstoneTools.addTool(cornerstoneTools.ZoomTool);
             cornerstoneTools.addTool(cornerstoneTools.PanTool);
@@ -112,6 +114,9 @@ function onDrop(event) {
             cornerstoneTools.setToolPassive('Eraser', { mouseButtonMask: 1 });
             currentTool = 'ThresholdsBrush';
 
+            // Display first image in imageIDs. 
+            cornerstone.displayImage(viewer, image);
+
         });
 
     };
@@ -123,6 +128,7 @@ window.onload = function () {
     document.body.addEventListener('dragover', onDragOver);
     document.body.addEventListener('drop', onDrop);
     cornerstoneTools.init();
+
 };
 // function brushbutton that will allow the onclick event when the user is pressing the brush button
 

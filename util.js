@@ -1,3 +1,26 @@
+function sortImages(files) {
+    let allfiles = [...files].map(file => {
+        const reader = new FileReader();
+        return new Promise(resolve => {
+            reader.onload = () => resolve(reader.result);
+            reader.readAsArrayBuffer(file);
+        });
+    });
+    console.log(allfiles);
+    console.log(Promise.all(allfiles));
+    let allfiles1 = Promise.all(allfiles);
+    let byteArrays = [];
+    for (let i = 0; i < allfiles.length; i++)
+    {
+        console.log("contents of allfiles1[" + i + "]")
+        console.log(allfiles1[i]);
+        byteArrays.push(new Uint8Array(allfiles1[i]));
+    }
+    console.log(byteArrays);
+}
+ 
+
+
 // Turn off brush tools.
 function disable() {
     document.getElementById("Color").disabled = true;
