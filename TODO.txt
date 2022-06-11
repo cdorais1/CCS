@@ -8,6 +8,10 @@ Webpage-related/HTML and CSS
 
 - combine all html to a single file to avoid weirdness with url 
 -- (see https://cdorais1.github.io/CCS/UI/SecondPage.html URL as example)
+-- If there's no landing page, then all of the code will be in a single file 
+-- otherwise, we can move the code from UI/SecondPage.html to index.html 
+-- can rename info.html to tool.html 
+
 
 - remove top bar 
 -- find a new spot for the logo, maybe at end of the tool bar?
