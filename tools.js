@@ -1,3 +1,5 @@
+
+
 /** @module imaging/tools/custom/thresholdBrushTool
  *  @desc  This file provides functionalities for
  *         a brush tool with thresholds using a
