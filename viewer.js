@@ -5,8 +5,8 @@ cornerstoneTools.external.cornerstone = cornerstone;
 cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 segModule = cornerstoneTools.getModule('segmentation');
 
-var currentTool = '';
-
+let currentTool = '';
+let imageIds = [];
 
 
 function onDragOver(event) {
@@ -14,7 +14,6 @@ function onDragOver(event) {
     // stop browser processing right away
     event.stopPropagation();
     event.preventDefault();
-
 };
 
 function onDrop(event) {
@@ -22,6 +21,7 @@ function onDrop(event) {
     // stop browser processing right away
     event.stopPropagation();
     event.preventDefault();
+
 
     console.log(event.dataTransfer.files);
     var file = event.dataTransfer.files[0];
@@ -47,12 +47,33 @@ function onDrop(event) {
         updateFromJSON(file);
         return;
     }
+    // If images are already loaded into the viewer, do not go through with tool initialization
+    else if (currentTool != '') {
+        // Adds all files to the array of ImageIds for the Stack Manager.
+        for (let i = 0; i < event.dataTransfer.files.length; i++) {
+            file = event.dataTransfer.files[i];
+            imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
+        }
 
-    else {
-        // array of DICOM ImageIds
-        imageIds = [];
-        
-        //adds all files to an array of ImageIds for the Stack Manager.
+        cornerstone.loadImage(imageIds[0]).then(function (image) {
+
+            // Get viewer canvas initialized by cornerstone.
+            cornerstone.getEnabledElement(viewer);
+
+
+            // Remove previous stack manager from tools, then add a new stack
+            // manager containing the newest batch of images.
+            cornerstoneTools.removeTool(viewer, "stack", cornerstoneTools.getToolState(viewer, stack));
+
+            var stack = { currentImageIdIndex: 0, imageIds: imageIds };
+            cornerstoneTools.addStackStateManager(viewer, ["stack"]);
+            cornerstoneTools.addToolState(viewer, "stack", stack);
+        });
+
+    }
+
+    else {   
+        // Add files to an array of ImageIds for the Stack Manager.
         for (let i = 0; i < event.dataTransfer.files.length; i++) {
             file = event.dataTransfer.files[i];
             imageIds.push(cornerstoneWADOImageLoader.wadouri.fileManager.add(file));
@@ -62,13 +83,10 @@ function onDrop(event) {
 
         cornerstone.loadImage(imageIds[0]).then(function (image) {
 
-            console.log('Loaded', image);
-
-            cornerstoneTools.init();
+            console.log('Loaded', image);  
             
-            // viewer variable
+            // Enable viewer for Cornerstone and display image.
             var viewer = document.getElementById('viewer');
-
             cornerstone.enable(viewer);
             cornerstone.displayImage(viewer, image);
 
@@ -83,6 +101,7 @@ function onDrop(event) {
             cornerstoneTools.addTool(cornerstoneTools.PanTool);
             cornerstoneTools.addTool(cornerstoneTools.LengthTool);
             cornerstoneTools.addTool(ThresholdsBrushTool);
+            cornerstoneTools.addTool(cornerstoneTools.EraserTool);
 
             // Activate tools as needed; default active tool is brush and stack scroll.
             cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
@@ -90,6 +109,7 @@ function onDrop(event) {
             cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
+            cornerstoneTools.setToolPassive('Eraser', { mouseButtonMask: 1 });
             currentTool = 'ThresholdsBrush';
 
         });
@@ -102,6 +122,7 @@ window.onload = function () {
 
     document.body.addEventListener('dragover', onDragOver);
     document.body.addEventListener('drop', onDrop);
+    cornerstoneTools.init();
 };
 // function brushbutton that will allow the onclick event when the user is pressing the brush button
 
@@ -153,7 +174,11 @@ window.onkeyup = function (event) {
         cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
         currentTool = 'Pan';
     }
-
+    else if (event.key == 'e') {
+        cornerstoneTools.setToolDisabled(currentTool);
+        cornerstoneTools.setToolActive('Eraser', { mouseButtonMask: 1 });
+        currentTool = 'Eraser';
+    }
     
     //discrete calcifications 
     else if (event.key == '2') {
