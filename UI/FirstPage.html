@@ -9,10 +9,49 @@
     <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
     <script src="https://unpkg.com/dicom-parser"></script>
     <script src="https://unpkg.com/cornerstone-tools@4.0.9/dist/cornerstoneTools.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+    <script>
+        $(window).load(function () {
+            $('#myModal').modal('show');
+        });
 
+        setTimeout(function () {
+            $('#myModal').modal('hide');
+        }, 5000);
+
+    </script>
 </head>
 <body>
-    <div class="back-ground">
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            
+
+                <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Welcome to the Carotid Calcium Scanner
+                    </h4>
+                </div>
+                <img src="imag/CTAgif.gif" class="CTAgif" />
+                <div class="modal-body">
+                    <p>
+                        This is a tool in which you can upload,
+                        scan and manipulate any DICOM images which
+                        contain calcific plaques in the carotid artery.
+                        If needed, you can download all the morphologic
+                        features of the calcific plaques.
+                    </p>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+    <div class="background">
         <!--Logo-->
         <img src="imag/logo1.png" class="logo" />
         <img src="imag/top1.jpeg" class="top" />

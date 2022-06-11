@@ -8,6 +8,8 @@
     <!--This is a page I used to get the icons upload and info in the second page of the UI-->
     <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
     <!-- Here is the connection between the js and html files-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/cornerstone-core/dist/cornerstone.min.js"></script>
     <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
     <script src="https://unpkg.com/dicom-parser"></script>
@@ -18,9 +20,47 @@
     <script src="../util.js"></script>
     <script src="../viewer.js"></script>
     <script src="../converter.js"></script>
+    <script>
+        $(window).load(function () {
+            $('#myModal').modal('show');
+        });
+
+        setTimeout(function () {
+            $('#myModal').modal('hide');
+        }, 10000);
+
+    </script>
 </head>
 
 <body>
+
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Welcome to the Carotid Calcium Scanner
+                    </h4>
+                </div>
+                <img src="imag/CTAgif.gif" class="CTAgif" />
+                <div class="modal-body">
+                    <p>
+                        This is a tool in which you can upload,
+                        scan and manipulate any DICOM images which
+                        contain calcific plaques in the carotid artery.
+                        If needed, you can download all the morphologic
+                        features of the calcific plaques.
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
     <!--The looks:-->
     <div class="back-ground">
         <!--Logo-->
@@ -61,11 +101,11 @@
             <p5>
                 Brush Color
                 <select id="Color" onchange="changecolor()">
-                    <option value="1">Default: Red</option>
-                    <option value="2">Green</option>
-                    <option value="3">Purple</option>
-                    <option value="68">Blue</option>
-                    <option value="6">Pink</option>
+                    <option class="red" value="1">Default: Red</option>
+                    <option class="green" value="2">Green</option>
+                    <option class="purple" value="3">Purple</option>
+                    <option class="blue" value="68">Blue</option>
+                    <option class="pink" value="6">Pink</option>
                 </select>
             </p5>
             <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
@@ -119,8 +159,8 @@
             <p11>Low Pixel Threshold</p11>
             <p12>High Pixel Threshold</p12>
             <!-- This is for the slider-->
-            <input id="userMinThreshold" type="range" min="-2000" max="80" value="-2000"/>-->
-            <input id="userMaxThreshold" type="range" min="80" max="1000000" value="1000000"/>-->
+            <input id="userMinThreshold" type="range" min="-2000" max="80" value="-2000" />-->
+            <input id="userMaxThreshold" type="range" min="80" max="1000000" value="1000000" />-->
         </div>
 
         <!--viewer for drag and drop-->
@@ -163,7 +203,7 @@
                 <div id="output5d"></div>
             </p>
         </div>
-        </div>
+    </div>
 
 </body>
 
