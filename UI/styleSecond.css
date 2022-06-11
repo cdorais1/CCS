@@ -4,7 +4,7 @@
     background-color: black;
     /*min-width: 100S;*/
 }
-/*.container {
+.container {
     position: fixed;
     z-index: 1;
     padding-top: 100px; 
@@ -55,7 +55,7 @@
     padding-left: 5%;
     padding-right: 65%;
     min-width: 300px;
-}*/
+}
 
 /*Styling properties for the background*/
 .back-ground {
