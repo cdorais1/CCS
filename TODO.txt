@@ -9,9 +9,6 @@ Webpage-related/HTML and CSS
 - combine all html to a single file to avoid weirdness with url 
 -- (see https://cdorais1.github.io/CCS/UI/SecondPage.html URL as example)
 
-- splash screen fade via timeout after a short stretch of time (e.g. 1s)
--- no need for "Get Started" button
-
 - remove top bar 
 -- find a new spot for the logo, maybe at end of the tool bar?
 
