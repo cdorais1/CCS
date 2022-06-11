@@ -7,8 +7,7 @@ segModule = cornerstoneTools.getModule('segmentation');
 
 let currentTool = '';
 let imageIds = [];
-
-
+let Seg_or_Ano = '';
 
 function onDragOver(event) {
 
@@ -26,8 +25,7 @@ function onDrop(event) {
 
     console.log(event.dataTransfer.files);
     var file = event.dataTransfer.files[0];
-    console.log(sortImages(event.dataTransfer.files));
-    console.log("here");
+
 
     //checks if the file is a json file
     if (file.name.includes('.json') == true) {
@@ -91,6 +89,7 @@ function onDrop(event) {
 
             var viewer = document.getElementById('viewer');
             cornerstone.enable(viewer);
+            cornerstone.displayImage(viewer, image);
 
             //enables stack state for image viewer
             var stack = { currentImageIdIndex: 0, imageIds: imageIds };
@@ -103,6 +102,7 @@ function onDrop(event) {
             cornerstoneTools.addTool(cornerstoneTools.PanTool);
             cornerstoneTools.addTool(cornerstoneTools.LengthTool);
             cornerstoneTools.addTool(ThresholdsBrushTool);
+            cornerstoneTools.addTool(EraserBrushTool);
             cornerstoneTools.addTool(cornerstoneTools.EraserTool);
 
             // Activate tools as needed; default active tool is brush and stack scroll.
@@ -112,11 +112,9 @@ function onDrop(event) {
             cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Eraser', { mouseButtonMask: 1 });
+            cornerstoneTools.setToolPassive('EraserBrush', { mouseButtonMask: 1 });
             currentTool = 'ThresholdsBrush';
-
-            // Display first image in imageIDs. 
-            cornerstone.displayImage(viewer, image);
-
+            Seg_or_Ano = 'seg';
         });
 
     };
@@ -153,6 +151,7 @@ window.onkeyup = function (event) {
         cornerstoneTools.setToolDisabled(currentTool);
         cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
         currentTool = 'ThresholdsBrush';
+        Seg_or_Ano = 'seg';
     }
     // press - to decrease brush size
     else if (event.key == '-') {
@@ -173,6 +172,7 @@ window.onkeyup = function (event) {
         //cornerstoneTools.setToolDisabled(currentTool);
         cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
         currentTool = 'Length';
+        Seg_or_Ano = 'ano';
     }
     // press p for pan
     else if (event.key == 'p') {
@@ -181,9 +181,17 @@ window.onkeyup = function (event) {
         currentTool = 'Pan';
     }
     else if (event.key == 'e') {
-        cornerstoneTools.setToolDisabled(currentTool);
-        cornerstoneTools.setToolActive('Eraser', { mouseButtonMask: 1 });
-        currentTool = 'Eraser';
+        if (Seg_or_Ano == 'ano') {
+            cornerstoneTools.setToolDisabled(currentTool);
+            cornerstoneTools.setToolActive('Eraser', { mouseButtonMask: 1 });
+            currentTool = 'Eraser';
+        }
+        else if (Seg_or_Ano == 'seg') {
+            cornerstoneTools.setToolDisabled(currentTool);
+            cornerstoneTools.setToolActive('EraserBrush', { mouseButtonMask: 1 });
+            currentTool = 'EraserBrush';
+        }
+
     }
     
     //discrete calcifications 
