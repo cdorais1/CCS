@@ -52,6 +52,7 @@ function brushbutton() {
     cornerstoneTools.setToolDisabled(currentTool);
     cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
     currentTool = 'ThresholdsBrush';
+    Seg_or_Ano = "seg";
 }
 // Allows the user to decrease the size of the brush when clicking on the - button.
 function decreasebrush() {
@@ -105,6 +106,7 @@ function lengthl() {
     cornerstoneTools.setToolDisabled(currentTool);
     cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
     currentTool = 'Length';
+    Seg_or_Ano = "ano";
 }
 // Displays statistics captured by paint event data.
 function displaystats() {

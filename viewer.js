@@ -182,7 +182,7 @@ window.onkeyup = function (event) {
     }
     else if (event.key == 'e') {
         if (Seg_or_Ano == 'ano') {
-            cornerstoneTools.setToolDisabled(currentTool);
+            cornerstoneTools.setToolPassive(currentTool);
             cornerstoneTools.setToolActive('Eraser', { mouseButtonMask: 1 });
             currentTool = 'Eraser';
         }
