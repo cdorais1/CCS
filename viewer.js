@@ -25,8 +25,7 @@ function onDrop(event) {
 
     console.log(event.dataTransfer.files);
     var file = event.dataTransfer.files[0];
-    console.log(sortImages(event.dataTransfer.files));
-    console.log("here");
+
 
     //checks if the file is a json file
     if (file.name.includes('.json') == true) {
@@ -90,6 +89,7 @@ function onDrop(event) {
 
             var viewer = document.getElementById('viewer');
             cornerstone.enable(viewer);
+            cornerstone.displayImage(viewer, image);
 
             //enables stack state for image viewer
             var stack = { currentImageIdIndex: 0, imageIds: imageIds };
