@@ -76,9 +76,6 @@ JS-related
 -- saggital is plane that bisects the left and right side of a body 
 -- coronal bisects the front and back of the body 
 
-- implement removal of length tool annotations
--- check cornerstoneTools for code for that; definitely an easy fix
-
 - need to implement a way to count individual blobs of paint annotations on the DICOM rather than by color; going to need 
   to use something like the percolation problem to find the paint blobs' boundaries  
 -- Not necessarily imperative if users use single colors for single annotations as suggested by D. Haehn previously,
