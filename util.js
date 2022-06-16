@@ -44,7 +44,9 @@ function panbutton() {
 
 // Clears all brush strokes on the currently displayed image.
 function clearbutton() {
-    clearBrushes(viewer);
+    if (confirm("Are you sure you would like to clear all annotations? This cannot be undone.")) {
+        clearBrushes(viewer);
+    } 
 }
 
 // Enables brush tool when clicked.
@@ -52,6 +54,7 @@ function brushbutton() {
     cornerstoneTools.setToolDisabled(currentTool);
     cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
     currentTool = 'ThresholdsBrush';
+    Seg_or_Ano = "seg";
 }
 // Allows the user to decrease the size of the brush when clicking on the - button.
 function decreasebrush() {
@@ -105,6 +108,7 @@ function lengthl() {
     cornerstoneTools.setToolDisabled(currentTool);
     cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
     currentTool = 'Length';
+    Seg_or_Ano = "ano";
 }
 // Displays statistics captured by paint event data.
 function displaystats() {
