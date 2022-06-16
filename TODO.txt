@@ -62,8 +62,9 @@ JS-related
 -- THIS IS AN IMPERATIVE
 
 - remove clear annotations code 
+-- 6/16: implemented a dialog popup that lets users know that all paint event data will be deleted and requires confirmation to continue process. Will confirm with client that this is acceptable or if full removal is still required.
 -- maybe comment out initially, and move to full removal
--- alternatively, maybe implement an "are you sure" so users are warned before ruining their work 
+
 
 - zoom bound to right click and always active (click and drag cursor) && pan bound to mouse wheel click and always active 
 -- Discussion with D. Haehn illuminated the difference between zoom/pan interactions with 2D images versus 3D images 
