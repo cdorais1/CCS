@@ -62,8 +62,9 @@ JS-related
 -- THIS IS AN IMPERATIVE
 
 - remove clear annotations code 
+-- 6/16: implemented a dialog popup that lets users know that all paint event data will be deleted and requires confirmation to continue process. Will confirm with client that this is acceptable or if full removal is still required.
 -- maybe comment out initially, and move to full removal
--- alternatively, maybe implement an "are you sure" so users are warned before ruining their work 
+
 
 - zoom bound to right click and always active (click and drag cursor) && pan bound to mouse wheel click and always active 
 -- Discussion with D. Haehn illuminated the difference between zoom/pan interactions with 2D images versus 3D images 
@@ -75,9 +76,6 @@ JS-related
 -- current orientation is axial
 -- saggital is plane that bisects the left and right side of a body 
 -- coronal bisects the front and back of the body 
-
-- implement removal of length tool annotations
--- check cornerstoneTools for code for that; definitely an easy fix
 
 - need to implement a way to count individual blobs of paint annotations on the DICOM rather than by color; going to need 
   to use something like the percolation problem to find the paint blobs' boundaries  
