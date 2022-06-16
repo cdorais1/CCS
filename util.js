@@ -44,7 +44,9 @@ function panbutton() {
 
 // Clears all brush strokes on the currently displayed image.
 function clearbutton() {
-    clearBrushes(viewer);
+    if (confirm("Are you sure you would like to clear all annotations? This cannot be undone.")) {
+        clearBrushes(viewer);
+    } 
 }
 
 // Enables brush tool when clicked.
