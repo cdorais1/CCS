@@ -12,7 +12,6 @@ Webpage-related/HTML and CSS
 -- otherwise, we can move the code from UI/SecondPage.html to index.html 
 -- can rename info.html to tool.html 
 
-
 - remove top bar 
 -- find a new spot for the logo, maybe at end of the tool bar?
 
@@ -51,7 +50,6 @@ Webpage-related/HTML and CSS
 
 JS-related
 
-
 - correct threshold slider
 -- make into a single slider
 -- add a text box area for users to type in values
@@ -60,17 +58,6 @@ JS-related
 - implement json upload for tool restoration
 -- current issues detailed in "issues" tab on github; will add additional found issues as needed.
 -- THIS IS AN IMPERATIVE
-
-- remove clear annotations code 
--- 6/16: implemented a dialog popup that lets users know that all paint event data will be deleted and requires confirmation to continue process. Will confirm with client that this is acceptable or if full removal is still required.
--- maybe comment out initially, and move to full removal
-
-
-- zoom bound to right click and always active (click and drag cursor) && pan bound to mouse wheel click and always active 
--- Discussion with D. Haehn illuminated the difference between zoom/pan interactions with 2D images versus 3D images 
--- need to find a happy medium for users without clickable or existing mouse wheels (e.g. specialty mouses, touchpad users); 
-   may need to incude a caveat on the information page of web app to let users know of alternative methods to access these tools.
--- See conversation on project discord 6/3/22 re: discussion of zoom/pan
 
 - Allow for changing between cross-sectional orientation from coronal to axial to saggital to improve ability to annotate
 -- current orientation is axial
@@ -84,3 +71,16 @@ JS-related
 
 - enable server upload for DICOMs and allow multiple users to annotate at the same time
 -- need to look into this more; this is an entirely new field for this team and will require heavy research
+
+
+
+- remove clear annotations code 
+-- 6/16: implemented a dialog popup that lets users know that all paint event data will be deleted and requires confirmation to continue process. Will confirm with client that this is acceptable or if full removal is still required.
+-- maybe comment out initially, and move to full removal
+
+- zoom bound to right click and always active (click and drag cursor) && pan bound to mouse wheel click and always active 
+-- 6/17: right-click zoom and mousewheel-click enabled for zoom and pan respectively. MOUSE REQUIRED FOR THIS 
+-- Discussion with D. Haehn illuminated the difference between zoom/pan interactions with 2D images versus 3D images 
+-- need to find a happy medium for users without clickable or existing mouse wheels (e.g. specialty mouses, touchpad users); 
+   may need to incude a caveat on the information page of web app to let users know of alternative methods to access these tools.
+-- See conversation on project discord 6/3/22 re: discussion of zoom/pan
