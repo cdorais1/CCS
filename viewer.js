@@ -108,8 +108,8 @@ function onDrop(event) {
             // Activate tools as needed; default active tool is brush and stack scroll.
             cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
             cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
-            cornerstoneTools.setToolPassive('Zoom', { mouseButtonMask: 1 });
-            cornerstoneTools.setToolPassive('Pan', { mouseButtonMask: 1 });
+            cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 2 });
+            cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 4 });
             cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Eraser', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('EraserBrush', { mouseButtonMask: 1 });
