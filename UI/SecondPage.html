@@ -94,6 +94,20 @@
                     <i class="fa fa-info"></i>
                 </button>
             </a>
+            <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
+            <p2>
+                Zoom
+                <button class="zoom" onclick="zoombutton(); disable();">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </p2>
+            <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
+            <p3>
+                Pan
+                <button class="pan" onclick="panbutton(); disable();">
+                    <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                </button>
+            </p3>
             <!--This created the blue line on top of the page-->
             <hr />
         </div>
@@ -130,19 +144,19 @@
                 </select>
             </p5>
             <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
-            <p2>
+            <!--<p2>
                 Zoom
                 <button class="zoom" onclick="zoombutton(); disable();">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-            </p2>
+            </p2>-->
             <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
-            <p3>
+            <!--<p3>
                 Pan
                 <button class="pan" onclick="panbutton(); disable();">
                     <i class="fa-solid fa-arrows-up-down-left-right"></i>
                 </button>
-            </p3>
+            </p3>-->
             <!--Clear button.-->
             <p6>
                 Clear Brush
@@ -177,11 +191,12 @@
                     <i class="fas fa-chart-line"></i>
                 </button>
             </p10>
-            <p11>Low Pixel Threshold</p11>
+            <!--<p11>Low Pixel Threshold</p11>-->
             <p12>High Pixel Threshold</p12>
             <!-- This is for the slider-->
-            <input id="userMinThreshold" type="range" min="-2000" max="80" value="-2000" />-->
-            <input id="userMaxThreshold" type="range" min="100" max="3071" value="1" />-->
+            <!--<input id="userMinThreshold" type="range" min="-2000" max="80" value="-2000" />-->
+            <input id="userMaxThreshold" type="range" min="100" max="3071" value="1" oninput="amount.value=userMaxThreshold.value"/>
+            <input id="amount" type="number" value="100" min="100" max="3071" oninput="userMaxThreshold.value=amount.value" />
             <p13>
                 JSON
                 <button class="exportJ" onclick="exportJ()">

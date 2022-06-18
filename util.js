@@ -63,6 +63,10 @@ function increasebrush() {
     cornerstoneTools.store.state.tools[4].increaseBrushSize();
 }
 
+function updateTextInput(val) {
+    document.getElementById('textInput').value = val;
+}
+
 // Allows the user to download a JSON file
 function exportJ() {
     var image = cornerstone.getImage(viewer);
