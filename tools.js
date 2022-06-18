@@ -115,19 +115,20 @@ function getCircleWithThreshold(
     const y0 = Math.floor(yCoord);
     let circleArray = [];
 
-    var userMinThreshold = document.getElementById("userMinThreshold").value;
+    // var userMinThreshold = document.getElementById("userMinThreshold").value;
     var userMaxThreshold = document.getElementById("userMaxThreshold").value;
 
-    if (userMinThreshold == null) {
-        userMinThreshold = 80;
-    }
+    //if (userMinThreshold == null) {
+    //    userMinThreshold = 80;
+    //}
+
     if (userMaxThreshold == null) {
         userMaxThreshold = image.maxPixelValue;
     }
 
     //// if no thresholds, set all pixels range
     if (!thresholds) {
-        thresholds = [userMinThreshold, userMaxThreshold];
+        thresholds = [100, userMaxThreshold];
 
     }
 
