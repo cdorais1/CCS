@@ -76,3 +76,6 @@ FOR REVIEW
 -- If there's no landing page, then all of the code will be in a single file 
 -- otherwise, we can move the code from UI/SecondPage.html to index.html 
 -- can rename info.html to tool.html 
+
+
+---------------------------------------------------------------------------| Finished Tasks: |--------------------------------------------------------------------------
