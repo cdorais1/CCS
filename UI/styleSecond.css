@@ -797,20 +797,36 @@ p10 {
         background-color: #35afaa;
         color: black;
     }
-.stats {
-    border: 1px groove #808080;
-    border-radius: 1%;
+#Statistics {
+    width: 100%;
+    height: 50%;
     position: relative;
     left: -5%;
-    top: -1.5%;
-    font-family:'Arial Rounded MT';
-    font: italic;
-    background-color: #343434;
-    width: 103.5% ;
-    height: 101%;
+    border: 1px solid white;
+    overflow-y: auto;
+    overflow-x: hidden;
+/*    z-index:10;*/
+    background-color: #2d2d2d;
+    color: whitesmoke;
+    font-size: 18px;
+    font-family: 'Times New Roman';
+    z-index: 10;
+    cursor: move;
 }
-.stats h{
-    text-decoration-line: underline;
+.noselect hr{
+    color:azure;
+}
+
+/* Prevents inconsistent highlighting of element while being dragged
+   Copied from https://stackoverflow.com/questions/826782 */
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    /*-khtml-user-select: none;*/ /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 #output1c {
     color: red;
@@ -935,6 +951,7 @@ p10 {
     margin-right: auto;
     min-width: 100px;
     color: #5f8c8a;
+    z-index: 1;
 }
 
 /*p10 {

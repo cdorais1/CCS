@@ -31,6 +31,32 @@
         }, 4500);
 
     </script>
+    <script>
+        // Added a jQuery to make two functions coexist for window.onload
+        $(window).load(function () {
+            draggable(document.getElementById('Statistics'));
+        })
+
+        function draggable(el) {
+            el.addEventListener('mousedown', function (e) {
+                var offsetX = e.clientX - parseInt(window.getComputedStyle(this).left);
+                var offsetY = e.clientY - parseInt(window.getComputedStyle(this).top);
+
+                function mouseMoveHandler(e) {
+                    el.style.top = (e.clientY - offsetY) + 'px';
+                    el.style.left = (e.clientX - offsetX) + 'px';
+                }
+
+                function reset() {
+                    window.removeEventListener('mousemove', mouseMoveHandler);
+                    window.removeEventListener('mouseup', reset);
+                }
+
+                window.addEventListener('mousemove', mouseMoveHandler);
+                window.addEventListener('mouseup', reset);
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -164,8 +190,8 @@
             <!--<p10 id="dragndroptext">Drag & Drop</p10>-->
             <p id="viewer"></p>
         </div>
-        <div class="stats" style="color:white;">
-            <h>Statistics</h>
+        <div id="Statistics" class="noselect" onclick="draggable">Statistics
+            <hr />
             <p>
                 <div id="output1c"></div>
                 <div id="output1a"></div>
@@ -196,6 +222,7 @@
                 <div id="output5v"></div>
                 <div id="output5d"></div>
             </p>
+
         </div>
     </div>
 
