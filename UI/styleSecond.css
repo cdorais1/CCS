@@ -739,6 +739,7 @@ p12 {
     width: 3%;
     border-radius: 15%;
     background-color: #35AFAA;
+
 }
 /*style for the sliders for the low and high pixel intensity threshold*/
 input[type="range"] {
