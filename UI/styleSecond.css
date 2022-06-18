@@ -797,6 +797,53 @@ p10 {
         background-color: #35afaa;
         color: black;
     }
+p13 {
+    position: fixed;
+    top: 79%;
+    left: 3%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.exportJ {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 3%;
+    top: 82%;
+    min-block-size: 2%;
+    width: 2%;
+    min-width: 0.5%;
+    font-size: 120%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.60%;
+    padding-right: 1.45%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .exportJ:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .exportJ:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    /*Changes color when the user presses on this button*/
+    .exportJ:focus {
+        background-color: #35afaa;
+        color: black;
+    }
 #Statistics {
     width: 100%;
     height: 50%;

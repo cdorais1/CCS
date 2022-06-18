@@ -52,6 +52,7 @@ function brushbutton() {
     cornerstoneTools.setToolDisabled(currentTool);
     cornerstoneTools.setToolActive('ThresholdsBrush', { mouseButtonMask: 1 });
     currentTool = 'ThresholdsBrush';
+
 }
 // Allows the user to decrease the size of the brush when clicking on the - button.
 function decreasebrush() {
@@ -60,6 +61,12 @@ function decreasebrush() {
 // Allows the user to increase the size of the brush when clicking on the + button.
 function increasebrush() {
     cornerstoneTools.store.state.tools[4].increaseBrushSize();
+}
+
+// Allows the user to download a JSON file
+function exportJ() {
+    var image = cornerstone.getImage(viewer);
+    convertToJSON(image);
 }
 // Enables Zoom tool when clicked.
 function zoombutton() {
@@ -106,6 +113,7 @@ function lengthl() {
     cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
     currentTool = 'Length';
 }
+
 // Displays statistics captured by paint event data.
 function displaystats() {
     var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
