@@ -94,7 +94,7 @@ function onDrop(event) {
             //enables stack state for image viewer
             var stack = { currentImageIdIndex: 0, imageIds: imageIds };
             cornerstoneTools.addStackStateManager(viewer, ["stack"]);
-            cornerstoneTools.addToolState(viewer, "stack", stack);
+
 
             // Set up tool set for annotations of images. 
             cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
@@ -105,6 +105,10 @@ function onDrop(event) {
             cornerstoneTools.addTool(EraserBrushTool);
             cornerstoneTools.addTool(cornerstoneTools.EraserTool);
 
+            // Change tool color to make length tool more visibile on DICOMs
+            cornerstoneTools.toolColors.setToolColor("blue");
+            cornerstoneTools.toolColors.setActiveColor("turquoise");
+
             // Activate tools as needed; default active tool is brush and stack scroll.
             cornerstoneTools.setToolPassive('ThresholdsBrush', { mouseButtonMask: 1 });
             cornerstoneTools.setToolActive('StackScrollMouseWheel', {});
@@ -113,6 +117,11 @@ function onDrop(event) {
             cornerstoneTools.setToolPassive('Length', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('Eraser', { mouseButtonMask: 1 });
             cornerstoneTools.setToolPassive('EraserBrush', { mouseButtonMask: 1 });
+
+
+            // Add ThresholdsBrush and Stack tool states to StackStateManager and set check variables.
+            cornerstoneTools.addToolState(viewer, "stack", stack);
+            cornerstoneTools.addToolState(viewer, "ThresholdsBrush", cornerstoneTools.store.state.tools[4]);
             currentTool = 'ThresholdsBrush';
             Seg_or_Ano = 'seg';
         });
