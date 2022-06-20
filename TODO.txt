@@ -10,12 +10,13 @@ Webpage-related/HTML and CSS
 JS-related
 
 - implement json upload for tool restoration
--- current issues detailed in "issues" tab on github; will add additional found issues as needed.
--- THIS IS AN IMPERATIVE
+-- current issues detailed in "issues" tab; will add additional information and research as needed.
+
 
 - Allow for changing between cross-sectional orientation from coronal to axial to saggital to improve ability to annotate
+-- current issues detailed in "issues" tab; will add additional information and research as needed. 
 -- current orientation is axial
--- saggital is plane that bisects the left and right side of a body: in reference to axial DICOM, for each generated saggital image you need:
+-- sagittal is plane that bisects the left and right side of a body: in reference to axial DICOM, for each generated sagittal image you need:
                                                                      :: all values from the same column but different rows
                                                                      :: [0-512, constant]
 -- coronal bisects the front and back of the body: in reference to axial DICOM, for each generated coronal image you need:
@@ -30,10 +31,13 @@ JS-related
 
 - need to implement a way to count individual blobs of paint annotations on the DICOM rather than by color; going to need 
   to use something like the percolation problem to find the paint blobs' boundaries  
+-- current issues detailed in "issues" tab; will add additional information and research as needed. 
 -- Not necessarily imperative if users use single colors for single annotations as suggested by D. Haehn previously,
    but still a nice stretch goal 
 
+
 - enable server upload for DICOMs and allow multiple users to annotate at the same time
+-- current issues detailed in "issues" tabe; will add additional information and research as needed. 
 -- need to look into this more; this is an entirely new field for this team and will require heavy research
 
 
