@@ -501,3 +501,18 @@ function discreteCount(labelmap2D, image) {
 
     return counts;
 }
+
+// Allows the user to eraser either brush or length annotations.
+// However, it only erases the markings of the last tool used.
+function eraser() {
+    if (Seg_or_Ano == 'ano') {
+        cornerstoneTools.setToolPassive(currentTool);
+        cornerstoneTools.setToolActive('Eraser', { mouseButtonMask: 1 });
+        currentTool = 'Eraser';
+    }
+    else if (Seg_or_Ano == 'seg') {
+        cornerstoneTools.setToolDisabled(currentTool);
+        cornerstoneTools.setToolActive('EraserBrush', { mouseButtonMask: 1 });
+        currentTool = 'EraserBrush';
+    }
+}
