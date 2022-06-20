@@ -45,8 +45,8 @@ JS-related
 
 
 
+----------------------------------------------------------------|  Tasks FOR REVIEW: |-------------------------------------------------------------------------
 
-FOR REVIEW
 
 - remove clear annotations code 
 -- 6/16: implemented a dialog popup that lets users know that all paint event data will be deleted and requires confirmation to continue process. Will confirm with client that this is acceptable or if full removal is still required.
@@ -78,4 +78,5 @@ FOR REVIEW
 -- can rename info.html to tool.html 
 
 
----------------------------------------------------------------------------| Finished Tasks: |--------------------------------------------------------------------------
+
+----------------------------------------------------------------| Finished Tasks APPROVED: |-------------------------------------------------------------------------

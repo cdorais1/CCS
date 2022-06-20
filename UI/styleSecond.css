@@ -5,6 +5,103 @@
     /*min-width: 100S;*/
 }
 
+.container {
+    position: fixed;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 130%;
+    height: 130%;
+    overflow: auto;
+    -webkit-animation: fadeOut 10s;
+    animation: fadeOut 10s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0.01;
+        width: 100%;
+        height: 100%;
+    }
+
+    100% {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0.01;
+        width: 100%;
+        height: 100%;
+    }
+
+    100% {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+}
+
+.logopopup {
+    position: relative;
+    left: 1%;
+    top: 1%;
+    width: 10%;
+}
+
+.modal-content {
+    background: radial-gradient(ellipse 55% 70% at -15% 90%, #35AFAA, black);
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+    height: 100vh;
+}
+
+.CTAgif {
+    height: 65%;
+    width: 50%;
+    min-width: 70px;
+    min-height: 140px;
+    position: fixed;
+    left: 50%;
+    top: 20%;
+}
+
+.modal-title {
+    z-index: 1;
+    color: white;
+    font-size: 250%;
+    font-family: 'Arial Rounded MT';
+    position: fixed;
+    bottom: 50%;
+    padding-left: 5%;
+    padding-right: 45%;
+}
+
+.modal-body {
+    color: white;
+    font-size: 100%;
+    font-family: 'Arial Rounded MT';
+    position: fixed;
+    bottom: 40%;
+    padding-left: 5%;
+    padding-right: 65%;
+    min-width: 300px;
+}
+
 /*Styling properties for the background*/
 .back-ground {
     display: grid;
@@ -16,6 +113,19 @@
     height: 100vh;
     min-height: 250px;
     margin: auto;
+    animation: fadeInAnimation ease 15s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .pageHeader {
@@ -209,14 +319,58 @@ select {
     color: black;
     font-size: 15px;
     font-weight: bold;
-    background-color: #35AFAA;
+    background-color: #35afaa;
     border-radius: 8px;
     border: 1px solid black;
 }
 
-    #Color:disabled {
-        cursor: not-allowed;
-    }
+.red {
+    color: black;
+    font-size: 15px;
+    background-color: red;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.green {
+    color: black;
+    font-size: 15px;
+    background-color: lime;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.purple {
+    color: black;
+    font-size: 15px;
+    background-color: fuchsia;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.blue {
+    font-size: 15px;
+    background-color: aqua;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.pink {
+    color: black;
+    font-size: 15px;
+    background-color: hotpink;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+#Color:disabled {
+    cursor: not-allowed;
+}
 
 /*p1 corresponds to brush*/
 p1 {
@@ -269,8 +423,8 @@ p1 {
 /*p2 corresponds to zoom*/
 p2 {
     position: fixed;
-    top: 43%;
-    left: 3%;
+    top: 0.5%;
+    left: 15%;
     font-size: 14px;
     font-family: Georgia, serif;
     color: #35AFAA;
@@ -284,16 +438,16 @@ p2 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 3%;
-    top: 46%;
-    min-block-size: 5%;
-    width: 2%;
+    left: 15%;
+    top: 3%;
+    min-block-size: 2%;
+    width: 1%;
     min-width: 0.5%;
-    font-size: 120%;
-    padding-top: 0.4%;
-    padding-bottom: 0.4%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
     padding-left: 0.5%;
-    padding-right: 1.67%;
+    padding-right: 1.5%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -319,8 +473,8 @@ p2 {
 /*p3 corresponds to pan*/
 p3 {
     position: fixed;
-    top: 52%;
-    left: 3.25%;
+    top: 0.5%;
+    left: 19.35%;
     font-size: 14px;
     font-family: Georgia, serif;
     color: #35AFAA;
@@ -334,16 +488,16 @@ p3 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 3%;
-    top: 55%;
-    min-block-size: 5%;
-    width: 2%;
+    left: 19%;
+    top: 3%;
+    min-block-size: 2%;
+    width: 1%;
     min-width: 0.5%;
-    font-size: 120%;
-    padding-top: 0.4%;
-    padding-bottom: 0.4%;
-    padding-left: 0.55%;
-    padding-right: 1.65%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    padding-left: 0.5%;
+    padding-right: 1.5%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -359,7 +513,7 @@ p3 {
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
-/*Changes color when the user presses on this button*/
+    /*Changes color when the user presses on this button*/
     .pan:focus {
         background-color: #35afaa;
         color: black;
@@ -499,7 +653,7 @@ p8 {
 /*p9 corresponds to length button*/
 p9 {
     position: fixed;
-    top: 61%;
+    top: 55%;
     left: 3%;
     font-size: 14px;
     font-family: Georgia, serif;
@@ -515,7 +669,7 @@ p9 {
     color: #35afaa;
     position: fixed;
     left: 3%;
-    top: 64%;
+    top: 58%;
     min-block-size: 5%;
     width: 2%;
     min-width: 0.5%;
@@ -539,14 +693,14 @@ p9 {
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
-/*Changes color when the user presses on this button*/
-    .lengthl:focus{
+    /*Changes color when the user presses on this button*/
+    .lengthl:focus {
         background-color: #35afaa;
         color: black;
     }
 
 /*p11 corresponds to the low pixel intensity threshold*/
-p11 {
+/*p11 {
     position: fixed;
     top: 29%;
     left: 1.75%;
@@ -558,24 +712,34 @@ p11 {
     position: fixed;
     top: 32%;
     left: 2%;
-}
+}*/
 
 
 
 /*p11 corresponds to the high pixel intensity threshold*/
 p12 {
     position: fixed;
-    top: 36%;
+    top: 29%;
     left: 1.75%;
     font-size: 14px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
 
-#userMaxThreshold{
+#userMaxThreshold {
     position: fixed;
-    top: 39%;
+    top: 32%;
     left: 2%;
+}
+
+#amount {
+    position: fixed;
+    top: 32%;
+    left: 12%;
+    width: 3%;
+    border-radius: 15%;
+    background-color: #35AFAA;
+
 }
 /*style for the sliders for the low and high pixel intensity threshold*/
 input[type="range"] {
@@ -603,7 +767,7 @@ input[type="range"] {
 /*p10 corresponds to the display statistics*/
 p10 {
     position: fixed;
-    top: 70%;
+    top: 64%;
     left: 1%;
     font-size: 14px;
     font-family: Georgia, serif;
@@ -619,7 +783,7 @@ p10 {
     color: #35afaa;
     position: fixed;
     left: 3%;
-    top: 73%;
+    top: 67%;
     min-block-size: 2%;
     width: 2%;
     min-width: 0.5%;
@@ -643,30 +807,98 @@ p10 {
         box-shadow: 0 4px #2d2d2d;
         transform: translateY(3px);
     }
-/*Changes color when the user presses on this button*/
+    /*Changes color when the user presses on this button*/
     .statsb:focus {
         background-color: #35afaa;
         color: black;
     }
-.stats {
-    border: 1px groove #808080;
-    border-radius: 1%;
+
+p13 {
+    position: fixed;
+    top: 73%;
+    left: 3%;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
+
+.exportJ {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 3%;
+    top: 76%;
+    min-block-size: 2%;
+    width: 2%;
+    min-width: 0.5%;
+    font-size: 120%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    padding-left: 0.60%;
+    padding-right: 1.45%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .exportJ:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .exportJ:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    /*Changes color when the user presses on this button*/
+    .exportJ:focus {
+        background-color: #35afaa;
+        color: black;
+    }
+
+#Statistics {
+    width: 100%;
+    height: 50%;
     position: relative;
     left: -5%;
-    top: -1.5%;
-    font-family:'Arial Rounded MT';
-    font: italic;
-    background-color: #343434;
-    width: 103.5% ;
-    height: 101%;
+    border: 1px solid white;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*    z-index:10;*/
+    background-color: #2d2d2d;
+    color: whitesmoke;
+    font-size: 18px;
+    font-family: 'Times New Roman';
+    z-index: 10;
+    cursor: move;
 }
-.stats h{
-    text-decoration-line: underline;
+
+.noselect hr {
+    color: azure;
 }
+
+/* Prevents inconsistent highlighting of element while being dragged
+   Copied from https://stackoverflow.com/questions/826782 */
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    /*-khtml-user-select: none;*/ /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 #output1c {
     color: red;
-    font-family:'Times New Roman';
+    font-family: 'Times New Roman';
 }
+
 #output1v {
     color: red;
     font-family: 'Times New Roman';
@@ -676,10 +908,12 @@ p10 {
     color: red;
     font-family: 'Times New Roman';
 }
+
 #output1d {
     color: red;
     font-family: 'Times New Roman';
 }
+
 #output2c {
     color: dodgerblue;
     font-family: 'Times New Roman';
@@ -689,6 +923,7 @@ p10 {
     color: dodgerblue;
     font-family: 'Times New Roman';
 }
+
 #output2v {
     color: dodgerblue;
     font-family: 'Times New Roman';
@@ -703,6 +938,7 @@ p10 {
     color: lime;
     font-family: 'Times New Roman';
 }
+
 #output3v {
     color: lime;
     font-family: 'Times New Roman';
@@ -722,6 +958,7 @@ p10 {
     color: fuchsia;
     font-family: 'Times New Roman';
 }
+
 #output4v {
     color: fuchsia;
     font-family: 'Times New Roman';
@@ -736,6 +973,7 @@ p10 {
     color: fuchsia;
     font-family: 'Times New Roman';
 }
+
 #output5c {
     color: hotpink;
     font-family: 'Times New Roman';
@@ -745,6 +983,7 @@ p10 {
     color: hotpink;
     font-family: 'Times New Roman';
 }
+
 #output5v {
     color: hotpink;
     font-family: 'Times New Roman';
@@ -754,16 +993,17 @@ p10 {
     color: hotpink;
     font-family: 'Times New Roman';
 }
+
 .viewer {
     /*background-color: #302f2f;*/
-    width: 80%;
+    width: 120%;
     height: 100%;
     min-width: 100px;
     position: relative;
-    left: 8%;
+    left: -1.5%;
     top: -1%;
-
 }
+
     .viewer::before {
         content: "Drag & Drop";
         color: #302f2f;
@@ -778,14 +1018,15 @@ p10 {
     }
 
 #viewer {
-    border: groove;
-    border-color: white;
-    width: 90%;
+    /*border: groove;
+    border-color: white;*/
+    width: 110%;
     height: 95%;
     margin-left: auto;
     margin-right: auto;
     min-width: 100px;
     color: #5f8c8a;
+    z-index: 1;
 }
 
 /*p10 {

@@ -1,213 +1,120 @@
 ﻿<!DOCTYPE html>
+<html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <title>Carotid Calcium Scanner</title>
-    <link rel="stylesheet" href="try1.css"/>
-    <!--This is a page I used to get the icons upload and info in the second page of the UI-->
-    <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
-    <!-- Here is the connection between the js and html files-->
-    <script src="https://unpkg.com/cornerstone-core/dist/cornerstone.min.js"></script>
-    <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
-    <script src="https://unpkg.com/dicom-parser"></script>
-    <script src="https://unpkg.com/cornerstone-math"></script>
-    <script src="https://unpkg.com/cornerstone-tools"></script>
-    <script src="https://unpkg.com/hammerjs"></script>
-    <script src="../tools.js"></script>
-    <script src="../util.js"></script>
-    <script src="../viewer.js"></script>
-    <script src="../converter.js"></script>
-    <script>
-        function on() {
-            document.getElementById("overlay").style.display = "block";
+    <meta name="viewport"
+          content="width=device-width,
+        initial-scale=1.0,
+        user-scalable=no" />
+    <title>Drag/Drop/Bounce</title>
+    <style>
+        #container {
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+            display: block;
+            align-items: center;
+            justify-content: normal;
+            overflow: auto;
+            border-radius: 7px;
+            touch-action: none;
+            z-index: -1;
         }
 
-        function off() {
-            document.getElementById("overlay").style.display = "none";
+        #item {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(245, 230, 99);
+            border: 10px solid rgba(136, 136, 136, .5);
+            border-radius: 50%;
+            touch-action: none;
+            user-select: none;
+        }
+
+            #item:active {
+                background-color: rgba(168, 218, 220, 1.00);
+            }
+
+            #item:hover {
+                cursor: pointer;
+                border-width: 20px;
+            }
+    </style>
+</head>
+
+<body>
+
+        <div id="container">
+            <div id="item">
+                <h1>Stats</h1>
+            </div>
+        </div>
+
+    <script>
+        var dragItem = document.querySelector("#item");
+        var container = document.querySelector("#container");
+
+        var active = false;
+        var currentX;
+        var currentY;
+        var initialX;
+        var initialY;
+        var xOffset = 0;
+        var yOffset = 0;
+
+        container.addEventListener("touchstart", dragStart, false);
+        container.addEventListener("touchend", dragEnd, false);
+        container.addEventListener("touchmove", drag, false);
+
+        container.addEventListener("mousedown", dragStart, false);
+        container.addEventListener("mouseup", dragEnd, false);
+        container.addEventListener("mousemove", drag, false);
+
+        function dragStart(e) {
+            if (e.type === "touchstart") {
+                initialX = e.touches[0].clientX - xOffset;
+                initialY = e.touches[0].clientY - yOffset;
+            } else {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+            }
+
+            if (e.target === dragItem) {
+                active = true;
+            }
+        }
+
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+
+            active = false;
+        }
+
+        function drag(e) {
+            if (active) {
+
+                e.preventDefault();
+
+                if (e.type === "touchmove") {
+                    currentX = e.touches[0].clientX - initialX;
+                    currentY = e.touches[0].clientY - initialY;
+                } else {
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+                }
+
+                xOffset = currentX;
+                yOffset = currentY;
+
+                setTranslate(currentX, currentY, dragItem);
+            }
+        }
+
+        function setTranslate(xPos, yPos, el) {
+            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
     </script>
-</head>
-<body>
-        <div id="overlay">
-            <!--Logo-->
-            <img src="imag/logo1.png" id="logo" />
-            <img src="imag/top1.jpeg" id="top" />
-            <!--This created the blue line on top of the page-->
-            <hr />
-            <!--Button "Get started". The user presses this and goes to the main page with the viewer-->
-            <!--<a href="SecondPage.html">
-                <div class="GetStarted">
-                    <p1>Get Started</p1>
-                </div>
-            </a>-->
-            <!--Just the CTA image-->
-            <img src="imag/CTA.png" id="CTA" />
-            <!--The title of our tool-->
-            <div id="titleCCS">
-                <p>Welcome to the</p>
-                <p>Carotid Calcium</p>
-                <p>Scanner</p>
-            </div>
-            <!--A small Description of the tool-->
-            <div id="Description">
-                <p>
-                    This is a tool in which you can upload,
-                    scan and manipulate any DICOM images which
-                    contain calcific plaques in the carotid artery.
-                    If needed, you can download all the morphologic
-                    features of the calcific plaques.
-                </p>
-            </div>
-            <!--Our info page, on the bottom right corner-->
-            <!--<div class="infopage">
-                <a href="#" onclick="return show('info','first')">About Us</a>
-            </div>-->
-        </div>
-
-    <!--<div class="second">
-        <div class="back-ground">-->
-            <!--Logo-->
-            <!--Section 1 Header-->
-            <!--<div class="pageHeader">-->
-                <!--this is the info button on the top right corner-->
-                <!--<img src="imag/logo1.png" class="logo" />
-                <a href="info.html">
-                    <button class="info">
-                        <i class="fa fa-info"></i>
-                    </button>
-                </a>-->
-                <!--This created the blue line on top of the page-->
-                <!--<hr />
-            </div>
-
-            <div class="buttons">-->
-                <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
-                <!--<p1>
-                    Brush
-                    <button class="brush" onclick="brushbutton(); enable();">
-                        <i class="fa-solid fa-paintbrush"></i>
-                    </button>
-                </p1>-->
-                <!--Brush size buttons (increase and decrease) with onclick functionality-->
-                <!--<p4>
-                    Brush Size
-                    <button id="Pplus" class="bplus" onclick="increasebrush()">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                    <button id="Mminus" class="bminus" onclick="decreasebrush()">
-                        <i class="fa-solid fa-minus"></i>
-                    </button>
-                </p4>-->
-                <!--brush size increase-->
-                <!--brush size decrease-->
-                <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
-                <!--<p5>
-                    Brush Color
-                    <select id="Color" onchange="changecolor()">
-                        <option value="1">Default: Red</option>
-                        <option value="2">Green</option>
-                        <option value="3">Purple</option>
-                        <option value="68">Blue</option>
-                        <option value="6">Pink</option>
-                    </select>
-                </p5>-->
-                <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
-                <!--<p2>
-                    Zoom
-                    <button class="zoom" onclick="zoombutton(); disable();">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </p2>-->
-                <!--Pan button. It disables the increase decrease of the brush size, as well as the color picking -->
-                <!--<p3>
-                    Pan
-                    <button class="pan" onclick="panbutton(); disable();">
-                        <i class="fa-solid fa-arrows-up-down-left-right"></i>
-                    </button>
-                </p3>-->
-                <!--Clear button.-->
-                <!--<p6>
-                    Clear Brush
-                    <button class="clear" onclick="clearbutton()">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </p6>-->
-                <!--Undo button.-->
-                <!--<p7>
-                    Undo Brush
-                    <button class="undo" onclick="undo()">
-                        <i class="fa-solid fa-arrow-rotate-left"></i>
-                    </button>
-                </p7>-->
-                <!--Redo button.-->
-                <!--<p8>
-                    Redo Brush
-                    <button class="redo" onclick="redo()">
-                        <i class="fa-solid fa-arrow-rotate-right"></i>
-                    </button>
-                </p8>-->
-                <!--Length button-->
-                <!--<p9>
-                    Length
-                    <button class="lengthl" onclick="lengthl(); disable();">
-                        <i class="fa-solid fa-arrows-left-right-to-line"></i>
-                    </button>
-                </p9>
-                <p10>
-                    Display Statistics
-                    <button class="statsb" onclick="displaystats()">
-                        <i class="fas fa-chart-line"></i>
-                    </button>
-                </p10>
-                <p11>Low Pixel Threshold</p11>
-                <p12>High Pixel Threshold</p12>-->
-                <!-- This is for the slider-->
-                <!--<input id="userMinThreshold" type="range" min="-2000" max="80" value="-2000" />-->
-                <!--<input id="userMaxThreshold" type="range" min="80" max="1000000" value="1000000" />-->
-            <!--</div>-->
-
-            <!--viewer for drag and drop-->
-            <!--<div class="viewer">-->
-                <!--<div class="overlay">
-            </div>-->
-                <!--<p10 id="dragndroptext">Drag & Drop</p10>-->
-                <!--<p id="viewer"></p>
-            </div>
-            <div class="stats" style="color:white;">
-                <h>Statistics</h>
-                <p>
-                    <div id="output1c"></div>
-                    <div id="output1a"></div>
-                    <div id="output1v"></div>
-                    <div id="output1d"></div>
-                </p>
-                <p>
-                    <div id="output2c"></div>
-                    <div id="output2a"></div>
-                    <div id="output2v"></div>
-                    <div id="output2d"></div>
-                </p>
-                <p>
-                    <div id="output3c"></div>
-                    <div id="output3a"></div>
-                    <div id="output3v"></div>
-                    <div id="output3d"></div>
-                </p>
-                <p>
-                    <div id="output4c"></div>
-                    <div id="output4a"></div>
-                    <div id="output4v"></div>
-                    <div id="output4d"></div>
-                </p>
-                <p>
-                    <div id="output5c"></div>
-                    <div id="output5a"></div>
-                    <div id="output5v"></div>
-                    <div id="output5d"></div>
-                </p>
-            </div>
-        </div>
-    </div>-->
 </body>
+
 </html>

@@ -64,6 +64,18 @@ function decreasebrush() {
 function increasebrush() {
     cornerstoneTools.store.state.tools[4].increaseBrushSize();
 }
+
+// Add comment here later lol
+function updateTextInput(val) {
+    document.getElementById('textInput').value = val;
+}
+
+// Allows the user to download a JSON file
+function exportJ() {
+    var image = cornerstone.getImage(viewer);
+    convertToJSON(image);
+}
+
 // Enables Zoom tool when clicked.
 function zoombutton() {
     cornerstoneTools.setToolDisabled(currentTool);
@@ -110,6 +122,7 @@ function lengthl() {
     currentTool = 'Length';
     Seg_or_Ano = "ano";
 }
+
 // Displays statistics captured by paint event data.
 function displaystats() {
     var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
