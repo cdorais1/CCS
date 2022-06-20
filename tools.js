@@ -128,7 +128,7 @@ function getCircleWithThreshold(
 
     //// if no thresholds, set all pixels range
     if (!thresholds) {
-        thresholds = [100, userMaxThreshold];
+        thresholds = [-2000, userMaxThreshold];
 
     }
 
