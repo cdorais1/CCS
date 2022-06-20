@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Carotid Calcium Scanner</title>
-    <link rel="stylesheet" href="UI/styleSecond.css" />
+    <link rel="stylesheet" href="./UI/styleSecond.css" />
     <!--This is a page I used to get the icons upload and info in the second page of the UI-->
     <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
     <!-- Here is the connection between the js and html files-->
@@ -16,10 +16,10 @@
     <script src="https://unpkg.com/cornerstone-math"></script>
     <script src="https://unpkg.com/cornerstone-tools"></script>
     <script src="https://unpkg.com/hammerjs"></script>
-    <script src="tools.js"></script>
-    <script src="util.js"></script>
-    <script src="viewer.js"></script>
-    <script src="converter.js"></script>
+    <script src="./tools.js"></script>
+    <script src="./util.js"></script>
+    <script src="./viewer.js"></script>
+    <script src="./converter.js"></script>
     <!-- Jquery code-->
     <script>
         $(window).load(function () {
@@ -31,12 +31,16 @@
         }, 4500);
 
     </script>
+    <script>
 
+    </script>
     <script>
         // Added a jQuery to make two functions coexist for window.onload
         $(window).load(function () {
             draggable(document.getElementById('Statistics'));
+            /*$(function () { $("#Statistics").draggable1().resizable(); });*/
         })
+
 
         function draggable(el) {
             el.addEventListener('mousedown', function (e) {
@@ -94,7 +98,66 @@
                     <i class="fa fa-info"></i>
                 </button>
             </a>
+
+            <p16>Brush <br /> Tools:</p16>
+            <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
+            <p1>
+                Brush
+                <button class="brush" onclick="brushbutton(); enable();">
+                    <i class="fa-solid fa-paintbrush"></i>
+                </button>
+            </p1>
+            <p4>
+                Brush Size
+                <button id="Pplus" class="bplus" onclick="increasebrush()">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <button id="Mminus" class="bminus" onclick="decreasebrush()">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+            </p4>
+
+            <p5>
+                Brush Color
+                <select id="Color" onchange="changecolor()">
+                    <option class="red" value="1">Default: Red</option>
+                    <option class="green" value="2">Green</option>
+                    <option class="purple" value="3">Purple</option>
+                    <option class="blue" value="68">Blue</option>
+                    <option class="pink" value="6">Pink</option>
+                </select>
+            </p5>
+
+            <p12>Threshold</p12>
+            <!-- This is for the slider-->
+            <!--<input id="userMinThreshold" type="range" min="-2000" max="80" value="-2000" />-->
+            <input id="userMaxThreshold" type="range" min="-3071" max="3071" value="1" oninput="amount.value=userMaxThreshold.value" />
+            <input id="amount" type="number" value="0" min="-3071" max="3071" oninput="userMaxThreshold.value=amount.value" />
+
+            <!--Undo Button-->
+            <p7>
+                Undo
+                <button class="undo" onclick="undo()">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                </button>
+            </p7>
+            <!--Redo button.-->
+            <p8>
+                Redo
+                <button class="redo" onclick="redo()">
+                    <i class="fa-solid fa-arrow-rotate-right"></i>
+                </button>
+            </p8>
+
+            <p6>
+                Clear
+                <button class="clear" onclick="clearbutton()">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </p6>
+            <div class="vl"></div>
             <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
+            <p15>Other <br /> Tools:</p15>
             <p2>
                 Zoom
                 <button class="zoom" onclick="zoombutton(); disable();">
@@ -108,20 +171,47 @@
                     <i class="fa-solid fa-arrows-up-down-left-right"></i>
                 </button>
             </p3>
+            <!--Length button-->
+            <p9>
+                Length
+                <button class="lengthl" onclick="lengthl(); disable();">
+                    <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                </button>
+            </p9>
+            <!--Stats button-->
+            <p10>
+                Results
+                <button class="statsb" onclick="displaystats()">
+                    <i class="fas fa-chart-line"></i>
+                </button>
+            </p10>
+            <!--Export a JSON file-->
+            <p13>
+                JSON
+                <button class="exportJ" onclick="exportJ()">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                </button>
+            </p13>
+            <p14>
+                Eraser
+                <button class="eraser" onclick="eraser()">
+                    <i class="fa-solid fa-eraser"></i>
+                </button>
+            </p14>
             <!--This created the blue line on top of the page-->
             <hr />
         </div>
 
         <div class="buttons">
             <!--Brush button with onclick functionality. When pressed the +/- and colors are enabled-->
-            <p1>
+            <!--<p1>
                 Brush
-                <button class="brush" onclick="brushbutton(); enable();">
+                <button class="brush"  onclick="brushbutton(); enable();">
                     <i class="fa-solid fa-paintbrush"></i>
                 </button>
-            </p1>
+            </p1>-->
             <!--Brush size buttons (increase and decrease) with onclick functionality-->
-            <p4>
+            <!--<p4>
                 Brush Size
                 <button id="Pplus" class="bplus" onclick="increasebrush()">
                     <i class="fa-solid fa-plus"></i>
@@ -129,11 +219,11 @@
                 <button id="Mminus" class="bminus" onclick="decreasebrush()">
                     <i class="fa-solid fa-minus"></i>
                 </button>
-            </p4>
+            </p4>-->
             <!--brush size increase-->
             <!--brush size decrease-->
             <!--Changing the color of the brush. There are five oprions: Red, Green, Purple, Blue, and Pink-->
-            <p5>
+            <!--<p5>
                 Brush Color
                 <select id="Color" onchange="changecolor()">
                     <option class="red" value="1">Default: Red</option>
@@ -142,7 +232,7 @@
                     <option class="blue" value="68">Blue</option>
                     <option class="pink" value="6">Pink</option>
                 </select>
-            </p5>
+            </p5>-->
             <!--Zoom button with onclick functionality. It disables the increase decrease of the brush size, as well as the color picking-->
             <!--<p2>
                 Zoom
@@ -158,28 +248,28 @@
                 </button>
             </p3>-->
             <!--Clear button.-->
-            <p6>
+            <!--<p6>
                 Clear Brush
                 <button class="clear" onclick="clearbutton()">
                     <i class="fa-solid fa-trash"></i>
                 </button>
-            </p6>
+            </p6>-->
             <!--Undo button.-->
-            <p7>
+            <!--<p7>
                 Undo Brush
                 <button class="undo" onclick="undo()">
                     <i class="fa-solid fa-arrow-rotate-left"></i>
                 </button>
-            </p7>
+            </p7>-->
             <!--Redo button.-->
-            <p8>
+            <!--<p8>
                 Redo Brush
                 <button class="redo" onclick="redo()">
                     <i class="fa-solid fa-arrow-rotate-right"></i>
                 </button>
-            </p8>
+            </p8>-->
             <!--Length button-->
-            <p9>
+            <!--<p9>
                 Length
                 <button class="lengthl" onclick="lengthl(); disable();">
                     <i class="fa-solid fa-arrows-left-right-to-line"></i>
@@ -190,19 +280,19 @@
                 <button class="statsb" onclick="displaystats()">
                     <i class="fas fa-chart-line"></i>
                 </button>
-            </p10>
+            </p10>-->
             <!--<p11>Low Pixel Threshold</p11>-->
-            <p12>High Pixel Threshold</p12>
+            <!--<p12>High Pixel Threshold</p12>-->
             <!-- This is for the slider-->
             <!--<input id="userMinThreshold" type="range" min="-2000" max="80" value="-2000" />-->
-            <input id="userMaxThreshold" type="range" min="100" max="3071" value="1" oninput="amount.value=userMaxThreshold.value" />
-            <input id="amount" type="number" value="100" min="100" max="3071" oninput="userMaxThreshold.value=amount.value" />
-            <p13>
+            <!--<input id="userMaxThreshold" type="range" min="100" max="3071" value="1" oninput="amount.value=userMaxThreshold.value" />
+            <input id="amount" type="number" value="100" min="100" max="3071" oninput="userMaxThreshold.value=amount.value" />-->
+            <!--<p13>
                 JSON
                 <button class="exportJ" onclick="exportJ()">
                     <i class="fa-solid fa-file-arrow-down"></i>
                 </button>
-            </p13>
+            </p13>-->
         </div>
 
         <!--viewer for drag and drop-->
