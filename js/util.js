@@ -195,6 +195,12 @@ function lengthl() {
     Seg_or_Ano = "ano";
 }
 
+// Show the Stats only when pressing the button of Stats
+//function showDiv() {
+//    document.getElementById('Statistics').style.display = "block";
+//}
+
+
 // Displays statistics captured by paint event data.
 function displaystats() {
     var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
@@ -1019,19 +1025,4 @@ function discreteCount(labelmap2D, image) {
     }
 
     return counts;
-}
-
-// Allows the user to eraser either brush or length annotations.
-// However, it only erases the markings of the last tool used.
-function eraser() {
-    if (Seg_or_Ano == 'ano') {
-        cornerstoneTools.setToolPassive(currentTool);
-        cornerstoneTools.setToolActive('Eraser', { mouseButtonMask: 1 });
-        currentTool = 'Eraser';
-    }
-    else if (Seg_or_Ano == 'seg') {
-        cornerstoneTools.setToolDisabled(currentTool);
-        cornerstoneTools.setToolActive('EraserBrush', { mouseButtonMask: 1 });
-        currentTool = 'EraserBrush';
-    }
 }
