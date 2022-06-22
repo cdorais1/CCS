@@ -170,24 +170,12 @@ window.onkeyup = function (event) {
     else if (event.key == '+') {
         cornerstoneTools.store.state.tools[4].increaseBrushSize();
     }
-    // press z for zoom
-    else if (event.key == 'z') {
-        cornerstoneTools.setToolDisabled(currentTool);
-        cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
-        currentTool = 'Zoom';
-    }
     // press l for length tool
     else if (event.key == 'l') {
         //cornerstoneTools.setToolDisabled(currentTool);
         cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
         currentTool = 'Length';
         Seg_or_Ano = 'ano';
-    }
-    // press p for pan
-    else if (event.key == 'p') {
-        cornerstoneTools.setToolDisabled(currentTool);
-        cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
-        currentTool = 'Pan';
     }
     // press e for erase
     else if (event.key == 'e') {
@@ -281,25 +269,25 @@ window.onkeyup = function (event) {
     
 
     
-    //press u for undo
-    else if (event.key == 'u') {
+    //press ctrl+z for undo
+    else if (event.ctrlKey && event.key == 'z') {
         segModule.setters.undo(viewer);
     }
     
-    //press r for redo
-    else if (event.key == 'r') {
+    //press ctrl+w for redo
+    
+    else if (event.ctrlKey && event.key == 'y') {
         segModule.setters.redo(viewer);
     }
     
-    //press c for clear
-
-    else if (event.key == 'c') {
+    //press c for clear CLEAR FUNCTION NOT NEEDED NOW
+/*    else if (event.key == 'c') {
 
         clearBrushes(viewer);
     }
-    
-    //press q for json download
-    else if (event.key == 'q') {
+*/    
+    //press d for json download
+    else if (event.key == 'd') {
         var image = cornerstone.getImage(viewer);
         convertToJSON(image);
     }
