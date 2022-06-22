@@ -1,0 +1,86 @@
+---------------------------------------------------------------------------| Current Tasks: |--------------------------------------------------------------------------
+
+Webpage-related/HTML and CSS
+
+
+- add button to allow for changes between axial, coronal, and saggital views of imaging
+-- potential preview of each view in empty space on edge of display? 
+
+
+JS-related
+
+- implement json upload for tool restoration
+-- current issues detailed in "issues" tab; will add additional information and research as needed.
+
+
+- Allow for changing between cross-sectional orientation from coronal to axial to saggital to improve ability to annotate
+-- current issues detailed in "issues" tab; will add additional information and research as needed. 
+-- current orientation is axial
+-- sagittal is plane that bisects the left and right side of a body: in reference to axial DICOM, for each generated sagittal image you need:
+                                                                     :: all values from the same column but different rows
+                                                                     :: [0-512, constant]
+-- coronal bisects the front and back of the body: in reference to axial DICOM, for each generated coronal image you need:
+                                                                     :: all values from the same row but different columns
+                                                                     :: [constant, 0-512]
+
+-- need to generate the pixel data for each set of images, reference voxel size to denote thickness of all planar types
+--- how to navigate 1D array of pixel data; what is the formula to convert [row, column] to a single value? 
+--- where to store all of this information? Too time intensive to generate on the fly every time.
+--- when to generate images? Once stack has been loaded?
+
+
+- need to implement a way to count individual blobs of paint annotations on the DICOM rather than by color; going to need 
+  to use something like the percolation problem to find the paint blobs' boundaries  
+-- current issues detailed in "issues" tab; will add additional information and research as needed. 
+-- Not necessarily imperative if users use single colors for single annotations as suggested by D. Haehn previously,
+   but still a nice stretch goal 
+
+
+- enable server upload for DICOMs and allow multiple users to annotate at the same time
+-- current issues detailed in "issues" tabe; will add additional information and research as needed. 
+-- need to look into this more; this is an entirely new field for this team and will require heavy research
+
+
+
+----------------------------------------------------------------|  Tasks FOR REVIEW: |-------------------------------------------------------------------------
+
+
+- remove clear annotations code 
+-- 6/16: implemented a dialog popup that lets users know that all paint event data will be deleted and requires confirmation to continue process. Will confirm with client that this is acceptable or if full removal is still required.
+-- maybe comment out initially, and move to full removal
+-- HTML ASPECT HERE DOWN
+-- remove clear button and replace with eraser tool 
+-- Jae specifically requested this; she would rather be able to do minute changes rather than trash her work entirely 
+-- emphasis on the frustration that could occur if all annotations were cleared; maybe we can implement an "ARE YOU SURE???" popup when clear is clicked?
+- "minimize UI"/ simplify display 
+-- the name of the game is minimal design and has been for many years; how simple can we make our UI without losing valuable information 
+    or making the experience cumbersome? Will require some trial and error to determine what is the best minimal example.
+-- Button for eraser should be bound to both segmentation and annotation, but depending on last tool used, will switch between
+   segmentation eraser or annotation eraser to make things easier for user and not have 2 "eraser" buttons 
+
+
+- zoom bound to right click and always active (click and drag cursor) && pan bound to mouse wheel click and always active 
+-- 6/17: right-click zoom and mousewheel-click enabled for zoom and pan respectively. MOUSE REQUIRED FOR THIS 
+-- Discussion with D. Haehn illuminated the difference between zoom/pan interactions with 2D images versus 3D images 
+-- need to find a happy medium for users without clickable or existing mouse wheels (e.g. specialty mouses, touchpad users); 
+   may need to incude a caveat on the information page of web app to let users know of alternative methods to access these tools.
+-- See conversation on project discord 6/3/22 re: discussion of zoom/pan
+
+
+- combine all html to a single file to avoid weirdness with url 
+-- 6/18: Kleo handled this, info page needs to be renamed still
+-- (see https://cdorais1.github.io/CCS/UI/SecondPage.html URL as example)
+-- If there's no landing page, then all of the code will be in a single file 
+-- otherwise, we can move the code from UI/SecondPage.html to index.html 
+-- can rename info.html to tool.html 
+
+
+- reorganize toolbar and remove top bar 
+-- 6/19: Kleo has reorganized the tools to above the tool bar, using the top bar as a divider between the tools and the DICOM Viewer.  
+-- find a new spot for the logo, maybe at end of the tool bar?
+-- move toolbar to top of screen
+-- have color selector be colors instead of text
+-- shrink tool icons so they line up better
+
+
+----------------------------------------------------------------| Finished Tasks APPROVED: |-------------------------------------------------------------------------

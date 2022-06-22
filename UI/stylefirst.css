@@ -1,4 +1,4 @@
-﻿body {
+body {
     margin: 0;
     padding: 0;
 }
@@ -47,13 +47,13 @@ hr {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 17px;
+    font-size: 120%;
     cursor: pointer;
     font-family: 'Arial Rounded MT';
     box-shadow: 0 17px 24px 0 rgba(0,0,0,0.2), 0 15px 28px 0 rgba(0,0,0,0.19);
-    position: relative;
+    position: fixed;
     left: 13%;
-    bottom: 2%;
+    bottom: 20%;
 
 }
 .GetStarted a{
@@ -67,29 +67,29 @@ hr {
 }
 
 .CTA{
-    height:500px;
+    height:80%;
     width:30%;
     min-width:70px;
     min-height: 140px;
-    position: relative;
-    left: 55%;
+    position: fixed;
+    left: 60%;
     top: 10%;
 }
 
 .titleCCS{
     color: white;
-    font-size: 45px;
+    font-size: 250%;
     font-family: 'Arial Rounded MT';
-    position:relative;
-    bottom: 75%;
+    position:fixed;
+    bottom: 50%;
     padding-left: 5%;
 }
 .Description{
     color:white;
-    font-size: 14px;
+    font-size: 100%;
     font-family: 'Arial Rounded MT';
-    position: relative;
-    bottom: 74%;
+    position: fixed;
+    bottom: 40%;
     padding-left: 5%;
     padding-right: 65%;
     min-width: 300px;
@@ -97,10 +97,10 @@ hr {
 .infopage{
     color: white;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 90%;
     font-family: 'Arial Rounded MT';
-    position: relative;
-    bottom: 45%;
+    position: fixed;
+    bottom: 5%;
     padding-left: 95%;
 }
 .infopage a{
