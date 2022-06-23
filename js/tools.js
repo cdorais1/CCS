@@ -1,5 +1,3 @@
-
-
 /** @module imaging/tools/custom/thresholdBrushTool
  *  @desc  This file provides functionalities for
  *         a brush tool with thresholds using a
@@ -115,12 +113,44 @@ function getCircleWithThreshold(
     const y0 = Math.floor(yCoord);
     let circleArray = [];
 
-    // var userMinThreshold = document.getElementById("userMinThreshold").value;
-    var userMaxThreshold = document.getElementById("userMaxThreshold").value;
+    var userMinThreshold = document.getElementById("lower").value;
+    var userMaxThreshold = document.getElementById("upper").value;
+    //var lowerSlider = document.querySelector('#lower'),
+    //    upperSlider = document.querySelector('#upper'),
+    //    lowerVal = parseInt(lowerSlider.value);
+    //upperVal = parseInt(upperSlider.value);
 
-    //if (userMinThreshold == null) {
-    //    userMinThreshold = 80;
-    //}
+    //upperSlider.oninput = function () {
+    //    lowerVal = parseInt(lowerSlider.value);
+    //    upperVal = parseInt(upperSlider.value);
+
+    //    if (upperVal < lowerVal + 4) {
+    //        lowerSlider.value = upperVal - 4;
+
+    //        if (lowerVal == lowerSlider.min) {
+    //            upperSlider.value = 4;
+    //        }
+    //    }
+    //};
+
+
+    //lowerSlider.oninput = function () {
+    //    lowerVal = parseInt(lowerSlider.value);
+    //    upperVal = parseInt(upperSlider.value);
+
+    //    if (lowerVal > upperVal - 4) {
+    //        upperSlider.value = lowerVal + 4;
+
+    //        if (upperVal == upperSlider.max) {
+    //            lowerSlider.value = parseInt(upperSlider.max) - 4;
+    //        }
+
+    //    }
+    //};
+
+    if (userMinThreshold == null) {
+        userMinThreshold = -3071;
+    }
 
     if (userMaxThreshold == null) {
         userMaxThreshold = image.maxPixelValue;
@@ -128,7 +158,7 @@ function getCircleWithThreshold(
 
     //// if no thresholds, set all pixels range
     if (!thresholds) {
-        thresholds = [-2000, userMaxThreshold];
+        thresholds = [userMinThreshold, userMaxThreshold];
 
     }
 

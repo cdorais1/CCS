@@ -1,0 +1,664 @@
+﻿body {
+    margin: auto;
+    padding: 0;
+    background-color: black;
+}
+
+.logo {
+    margin: auto;
+    margin-top: 0%;
+    position: absolute;
+    width: 90px;
+    z-index: 2;
+}
+
+.info {
+    margin: auto;
+    color: white;
+    border-radius: 8px;
+    border: 2px solid #40cfc9;
+    background-color: black;
+    color: #40cfc9;
+    position: absolute;
+    top: 10px;
+    left: 1500px;
+    z-index: 2;
+    width: 35px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    .info a {
+        text-decoration: none;
+        color: #40cfc9;
+        font-weight: bold;
+    }
+
+    /* When mouse goes over the button for more info, the color of the button changes*/
+    .info:hover {
+        background-color: #1e1e1e;
+    }
+
+    /* Gives the sensation of a real button, just click on it*/
+    .info:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+
+.info:focus {
+    background-color: #40cfc9;
+    color: black;
+}
+
+/*p5 corresponds to brush color selection*/
+/*p5 {
+    position: fixed;
+    left: 21%;
+    top: 1.5%;
+    font-size: 11px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}*/
+
+/* This is the style for the brush button*/
+.brush {
+    margin: auto;
+    color: #40cfc9;
+    border-radius: 25%;
+    border: 2px solid #40cfc9;
+    background-color: black;
+    position: absolute;
+    left: 220px;
+    top: 10px;
+    z-index: 2;
+    width: 35px;
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 6px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .brush:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .brush:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    /*Changes color when the user works with this button*/
+    .brush:focus {
+        background-color: #40cfc9;
+        color: black;
+    }
+
+select {
+    position: absolute;
+    left: 230px;
+    top: 13px;
+    z-index: 2;
+}
+
+#Color {
+    border-radius: 8px;
+    border: 1px solid black;
+    position: absolute;
+    z-index: 2;
+    left: 265px;
+    top: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+.red {
+    color: black;
+    font-size: 12px;
+    background-color: red;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.green {
+    color: black;
+    font-size: 12px;
+    background-color: lime;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.purple {
+    color: black;
+    font-size: 12px;
+    background-color: fuchsia;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.blue {
+    font-size: 12px;
+    background-color: aqua;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.pink {
+    color: black;
+    font-size: 12px;
+    background-color: hotpink;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+#Color:disabled {
+    cursor: not-allowed;
+}
+
+p2 {
+    position: absolute;
+    top: 4px;
+    left: 310px;
+    font-size: 12px;
+    font-family: sans-serif;
+    color: #40cfc9;
+    z-index: 2;
+}
+
+input[type=range] {
+    box-sizing: border-box;
+    appearance: none;
+    width: 100px;
+    margin: 0;
+    padding: 0 0px;
+    /* Add some L/R padding to ensure box shadow of handle is shown */
+    overflow: hidden;
+    border: 0;
+    border-radius: 1px;
+    outline: none;
+    background: linear-gradient(grey, grey) no-repeat center;
+    /* Use a linear gradient to generate only the 2px height background */
+    background-size: 100% 2px;
+    pointer-events: none;
+}
+input[type=range]:active, input[type=range]:focus{
+    outline: none;
+}
+
+    input[type=range]::-webkit-slider-thumb {
+        height: 10px;
+        width: 10px;
+        border-radius: 28px;
+        background-color: #40cfc9;
+        position: relative;
+        z-index: 10;
+        margin: 5px 0;
+        /* Add some margin to ensure box shadow is shown */
+        cursor: pointer;
+        appearance: none;
+        pointer-events: all;
+        box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+    }
+input[type=range]::before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 13px;
+    left: 100%;
+    width: 2000px;
+    height: 2px;
+    z-index:10;
+}
+
+.multi-range {
+    position: relative;
+    height: 50px;
+    z-index:10;
+}
+.multi-range  input[type=range] {
+    position: absolute;
+    top: 17px;
+    left: 270px;
+}
+    .multi-range input[type=range]:nth-child(1)
+
+    .multi-range input[type=range]::-webkit-slider-thumb::before {
+        background-color: #40cfc9;
+    }
+
+
+    .multi-range input[type=range]:nth-child(2) {
+        background: none;
+    }
+    .multi-range input[type=range]::-webkit-slider-thumb::before {
+        background-color: #40cfc9;
+    }
+
+#amount1 {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    top: 16px;
+    left: 380px;
+    width: 40px;
+    border-radius: 15%;
+    background-color: #40cfc9;
+    z-index: 10;
+}
+
+#amount2 {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    top: 16px;
+    left: 430px;
+    width: 40px;
+    border-radius: 15%;
+    background-color: #40cfc9;
+    z-index: 10;
+}
+
+.undo {
+    margin: auto;
+    color: #40cfc9;
+    border-radius: 25%;
+    border: 2px solid #40cfc9;
+    background-color: black;
+    position: absolute;
+    left: 540px;
+    top: 10px;
+    z-index: 2;
+    width: 35px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    padding-left: 4px;
+    padding-right: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .undo:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .undo:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    .undo:focus {
+        background-color: #40cfc9;
+        color: black;
+    }
+
+.redo {
+    margin: auto;
+    color: #40cfc9;
+    border-radius: 25%;
+    border: 2px solid #40cfc9;
+    background-color: black;
+    position: absolute;
+    left: 590px;
+    top: 10px;
+    z-index: 2;
+    width: 35px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    padding-left: 4px;
+    padding-right: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .redo:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .redo:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+
+    .redo:focus {
+        background-color: #40cfc9;
+        color: black;
+    }
+.lengthl {
+    margin: auto;
+    border-radius: 25%;
+    border: 2px solid #40cfc9;
+    background-color: black;
+    color: #40cfc9;
+    position: absolute;
+    left: 800px;
+    top: 10px;
+    z-index: 2;
+    width: 35px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .lengthl:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .lengthl:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    /*Changes color when the user presses on this button*/
+    .lengthl:focus {
+        background-color: #40cfc9;
+        color: black;
+    }
+
+.eraser {
+    margin: auto;
+    border-radius: 25%;
+    border: 2px solid #40cfc9;
+    background-color: black;
+    color: #40cfc9;
+    position: absolute;
+    left: 850px;
+    top: 10px;
+    z-index: 2;
+    width: 35px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .eraser:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .eraser:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    /*Changes color when the user presses on this button*/
+    .eraser:focus {
+        background-color: #40cfc9;
+        color: black;
+    }
+
+.statsb {
+    margin: auto;
+    border-radius: 25%;
+    border: 2px solid #40cfc9;
+    background-color: black;
+    color: #40cfc9;
+    position: absolute;
+    left: 1400px;
+    top: 10px;
+    z-index: 2;
+    width: 35px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .statsb:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .statsb:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    /*Changes color when the user presses on this button*/
+    .statsb:focus {
+        background-color: #35afaa;
+        color: black;
+    }
+
+#Statistics {
+    width: 20%;
+    height: 85%;
+    position: absolute;
+    left: 75%;
+    border: 1px solid white;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #2d2d2d;
+    color: whitesmoke;
+    font-size: 18px;
+    font-family: 'Times New Roman';
+    z-index: 10;
+    cursor: move;
+    display: none;
+}
+
+
+.noselect hr {
+    background-color: white;
+    position: relative;
+    top: 0.5%;
+}
+
+/* Prevents inconsistent highlighting of element while being dragged
+   Copied from https://stackoverflow.com/questions/826782 */
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    /*-khtml-user-select: none;*/ /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+#output1c {
+    color: red;
+    font-family: 'Times New Roman';
+}
+
+#output1v {
+    color: red;
+    font-family: 'Times New Roman';
+}
+
+#output1a {
+    color: red;
+    font-family: 'Times New Roman';
+}
+
+#output1d {
+    color: red;
+    font-family: 'Times New Roman';
+}
+
+#output2c {
+    color: dodgerblue;
+    font-family: 'Times New Roman';
+}
+
+#output2a {
+    color: dodgerblue;
+    font-family: 'Times New Roman';
+}
+
+#output2v {
+    color: dodgerblue;
+    font-family: 'Times New Roman';
+}
+
+#output2d {
+    color: dodgerblue;
+    font-family: 'Times New Roman';
+}
+
+#output3c {
+    color: lime;
+    font-family: 'Times New Roman';
+}
+
+#output3v {
+    color: lime;
+    font-family: 'Times New Roman';
+}
+
+#output3a {
+    color: lime;
+    font-family: 'Times New Roman';
+}
+
+#output3d {
+    color: lime;
+    font-family: 'Times New Roman';
+}
+
+#output4c {
+    color: fuchsia;
+    font-family: 'Times New Roman';
+}
+
+#output4v {
+    color: fuchsia;
+    font-family: 'Times New Roman';
+}
+
+#output4a {
+    color: fuchsia;
+    font-family: 'Times New Roman';
+}
+
+#output4d {
+    color: fuchsia;
+    font-family: 'Times New Roman';
+}
+
+#output5c {
+    color: hotpink;
+    font-family: 'Times New Roman';
+}
+
+#output5a {
+    color: hotpink;
+    font-family: 'Times New Roman';
+}
+
+#output5v {
+    color: hotpink;
+    font-family: 'Times New Roman';
+}
+
+#output5d {
+    color: hotpink;
+    font-family: 'Times New Roman';
+}
+
+.exportJ {
+    margin: auto;
+    border-radius: 25%;
+    border: 2px solid #40cfc9;
+    background-color: black;
+    color: #40cfc9;
+    position: absolute;
+    left: 1450px;
+    top: 10px;
+    z-index: 2;
+    width: 35px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .exportJ:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .exportJ:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    /*Changes color when the user presses on this button*/
+    .exportJ:focus {
+        background-color: #40cfc9;
+        color: black;
+    }
+
+/* This is the style for the viewer*/
+.viewer {
+    width: 100%;
+    height: 100%;
+    min-width: 100px;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+}
+    /* This is for the Drag and Drop*/
+    .viewer::before {
+        content: "Drag & Drop";
+        color: #302f2f;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+        font-family: sans-serif;
+        position: absolute;
+        top: 45%;
+        left: 45%;
+        z-index: -1;
+    }
+
+/* This is for when the */
+#viewer {
+    width: 100%;
+    height: 99.9%;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 100px;
+    color: #5f8c8a;
+    z-index: 1;
+}
