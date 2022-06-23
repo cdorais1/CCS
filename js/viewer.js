@@ -187,15 +187,9 @@ window.onkeyup = function (event) {
     else if (event.key == '-') {
         cornerstoneTools.store.state.tools[4].decreaseBrushSize();
     }
-    // press = to increase brush size
-    else if (event.key == '=') {
+    // press + to increase brush size
+    else if (event.key == '+') {
         cornerstoneTools.store.state.tools[4].increaseBrushSize();
-    }
-    // press z for zoom
-    else if (event.key == 'z') {
-        cornerstoneTools.setToolDisabled(currentTool);
-        cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
-        currentTool = 'Zoom';
     }
     // press l for length tool
     else if (event.key == 'l') {
@@ -204,12 +198,7 @@ window.onkeyup = function (event) {
         currentTool = 'Length';
         Seg_or_Ano = 'ano';
     }
-    // press p for pan
-    else if (event.key == 'p') {
-        cornerstoneTools.setToolDisabled(currentTool);
-        cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
-        currentTool = 'Pan';
-    }
+    // press e for erase
     else if (event.key == 'e') {
         if (Seg_or_Ano == 'ano') {
             cornerstoneTools.setToolPassive(currentTool);
@@ -224,42 +213,9 @@ window.onkeyup = function (event) {
 
     }
     
-    //discrete calcifications 
-    else if (event.key == '2') {
-        var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
-        var image = cornerstone.getImage(viewer);
-        var counts = discreteCount(labelMap2D, image);
 
-        var output1 = document.getElementById("output1");
-        var output2 = document.getElementById("output2");
-        var output3 = document.getElementById("output3");
-        var output4 = document.getElementById("output4");
-        var output5 = document.getElementById("output5");
-
-        if (counts.red != null) {
-            output1.innerHTML = "red: " + counts.red;
-        }
-        if (counts.blue != null) {
-            output2.innerHTML = "blue: " + counts.blue;
-        }
-        if (counts.green != null) {
-            output3.innerHTML = "green: " + counts.green;
-        }
-        if (counts.purple != null) {
-            output4.innerHTML = "purple: " + counts.purple;
-        }
-        if (counts.fuchsia != null) {
-            output5.innerHTML = "pink: " + counts.fuchsia;
-        }
-        console.log("red: " + counts.red);
-        console.log("blue: " + counts.blue);
-        console.log("green: " + counts.green);
-        console.log("purple: " + counts.purple);
-        console.log("pink: " + counts.fuchsia);
-    }
-    
-    //displays all statistics
-    else if (event.key == '3') {
+    // press s to display all statistics
+    else if (event.key == 's') {
 
         var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
         var image = cornerstone.getImage(viewer);
@@ -332,60 +288,27 @@ window.onkeyup = function (event) {
         console.log("pink brush: " + areas.fuchsia + 'mm\u00B2');
     }
     
-    // press 4 for display statistics (densities)
-    else if (event.key == '4') {
 
-        var labelMap2D = segModule.getters.labelmap2D(viewer).labelmap2D;
-        var image = cornerstone.getImage(viewer);
-        var densities = getDensity(labelMap2D, image);
-
-        var output1 = document.getElementById("output1");
-        var output2 = document.getElementById("output2");
-        var output3 = document.getElementById("output3");
-        var output4 = document.getElementById("output4");
-        var output5 = document.getElementById("output5");
-
-        if (densities.red != null) {
-            output1.innerHTML = "red: " + densities.red;
-        }
-        if (densities.blue != null) {
-            output2.innerHTML = "blue: " + densities.blue;
-        }
-        if (densities.green != null) {
-            output3.innerHTML = "green: " + densities.green;
-        }
-        if (densities.purple != null) {
-            output4.innerHTML = "purple: " + densities.purple;
-        }
-        if (densities.fuchsia != null) {
-            output5.innerHTML = "pink: " + densities.fuchsia;
-        }
-        console.log("red: " + densities.red);
-        console.log("blue: " + densities.blue);
-        console.log("green: " + densities.green);
-        console.log("purple: " + densities.purple);
-        console.log("pink: " + densities.fuchsia);
-    }
     
-    //press u for undo
-    else if (event.key == 'u') {
+    //press ctrl+z for undo
+    else if (event.ctrlKey && event.key == 'z') {
         segModule.setters.undo(viewer);
     }
     
-    //press r for redo
-    else if (event.key == 'r') {
+    //press ctrl+w for redo
+    
+    else if (event.ctrlKey && event.key == 'y') {
         segModule.setters.redo(viewer);
     }
     
-    //press c for clear
-
-    else if (event.key == 'c') {
+    //press c for clear CLEAR FUNCTION NOT NEEDED NOW
+/*    else if (event.key == 'c') {
 
         clearBrushes(viewer);
     }
-    
-    //press q for json download
-    else if (event.key == 'q') {
+*/    
+    //press d for json download
+    else if (event.key == 'd') {
         var image = cornerstone.getImage(viewer);
         convertToJSON(image);
     }
