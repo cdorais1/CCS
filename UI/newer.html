@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Carotid Calcium Scanner</title>
+    <link rel="stylesheet" href="newer.css" />
+    <!--This is a page I used to get the icons upload and info in the second page of the UI-->
+    <script src="https://kit.fontawesome.com/e3accbbb35.js" crossorigin="anonymous"></script>
+    <!-- Here is the connection between the js and html files-->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> <!--Will probably delete-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> <!--Will probably delete-->
+
+
+    <script src="https://unpkg.com/cornerstone-core/dist/cornerstone.min.js"></script>
+    <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
+    <script src="https://unpkg.com/dicom-parser"></script>
+    <script src="https://unpkg.com/cornerstone-math"></script>
+    <script src="https://unpkg.com/cornerstone-tools"></script>
+    <script src="https://unpkg.com/hammerjs"></script>
+    <script src="../tools.js"></script>
+    <script src="../util.js"></script>
+    <script src="../viewer.js"></script>
+    <script src="../converter.js"></script>
+    <script>
+        function documentReady() {
+            var selectedItem = $('#Color :selected');
+            $('#Color').css('backgroundColor', selectedItem.css('backgroundColor'));
+
+            $('#Color').change(function () {
+                var selectedItem = $(this).find("option:selected");
+                $(this).css('backgroundColor', selectedItem.css('backgroundColor'));
+            });
+        }
+
+        jQuery(document).ready(documentReady);
+
+    </script>
+    <script>
+        var lowerSlider = document.querySelector('#lower'),
+            upperSlider = document.querySelector('#upper'),
+            lowerVal = parseInt(lowerSlider.value);
+        upperVal = parseInt(upperSlider.value);
+
+        upperSlider.oninput = function () {
+            lowerVal = parseInt(lowerSlider.value);
+            upperVal = parseInt(upperSlider.value);
+
+            if (upperVal < lowerVal + 4) {
+                lowerSlider.value = upperVal - 4;
+
+                if (lowerVal == lowerSlider.min) {
+                    upperSlider.value = 4;
+                }
+            }
+        };
+
+
+        lowerSlider.oninput = function () {
+            lowerVal = parseInt(lowerSlider.value);
+            upperVal = parseInt(upperSlider.value);
+
+            if (lowerVal > upperVal - 4) {
+                upperSlider.value = lowerVal + 4;
+
+                if (upperVal == upperSlider.max) {
+                    lowerSlider.value = parseInt(upperSlider.max) - 4;
+                }
+
+            }
+        };
+
+    </script>
+</head>
+<body>
+    <!--The toolbar div, along with the logo and the info page button-->
+    <div class="toolbar">
+
+        <!--The logo on the right upper corner-->
+        <img src="imag/logo1.png" class="logo" />
+
+        <!--Link to the info page along with the info button-->
+        <a href="info.html">
+            <button class="info">
+                <i class="fa-solid fa-question"></i>
+            </button>
+        </a>
+
+        <!--This is the brush tool button-->
+        <button class="brush" onclick="brushbutton(); enable();">
+            <i class="fa-solid fa-paintbrush"></i>
+        </button>
+
+        <!--Color selection-->
+        <!--Delete the letters completely-->
+        <p1>Color</p1>
+        <select id="Color" onchange="changecolor(); ChangedSelection();">
+            <option class="red" value="1"></option>
+            <option class="green" value="2"></option>
+            <option class="purple" value="3"></option>
+            <option class="blue" value="68"></option>
+            <option class="pink" value="6"></option>
+        </select>
+
+        <p2>Threshold</p2>
+        <!-- This is for the slider-->
+        
+        <span class="multi-range">
+            <input type="range" min="-3071" max="3071" value="-3071" id="lower" oninput="amount1.value = lower.value">
+            <input id="amount1" type="number" value="-3071" min="-3071" max="3071" oninput="lower.value=amount1.value" />
+            <input type="range" min="-3071" max="3071" value="3071" id="upper" oninput="amount2.value = upper.value" >
+            <input id="amount2" type="number" value="3071" min="-3071" max="3071" oninput="upper.value=amount2.value" />
+        </span>
+        
+        <!--Undo Button-->
+        <button class="undo" onclick="undo()">
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+        </button>
+
+        <!--Redo Button-->
+        <button class="redo" onclick="redo()">
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+        </button>
+
+        <!--Length Button-->
+        <button class="lengthl" onclick="lengthl(); disable();">
+            <i class="fa-solid fa-arrows-left-right-to-line"></i>
+        </button>
+
+        <!--Eraser Button-->
+        <button class="eraser" onclick="eraser()">
+            <i class="fa-solid fa-eraser"></i>
+        </button>
+
+        <!--Stats Button-->
+        <button class="statsb" name="answer" onclick="displaystats(); document.getElementsByClassName('noselect')[0].style.display = 'auto';">
+            <i class="fas fa-chart-line"></i>
+        </button>
+
+        <!--Export JSON button-->
+        <button class="exportJ" onclick="exportJ()">
+            <i class="fa-solid fa-file-arrow-down"></i>
+        </button>
+
+    </div>
+    <!--The viewer div that extends on the whole page-->
+    <div class="viewer" id="viewer"></div>
+
+    <!--The displaying of statistics when asked by the user-->
+    <div id="Statistics" style="display:none" class="noselect" onclick="draggable">
+        Statistics
+        <hr />
+        <p>
+            <div id="output1c"></div>
+            <div id="output1a"></div>
+            <div id="output1v"></div>
+            <div id="output1d"></div>
+        </p>
+        <p>
+            <div id="output2c"></div>
+            <div id="output2a"></div>
+            <div id="output2v"></div>
+            <div id="output2d"></div>
+        </p>
+        <p>
+            <div id="output3c"></div>
+            <div id="output3a"></div>
+            <div id="output3v"></div>
+            <div id="output3d"></div>
+        </p>
+        <p>
+            <div id="output4c"></div>
+            <div id="output4a"></div>
+            <div id="output4v"></div>
+            <div id="output4d"></div>
+        </p>
+        <p>
+            <div id="output5c"></div>
+            <div id="output5a"></div>
+            <div id="output5v"></div>
+            <div id="output5d"></div>
+        </p>
+
+    </div>
+</body>
+</html>

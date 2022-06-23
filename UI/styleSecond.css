@@ -1,4 +1,4 @@
-﻿body {
+body {
     margin: auto;
     padding: 0;
     background-color: black;
@@ -131,7 +131,9 @@
 .pageHeader {
     grid-column: 1/end;
     grid-row: 1;
+    
 }
+
 
 .buttons {
     grid-column: 1/2;
@@ -141,7 +143,7 @@
 .logo {
     margin: auto;
     margin-top: 0.1%;
-    position: relative;
+    position: fixed;
     width: 5.43%;
     min-width: 75px;
 }
@@ -156,9 +158,9 @@
     border-spacing: 25px;
     background-color: black;
     color: #35afaa;
-    position: relative;
-    top: -30%;
-    left: 91%;
+    position: fixed;
+    top: 1.5%;
+    left: 97%;
     min-block-size: 5%;
     width: 2%;
     min-width: 0.2%;
@@ -195,8 +197,8 @@ hr {
     border-block-color: #35AFAA;
     border-block-end-style: solid;
     margin: auto;
-    position: relative;
-    top: -14.4%;
+    position: fixed;
+    top: 8%;
     width: 99.89%;
     background-color: #35AFAA;
     height: 1.6px;
@@ -208,13 +210,32 @@ buttons {
     left: 5%;
 }
 
+p15 {
+    color: dimgray;
+    font-size: 18px;
+    font-family: 'Times New Roman';
+    position: fixed;
+    top: 1%;
+    left: 55%;
+    display: block;
+}
+
+p16 {
+    color: dimgray;
+    font-size: 18px;
+    font-family: 'Times New Roman';
+    position: fixed;
+    top: 1%;
+    left: 10%;
+    display: block;
+}
 
 /*p4 corresponds to brush size (plus and minus)*/
 p4 {
     position: fixed;
-    left: 6.5%;
-    top: 12.5%;
-    font-size: 12px;
+    left: 17%;
+    top: 1.5%;
+    font-size: 11px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -227,16 +248,16 @@ p4 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 6.5%;
-    top: 15%;
-    min-block-size: 3%;
+    left: 17%;
+    top: 3.5%;
+    min-block-size: 1.5%;
     width: 1.5%;
     min-width: 0.5%;
-    font-size: 110%;
-    padding-top: 0.14%;
-    padding-bottom: 0.06%;
-    padding-left: 0.33%;
-    padding-right: 1%;
+    font-size: 100%;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+    padding-left: 0.2%;
+    padding-right: 0.2%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -267,16 +288,16 @@ p4 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 8.5%;
-    top: 15%;
-    min-block-size: 3%;
+    left: 18.7%;
+    top: 3.5%;
+    min-block-size: 1.5%;
     width: 1.5%;
     min-width: 1%;
-    font-size: 110%;
-    padding-top: 0.14%;
-    padding-bottom: 0.06%;
-    padding-left: 0.33%;
-    padding-right: 1%;
+    font-size: 100%;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+    padding-left: 0.2%;
+    padding-right: 0.2%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -302,22 +323,22 @@ p4 {
 /*p5 corresponds to brush color selection*/
 p5 {
     position: fixed;
-    left: 12%;
-    top: 12.5%;
-    font-size: 12px;
+    left: 21%;
+    top: 1.5%;
+    font-size: 11px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
 
 select {
     position: fixed;
-    left: 11.75%;
-    top: 14.75%;
+    left: 20.9%;
+    top: 3.5%;
 }
 
 #Color {
     color: black;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
     background-color: #35afaa;
     border-radius: 8px;
@@ -326,7 +347,7 @@ select {
 
 .red {
     color: black;
-    font-size: 15px;
+    font-size: 12px;
     background-color: red;
     font-weight: bold;
     border-radius: 8px;
@@ -335,7 +356,7 @@ select {
 
 .green {
     color: black;
-    font-size: 15px;
+    font-size: 12px;
     background-color: lime;
     font-weight: bold;
     border-radius: 8px;
@@ -344,7 +365,7 @@ select {
 
 .purple {
     color: black;
-    font-size: 15px;
+    font-size: 12px;
     background-color: fuchsia;
     font-weight: bold;
     border-radius: 8px;
@@ -352,7 +373,7 @@ select {
 }
 
 .blue {
-    font-size: 15px;
+    font-size: 12px;
     background-color: aqua;
     font-weight: bold;
     border-radius: 8px;
@@ -361,7 +382,7 @@ select {
 
 .pink {
     color: black;
-    font-size: 15px;
+    font-size: 12px;
     background-color: hotpink;
     font-weight: bold;
     border-radius: 8px;
@@ -375,9 +396,9 @@ select {
 /*p1 corresponds to brush*/
 p1 {
     position: fixed;
-    left: 3%;
-    top: 11%;
-    font-size: 14px;
+    left: 14%;
+    top: 0.5%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -390,16 +411,16 @@ p1 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 3%;
-    top: 14%;
-    min-block-size: 5%;
+    left: 14.1%;
+    top: 3%;
+    min-block-size: 2%;
     width: 2%;
-    min-width: 0.5%;
-    font-size: 120%;
-    padding-top: 0.4%;
-    padding-bottom: 0.4%;
-    padding-left: 0.5%;
-    padding-right: 1.7%;
+    min-width: 0.2%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    padding-left: 0.3%;
+    padding-right: 0.8%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -424,8 +445,8 @@ p1 {
 p2 {
     position: fixed;
     top: 0.5%;
-    left: 15%;
-    font-size: 14px;
+    left: 58.6%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -438,7 +459,7 @@ p2 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 15%;
+    left: 58.75%;
     top: 3%;
     min-block-size: 2%;
     width: 1%;
@@ -446,8 +467,8 @@ p2 {
     font-size: 100%;
     padding-top: 0.25%;
     padding-bottom: 0.25%;
-    padding-left: 0.5%;
-    padding-right: 1.5%;
+    padding-left: 0.3%;
+    padding-right: 1.2%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -474,8 +495,8 @@ p2 {
 p3 {
     position: fixed;
     top: 0.5%;
-    left: 19.35%;
-    font-size: 14px;
+    left: 61.9%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -488,7 +509,7 @@ p3 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 19%;
+    left: 61.75%;
     top: 3%;
     min-block-size: 2%;
     width: 1%;
@@ -496,8 +517,8 @@ p3 {
     font-size: 100%;
     padding-top: 0.25%;
     padding-bottom: 0.25%;
-    padding-left: 0.5%;
-    padding-right: 1.5%;
+    padding-left: 0.3%;
+    padding-right: 1.2%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -522,9 +543,9 @@ p3 {
 /*p6 corresponds to clear brush*/
 p6 {
     position: fixed;
-    top: 20%;
-    left: 1.75%;
-    font-size: 14px;
+    top: 0.5%;
+    left: 47%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -537,16 +558,16 @@ p6 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 3%;
-    top: 23%;
-    min-block-size: 5%;
+    left: 47%;
+    top: 3%;
+    min-block-size: 2%;
     width: 2%;
     min-width: 0.5%;
-    font-size: 120%;
-    padding-top: 0.4%;
-    padding-bottom: 0.4%;
-    padding-left: 0.6%;
-    padding-right: 1.55%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    padding-left: 0.4%;
+    padding-right: 0.4%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -565,9 +586,9 @@ p6 {
 /*p7 corresponds to undo brush*/
 p7 {
     position: fixed;
-    top: 20%;
-    left: 8%;
-    font-size: 14px;
+    top: 0.5%;
+    left: 40%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -580,16 +601,16 @@ p7 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 9.25%;
-    top: 23%;
-    min-block-size: 5%;
+    left: 40.1%;
+    top: 3%;
+    min-block-size: 2%;
     width: 2%;
     min-width: 0.5%;
-    font-size: 120%;
-    padding-top: 0.4%;
-    padding-bottom: 0.4%;
-    padding-left: 0.5%;
-    padding-right: 1.6%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    padding-left: 0.3%;
+    padding-right: 0.3%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -609,9 +630,9 @@ p7 {
 /*p8 corresponds to redo brush*/
 p8 {
     position: fixed;
-    top: 20%;
-    left: 14.5%;
-    font-size: 14px;
+    top: 0.5%;
+    left: 43.5%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -624,16 +645,16 @@ p8 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 15.65%;
-    top: 23%;
-    min-block-size: 5%;
+    left: 43.5%;
+    top: 3%;
+    min-block-size: 2%;
     width: 2%;
     min-width: 0.5%;
-    font-size: 120%;
-    padding-top: 0.4%;
-    padding-bottom: 0.4%;
-    padding-left: 0.5%;
-    padding-right: 1.65%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    padding-left: 0.3%;
+    padding-right: 0.3%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -650,12 +671,20 @@ p8 {
         transform: translateY(3px);
     }
 
+.vl {
+    border-left: 1px solid dimgrey;
+    height: 8%;
+    position: fixed;
+    left: 54%;
+    top: 0.1%;
+}
+
 /*p9 corresponds to length button*/
 p9 {
     position: fixed;
-    top: 55%;
-    left: 3%;
-    font-size: 14px;
+    top: 0.5%;
+    left: 64.5%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -668,16 +697,16 @@ p9 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 3%;
-    top: 58%;
-    min-block-size: 5%;
-    width: 2%;
+    left: 64.8%;
+    top: 3%;
+    min-block-size: 2%;
+    width: 1%;
     min-width: 0.5%;
-    font-size: 120%;
-    padding-top: 0.4%;
-    padding-bottom: 0.4%;
-    padding-left: 0.5%;
-    padding-right: 1.77%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    padding-left: 0.25%;
+    padding-right: 1.35%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -719,23 +748,23 @@ p9 {
 /*p11 corresponds to the high pixel intensity threshold*/
 p12 {
     position: fixed;
-    top: 29%;
-    left: 1.75%;
-    font-size: 14px;
+    top: 1%;
+    left: 28%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
 
 #userMaxThreshold {
     position: fixed;
-    top: 32%;
-    left: 2%;
+    top: 3.5%;
+    left: 28%;
 }
 
 #amount {
     position: fixed;
-    top: 32%;
-    left: 12%;
+    top: 3%;
+    left: 35%;
     width: 3%;
     border-radius: 15%;
     background-color: #35AFAA;
@@ -743,11 +772,12 @@ p12 {
 }
 /*style for the sliders for the low and high pixel intensity threshold*/
 input[type="range"] {
-    margin: 30px 0 20px 0;
+    width: 6%;
+    margin: 10px 0 5px 0;
     -webkit-appearance: none;
     background-color: #808080;
-    height: 3px;
-    margin: 10px auto;
+    height: 2px;
+    margin: 8px auto;
 }
 
     input[type="range"]:focus {
@@ -756,8 +786,8 @@ input[type="range"] {
 
     input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
+        width: 12px;
+        height: 12px;
         background: #35afaa;
         border-radius: 50%;
         cursor: -moz-grab;
@@ -767,9 +797,9 @@ input[type="range"] {
 /*p10 corresponds to the display statistics*/
 p10 {
     position: fixed;
-    top: 64%;
-    left: 1%;
-    font-size: 14px;
+    top: 0.5%;
+    left: 71.4%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -782,16 +812,16 @@ p10 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 3%;
-    top: 67%;
+    left: 71.7%;
+    top: 3%;
     min-block-size: 2%;
-    width: 2%;
+    width: 1%;
     min-width: 0.5%;
-    font-size: 120%;
-    padding-top: 0.4%;
-    padding-bottom: 0.4%;
-    padding-left: 0.55%;
-    padding-right: 1.57%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    padding-left: 0.3%;
+    padding-right: 1.2%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -815,9 +845,9 @@ p10 {
 
 p13 {
     position: fixed;
-    top: 73%;
-    left: 3%;
-    font-size: 14px;
+    top: 0.5%;
+    left: 75%;
+    font-size: 13px;
     font-family: Georgia, serif;
     color: #35AFAA;
 }
@@ -830,16 +860,16 @@ p13 {
     background-color: black;
     color: #35afaa;
     position: fixed;
-    left: 3%;
-    top: 76%;
+    left: 75.2%;
+    top: 3%;
     min-block-size: 2%;
-    width: 2%;
+    width: 1%;
     min-width: 0.5%;
-    font-size: 120%;
-    padding-top: 0.4%;
-    padding-bottom: 0.4%;
-    padding-left: 0.60%;
-    padding-right: 1.45%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    padding-left: 0.4%;
+    padding-right: 1%;
     cursor: pointer;
     box-shadow: 0 5px #2d2d2d;
 }
@@ -860,16 +890,62 @@ p13 {
         background-color: #35afaa;
         color: black;
     }
+/* Eraser style*/
+p14 {
+    position: fixed;
+    top: 0.5%;
+    left: 68%;
+    font-size: 13px;
+    font-family: Georgia, serif;
+    color: #35AFAA;
+}
 
+.eraser {
+    margin: auto;
+    color: #35AFAA;
+    border-radius: 25%;
+    border: 2px solid #35afaa;
+    background-color: black;
+    color: #35afaa;
+    position: fixed;
+    left: 68.25%;
+    top: 3%;
+    min-block-size: 2%;
+    width: 1%;
+    min-width: 0.5%;
+    font-size: 100%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    padding-left: 0.3%;
+    padding-right: 1.2%;
+    cursor: pointer;
+    box-shadow: 0 5px #2d2d2d;
+}
+
+    /*When mouse goes over the button for more info, the color of the button changes*/
+    .eraser:hover {
+        background-color: #1e1e1e;
+    }
+
+    /*Gives the sensation of a real button, just click on it*/
+    .eraser:active {
+        background-color: black;
+        box-shadow: 0 4px #2d2d2d;
+        transform: translateY(3px);
+    }
+    /*Changes color when the user presses on this button*/
+    .eraser:focus {
+        background-color: #35afaa;
+        color: black;
+    }
 #Statistics {
     width: 100%;
-    height: 50%;
+    height: 85%;
     position: relative;
     left: -5%;
     border: 1px solid white;
     overflow-y: auto;
     overflow-x: hidden;
-    /*    z-index:10;*/
     background-color: #2d2d2d;
     color: whitesmoke;
     font-size: 18px;
@@ -878,10 +954,13 @@ p13 {
     cursor: move;
 }
 
-.noselect hr {
-    color: azure;
-}
 
+.noselect hr {
+    background-color: white;
+    position: relative;
+    top: 0.5%;
+}
+ 
 /* Prevents inconsistent highlighting of element while being dragged
    Copied from https://stackoverflow.com/questions/826782 */
 .noselect {
@@ -1000,7 +1079,7 @@ p13 {
     height: 100%;
     min-width: 100px;
     position: relative;
-    left: -1.5%;
+    left: -32%;
     top: -1%;
 }
 
@@ -1013,14 +1092,14 @@ p13 {
         font-family: 'Arial Rounded MT';
         position: absolute;
         top: 45%;
-        left: 36%;
+        left: 45%;
         z-index: -1;
     }
 
 #viewer {
     /*border: groove;
     border-color: white;*/
-    width: 110%;
+    width: 136%;
     height: 95%;
     margin-left: auto;
     margin-right: auto;
