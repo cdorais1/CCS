@@ -128,6 +128,26 @@ function onDrop(event) {
 
     };
 };
+// Makes the Stats box move around
+function draggable(el) {
+    el.addEventListener('mousedown', function (e) {
+        var offsetX = e.clientX - parseInt(window.getComputedStyle(this).left);
+        var offsetY = e.clientY - parseInt(window.getComputedStyle(this).top);
+
+        function mouseMoveHandler(e) {
+            el.style.top = (e.clientY - offsetY) + 'px';
+            el.style.left = (e.clientX - offsetX) + 'px';
+        }
+
+        function reset() {
+            window.removeEventListener('mousemove', mouseMoveHandler);
+            window.removeEventListener('mouseup', reset);
+        }
+
+        window.addEventListener('mousemove', mouseMoveHandler);
+        window.addEventListener('mouseup', reset);
+    });
+}
 
 // initiallizes drag and drop on load 
 window.onload = function () {
@@ -135,6 +155,7 @@ window.onload = function () {
     document.body.addEventListener('dragover', onDragOver);
     document.body.addEventListener('drop', onDrop);
     cornerstoneTools.init();
+    draggable(document.getElementById('Statistics'));
 
 };
 // function brushbutton that will allow the onclick event when the user is pressing the brush button
